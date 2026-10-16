@@ -1,0 +1,152 @@
+{
+  "caso": "Operacoes",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 6,
+  "duracaoMs": 55923,
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Supervisores recebem relatos operacionais livres (ocorrências e atrasos) por e-mail e registram em planilhas. Leem descrições variadas, interpretam contexto e priorizam quais incidentes investigar. O processo é manual, lento e sujeito a esquecimentos.",
+        "fatos": [
+          "Relatos chegam por e-mail e são transferidos para planilhas.",
+          "As descrições são livres, variando conforme cada remetente.",
+          "Os supervisores precisam interpretar o contexto e classificar cada relato.",
+          "Triagem é manual, consumindo tempo e podendo falhar na priorização de incidentes críticos.",
+          "Objetivo central é priorizar ocorrências operacionais mais relevantes.",
+          "Deseja-se classificação semântica, agrupamento de relatos similares, identificação de padrões e sugestão de prioridades com justificativas para validação final do supervisor."
+        ],
+        "workflow": [
+          "Recebimento de relatos livres por e-mail",
+          "Registro manual dos relatos na planilha",
+          "Leitura e interpretação contextual dos relatos",
+          "Agrupamento manual de problemas semelhantes",
+          "Priorização manual de quais investigar primeiro",
+          "Supervisor valida e confirma as decisões de prioridade"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Triagem manual de relatos livres é lenta, trabalhosa e arriscada quanto ao esquecimento de incidentes importantes.",
+          "consequencia": "Atraso nas respostas e risco operacional de não tratar ocorrências críticas.",
+          "evidencia": "Muito trabalho manual; Demora"
+        },
+        {
+          "problema": "Descrições múltiplas para o mesmo incidente geram retrabalho na identificação e priorização dos relatos.",
+          "consequencia": "Tempo excessivo para agrupar informações e maior propensão a erros de classificação.",
+          "evidencia": "Ler relatos e agrupar problemas semelhantes"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Triagem, classificação e priorização dos relatos livres recebidos na operação",
+        "capacidadeNecessaria": "Classificação inteligente de texto, agrupamento semântico, sugestão de prioridade com explicação em linguagem clara, mantendo decisão final informada pelo supervisor",
+        "beneficioPotencial": "Redução de esforço manual, diminuição do tempo de resposta e aumento de segurança de que incidentes críticos não sejam esquecidos"
+      },
+      "familias": {
+        "principal": "Classificação / roteamento",
+        "complementares": [
+          "Recomendação / scoring / next best action",
+          "Detecção de padrões / anomalias",
+          "Apoio à decisão"
+        ],
+        "justificativa": "A classificação semântica dos relatos, com agrupamento de similares, indicação automática de prioridade e justificativa contextual, permite acelerar, padronizar e qualificar a triagem, reduzindo riscos e agregando inteligência ao processo, conforme especificado nas dores e necessidades operacionais."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Motor inteligente de triagem contextual: interpreta automaticamente relatos livres recebidos por e-mail, agrupa descrições similares, classifica o tipo de ocorrência e propõe prioridade justificada para cada caso. Sugestões são integradas ao fluxo para validação pelo supervisor, que confirma encaminhamentos e pode ajustar a recomendação da IA.",
+          "familias": [
+            "Classificação / roteamento",
+            "Recomendação / scoring / next best action",
+            "Detecção de padrões / anomalias",
+            "Apoio à decisão"
+          ],
+          "problema": "Demora e esforço manual para ler, interpretar e priorizar relatos livres, além do risco de esquecer incidentes importantes devido à variabilidade de linguagem e falta de agrupamento estruturado.",
+          "capacidadeIA": "Processamento de texto livre para classificação inteligente de ocorrências, detecção de duplicidades e padrões, sugestão automática de prioridade operacional e justificativa contextual em linguagem clara para revisão humana.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Adere integralmente ao fluxo já existente, permite validação humana e é validado por auditoria de recomendações."
+        },
+        {
+          "id": "C3",
+          "solucao": "Copiloto de priorização contextual: interface orientada a tarefas que captura os relatos já diretamente do e-mail/planilha, interpreta conteúdo textual, sugere categorização e ordem de prioridade, e destaca motivos-chave de maneira clara para facilitar a revisão rápida pelo supervisor. Fornece também resumos executivos que antecipam insights.",
+          "familias": [
+            "Classificação / roteamento",
+            "Recomendação / scoring / next best action",
+            "Resumo / síntese",
+            "Apoio à decisão"
+          ],
+          "problema": "Falta de agilidade e clareza nos encaminhamentos, exigindo que o supervisor dedique tempo significativo para interpretar relatos dispersos e priorizar sob pressão.",
+          "capacidadeIA": "Processa automaticamente entradas textuais, recomenda sequência de ação priorizada, apresenta explicação das prioridades em linguagem enxuta e oferece síntese executiva do status operacional das últimas ocorrências.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Foco operacional mais enxuto, útil como ponte para aprimoramento contínuo da triagem e contextualização."
+        },
+        {
+          "id": "C4",
+          "solucao": "Plataforma integrada de triagem, classificação e análise de ocorrências: unifica recebimento de relatos textuais, aplica IA para classificação automatizada, detecção de padrões e recomendação justificada das prioridades. Gera alertas, dashboards analíticos e mantém registro rastreável de decisões, servindo tanto para triagem rápida quanto monitoramento estratégico das recorrências.",
+          "familias": [
+            "Classificação / roteamento",
+            "Detecção de padrões / anomalias",
+            "Recomendação / scoring / next best action",
+            "Análise de dados"
+          ],
+          "problema": "Fragmentação dos canais e ferramentas eleva o risco de incidentes importantes serem negligenciados e limita a visão estratégica sobre tendências operacionais.",
+          "capacidadeIA": "Integra e interpreta relatos de diferentes fontes, classifica em tempo real, reconhece padrões relevantes e propõe prioridades justificadas, alimentando sistema analítico para visão gerencial sobre ocorrências e tomada de decisão embasada.",
+          "impactoPotencial": "Alto",
+          "esforco": "Alto",
+          "observacao": "Abrange triagem, priorização e monitoração estratégica em escala, exigindo maior padronização e governança."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é o Motor inteligente de triagem contextual. Esta solução automatiza a interpretação dos relatos livres, agrupa incidentes similares, classifica e sugere prioridades justificadas, mantendo o supervisor no controle final sobre encaminhamentos. Ela endereça diretamente o esforço manual e o risco de esquecimento de ocorrências críticas, sem exigir mudanças radicais na infraestrutura atual e com validação fácil por auditoria das sugestões, apresentando equilíbrio entre valor gerado, risco controlado e rapidez na obtenção de benefícios."
+      },
+      "funcionamento": [
+        "Relatos chegam por e-mail ou planilha centralizada.",
+        "A solução de IA interpreta automaticamente cada novo relato, extraindo contexto e identificando descrições similares a eventos prévios.",
+        "Agrupa relatos que apontam para o mesmo tipo de problema, mesmo com descrições variadas.",
+        "Classifica cada ocorrência dentro de categorias operacionais definidas e sugere prioridade de atendimento baseada em critérios contextuais e recorrências detectadas.",
+        "Justifica cada sugestão de prioridade em linguagem compreensível para o supervisor.",
+        "Supervisor revisa, confirma ou ajusta as recomendações de prioridade e direção operacional.",
+        "As decisões validadas ficam registradas para consulta e auditoria futura."
+      ],
+      "preRequisitos": [
+        "Histórico acessível de relatos em planilhas digitais para treinamento e teste inicial da IA.",
+        "Acesso autorizado ao canal principal de entrada (e-mail ou pasta consolidada).",
+        "Definição e alinhamento das principais categorias de ocorrência com o negócio.",
+        "Estabelecimento de critérios operacionais para prioridade (ex: impacto, frequência, urgência).",
+        "Permissão para incluir justificativas automáticas nas recomendações.",
+        "Processo de governança para revisão, atualização e aprovação de sugestões automáticas."
+      ],
+      "validacoes": [
+        "Qualidade e variedade real dos relatos históricos para garantir acurácia da classificação inteligente.",
+        "Mapeamento claro das categorias de ocorrência mais relevantes para a operação.",
+        "Conferência da aderência das recomendações da IA ao entendimento do supervisor durante o período inicial de teste."
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo médio de triagem por ocorrência",
+          "comoMedir": "Comparar o tempo decorrido do recebimento do relato até a priorização final comprovada pelo supervisor, antes e depois do uso da solução de IA.",
+          "gargalo": "Triagem manual de relatos livres é lenta, trabalhosa e arriscada quanto ao esquecimento de incidentes importantes."
+        },
+        "secundarias": [
+          {
+            "nome": "Taxa de concordância entre IA e supervisor nas prioridades propostas",
+            "comoMedir": "Proporção de recomendações aceitas integralmente pelo supervisor em relação ao total de sugestões fornecidas pela IA.",
+            "gargalo": "Triagem manual de relatos livres é lenta, trabalhosa e arriscada quanto ao esquecimento de incidentes importantes."
+          },
+          {
+            "nome": "Percentual de relatos agrupados corretamente por similaridade semântica",
+            "comoMedir": "Razão entre o número de relatos corretamente agrupados pela IA e o total de relatos similares existentes no período analisado, validado por amostra auditada.",
+            "gargalo": "Descrições múltiplas para o mesmo incidente geram retrabalho na identificação e priorização dos relatos."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": []
+}

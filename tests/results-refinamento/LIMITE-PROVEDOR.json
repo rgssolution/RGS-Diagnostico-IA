@@ -1,0 +1,8 @@
+{
+  "status": 429,
+  "code": "credit_balance_exhausted",
+  "type": "insufficient_quota",
+  "retryAfter": null,
+  "remainingTokens": null,
+  "resetTokens": null
+}

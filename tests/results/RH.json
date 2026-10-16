@@ -1,0 +1,153 @@
+{
+  "caso": "RH",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 6,
+  "duracaoMs": 75487,
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "A equipe de RH recebe muitos currículos em PDF por e-mail. Cada documento é aberto e lido manualmente, com extração e resumo das experiências profissionais para posterior organização em planilhas (Excel ou Google Sheets). Os recrutadores, com base nos critérios de vaga, comparam e decidem quem avança, garantindo revisão e correção de possíveis vieses. O processo atual é manual, demorado e repetitivo.",
+        "fatos": [
+          "Processo de triagem manual de currículos em PDF.",
+          "Abertura e leitura individual de cada documento.",
+          "Resumo manual das experiências do candidato.",
+          "Organização dos dados em planilhas.",
+          "Comparação com critérios de vaga para decisão de avanço.",
+          "Revisão para eliminar vieses e corrigir extrações."
+        ],
+        "workflow": [
+          "Recebimento dos currículos por e-mail.",
+          "Abertura manual de cada PDF.",
+          "Leitura e extração de dados relevantes.",
+          "Resumo manual das experiências profissionais.",
+          "Organização de dados extraídos em planilhas.",
+          "Comparação com critérios da vaga.",
+          "Decisão de avanço feita por recrutadores.",
+          "Revisão de vieses/correção de extrações."
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Demora e esforço manual excessivo na leitura, resumo e organização dos currículos recebidos, atrasando o processo de triagem.",
+          "consequencia": "Retardo na análise dos candidatos, aumento da carga de trabalho e risco de perda de bons talentos por lentidão.",
+          "evidencia": "Muito trabalho manual; Demora"
+        },
+        {
+          "problema": "Falhas ou inconsistências na organização das informações dos currículos, devido à variabilidade dos formatos e terminologias nos PDFs.",
+          "consequencia": "Aumenta retrabalho e risco de erros ou omissões na triagem.",
+          "evidencia": "Recebemos muitos currículos em PDF e a equipe lê cada documento, resume experiências e compara com critérios de vaga. A demora atrasa a análise. Queremos extrair, resumir e organizar qualificações profissionais relevantes; não usar atributos pessoais sensíveis. A decisão de avançar e contratar deve continuar com recrutadores, com revisão de possíveis vieses e correção de extrações."
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Extração, resumo e comparação automática de experiências de currículos com os critérios das vagas.",
+        "capacidadeNecessaria": "Interpretação automática de textos de currículos, geração de síntese personalizada e priorização das candidaturas segundo critérios específicos, com revisão humana.",
+        "beneficioPotencial": "Redução significativa do tempo de triagem, liberação dos recrutadores para análise qualitativa, diminuição do esforço repetitivo e maior agilidade sem perda de controle humano ou aumento de riscos de viés."
+      },
+      "familias": {
+        "principal": "Extração e interpretação de documentos",
+        "complementares": [
+          "Resumo / síntese",
+          "Personalização",
+          "Recomendação / scoring / next best action"
+        ],
+        "justificativa": "A extração automática de informações textuais dos currículos PDF é o ponto crítico do processo, pois abastece as etapas seguintes de resumo e priorização. O resumo/síntese transforma dados brutos em insights interpretáveis; personalização garante aderência ao critério da vaga; recomendação/priorização automatiza a organização inicial, acelerando o funil sem abdicar do crivo humano."
+      },
+      "solucoes": [
+        {
+          "id": "C4",
+          "solucao": "Fluxo integrado de triagem: Combina extração, resumo personalizado, comparação automática por critérios de vaga e priorização dos currículos, entregando uma visão unificada e editável para revisão ágil pela equipe.",
+          "familias": [
+            "Extração e interpretação de documentos",
+            "Resumo / síntese",
+            "Personalização",
+            "Recomendação / scoring / next best action"
+          ],
+          "problema": "Processo manual fragmentado, com retrabalho entre extração e resumo das qualificações, comparação com critérios e priorização para a decisão final.",
+          "capacidadeIA": "Automatiza a sequência: identifica, extrai e resume experiências dos currículos; cruza cada perfil com critérios de vaga; gera listas priorizadas e permite ajustes ou revisões das propostas de triagem.",
+          "impactoPotencial": "Alto",
+          "esforco": "Alto",
+          "observacao": "Integra todas as etapas, entregando mais valor e eliminando fragmentação; depende de alinhamento do fluxo e governança sobre ajustes e vieses."
+        },
+        {
+          "id": "C1",
+          "solucao": "Analisador inteligente de currículos: Extração automática de qualificações, resumo textual das experiências mais relevantes e organização estruturada dos dados por vaga, com revisão e conferência humana.",
+          "familias": [
+            "Extração e interpretação de documentos",
+            "Resumo / síntese",
+            "Geração de texto",
+            "Tradução / transformação"
+          ],
+          "problema": "Demora e esforço manual excessivo na leitura, resumo e organização das qualificações profissionais extraídas de currículos PDF.",
+          "capacidadeIA": "Interpretar o conteúdo textual dos currículos recebidos em PDF, extrair e resumir as experiências profissionais, diferenciando informações de acordo com critérios da vaga, e organizar dados estruturados para revisão e decisão rápida pelos recrutadores, sem uso de atributos pessoais sensíveis.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Foca nas etapas de extração e resumo, sem automação de priorização nem cruzamento avançado com critérios, demandando etapas manuais adicionais."
+        },
+        {
+          "id": "C2",
+          "solucao": "Motor de correspondência por critérios: Extração inteligente das qualificações dos currículos, com comparação automática aos requisitos parametrizados de cada vaga, classificação de aderência e indicação dos candidatos mais alinhados para priorização, respeitando triagem e decisão humanas.",
+          "familias": [
+            "Extração e interpretação de documentos",
+            "Busca inteligente / RAG",
+            "Classificação / roteamento",
+            "Recomendação / scoring / next best action"
+          ],
+          "problema": "Demanda excessiva de esforço dos recrutadores ao comparar manualmente os currículos com os critérios das vagas para identificação dos talentos mais alinhados.",
+          "capacidadeIA": "Extrair automaticamente dados chave dos currículos e compará-los, por processamento semântico, aos critérios definidos de cada vaga, gerando uma classificação de aderência e sugestões de priorização para revisão manual.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Entrega classificação e priorização, mas sem integração plena ao fluxo de extração, resumo e controle de ajustes em um só processo."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C4",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é a adoção do fluxo integrado de triagem automatizada. Esta solução utiliza IA para extrair dados dos currículos, gerar resumos personalizados, cruzar as qualificações com os critérios de vaga e priorizar os candidatos, entregando ao RH listas e sínteses editáveis prontas para conferência e correção. Isso acelera todas as etapas críticas, elimina retrabalho e maximiza o benefício da automação, sem abrir mão do controle e revisão humanos, diferentemente das demais, que cobrem apenas parte do processo ou exigem esforços manuais na integração das informações."
+      },
+      "funcionamento": [
+        "Os currículos em PDF são recebidos normalmente e armazenados em local autorizado.",
+        "A solução realiza extração automática das experiências profissionais e qualificações relevantes, convertendo texto livre dos PDFs para dados estruturados.",
+        "A IA resume os principais pontos profissionais de cada candidato conforme critérios atuais da vaga.",
+        "A cada perfil, o sistema compara informações extraídas com requisitos parametrizados, classificando e priorizando as candidaturas de acordo com a aderência.",
+        "Os recrutadores acessam uma visão unificada, com listas priorizadas e sínteses personalizadas para conferência, edição e ajustes.",
+        "A equipe confere e, caso necessário, corrige os resumos ou a priorização sugerida pelo sistema.",
+        "Todo ajuste realizado alimenta a melhoria contínua dos mecanismos de extração e priorização."
+      ],
+      "preRequisitos": [
+        "Acesso seguro e autorizado aos PDFs recebidos por e-mail ou sistema de arquivos.",
+        "Definição e parametrização clara dos critérios de cada vaga para customização da triagem.",
+        "Ambiente de revisão e edição dos dados extraídos, integrado às planilhas ou sistema atual.",
+        "Definição de políticas de revisão e validação para ajustes manuais e controle de viés.",
+        "Permissões para os recrutadores intervirem e corrigirem as saídas geradas."
+      ],
+      "validacoes": [
+        "Avaliar o índice de correções manuais necessárias nos resumos e priorizações sugeridas pela IA.",
+        "Medir o grau de satisfação dos recrutadores com a precisão dos resumos e relevância das priorizações.",
+        "Assegurar que nenhum atributo pessoal sensível seja extraído, exibido ou utilizado no processo automatizado."
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo médio de triagem por currículo",
+          "comoMedir": "Comparar o tempo gasto anteriormente para triar um currículo com o tempo após implementação da extração, resumo e priorização automatizadas, considerando os momentos desde a recepção do PDF até a entrega da decisão de avanço para cada candidato.",
+          "gargalo": "Demora e esforço manual excessivo na leitura, resumo e organização dos currículos recebidos, atrasando o processo de triagem."
+        },
+        "secundarias": [
+          {
+            "nome": "Taxa de correções manuais necessárias nas extrações e resumos da IA",
+            "comoMedir": "Calcular a proporção de candidatos para os quais os recrutadores realizaram ajustes manuais relevantes nos resumos ou classificações sugeridas.",
+            "gargalo": "Demora e esforço manual excessivo na leitura, resumo e organização dos currículos recebidos, atrasando o processo de triagem."
+          },
+          {
+            "nome": "Satisfação da equipe com o processo de triagem automatizado",
+            "comoMedir": "Realizar consultas qualitativas ou rápidas enquetes com recrutadores após ciclos de triagem para aferir percepção de ganho de tempo e qualidade do apoio da IA.",
+            "gargalo": "Demora e esforço manual excessivo na leitura, resumo e organização dos currículos recebidos, atrasando o processo de triagem."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": []
+}

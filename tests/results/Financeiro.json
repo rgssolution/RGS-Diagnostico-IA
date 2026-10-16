@@ -1,0 +1,158 @@
+{
+  "caso": "Financeiro",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 6,
+  "duracaoMs": 78447,
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "O fechamento financeiro mensal é realizado por uma pequena equipe que recebe planilhas de vendas e custos por e-mail, consolida e cruza os dados manualmente, calcula margens, monta dashboards e interpreta variações entre meses. O gestor analisa os desvios manualmente e decide ações sobre receitas e despesas. Existe histórico mensal regular, mas sem validação plena da qualidade dos dados.",
+        "fatos": [
+          "Fechamento mensal do resultado financeiro por consolidação manual de planilhas de vendas e custos.",
+          "Equipe pequena cruza dados, calcula margens e produz dashboards no Excel/Google Sheets.",
+          "Gestor analisa variações históricas e investiga manualmente causas de desvios.",
+          "Todo o processo é conferido e aprovado manualmente.",
+          "O trabalho é repetitivo, consome tempo e dificulta decisões rápidas.",
+          "Histórico mensal está disponível e padronizado, mas pode requerer conferência de qualidade."
+        ],
+        "workflow": [
+          "Receber planilhas de vendas e custos por e-mail",
+          "Consolidar e cruzar manualmente os valores nas planilhas",
+          "Calcular margens e indicadores",
+          "Montar dashboards nos arquivos",
+          "Gestor lê e analisa variações entre meses",
+          "Gestor procura causas para desvios nas receitas e despesas",
+          "Resultados e autorizações são conferidos manualmente"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Excesso de tempo e esforço manual para consolidar, interpretar e explicar desvios financeiros mensais",
+          "consequencia": "Atraso na identificação de causas relevantes e decisões menos ágeis sobre receitas e despesas",
+          "evidencia": "Muito trabalho manual; Demora"
+        },
+        {
+          "problema": "Dificuldade em interpretar rapidamente os principais desvios e explicar variações de resultado",
+          "consequencia": "Gestor pode agir tardiamente sobre áreas críticas ou priorizar pontos menos relevantes",
+          "evidencia": "Entender mais cedo os desvios do resultado"
+        },
+        {
+          "problema": "Dependência de análise manual para comunicar e justificar decisões perante o time e a liderança",
+          "consequencia": "Gasto recorrente de tempo na redação e revisão de explicações, sem escalabilidade",
+          "evidencia": "Todo mês recebemos uma planilha de vendas e outra de custos. Consolidamos e cruzamos manualmente os valores, calculamos margens e indicadores e montamos um dashboard. O gestor analisa variações entre meses e procura motivos para desvios de receitas e despesas, mas a leitura manual demora e dificulta decidir onde agir. Há histórico mensal disponível, ainda sem qualidade conferida. Queremos interpretação dos indicadores, alertas de anomalias e síntese para apoiar decisões; cálculos e aprovações precisam ser conferidos por pessoas."
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Consolidação e análise inteligente dos fechamentos mensais, identificando e explicando automaticamente desvios de resultado",
+        "capacidadeNecessaria": "Interpretação autônoma dos dados, detecção de padrões e anomalias, e geração de síntese textual clara para apoiar decisões",
+        "beneficioPotencial": "Reduz esforço manual, antecipa a explicação de variações relevantes, acelera ações corretivas e melhora a clareza dos relatórios para o gestor"
+      },
+      "familias": {
+        "principal": "Detecção de padrões / anomalias",
+        "complementares": [
+          "Análise de dados",
+          "Resumo / síntese",
+          "Geração de texto"
+        ],
+        "justificativa": "Os gargalos apontam para a necessidade de automatizar a identificação de desvios atípicos rapidamente, interpretar indicadores financeiros e apresentar explicações claras em linguagem natural, centrando-se na detecção inteligente e na comunicação objetiva dos motivos que apoiam as decisões do gestor."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Analisador Inteligente de Fechamento Mensal",
+          "familias": [
+            "Análise de dados",
+            "Detecção de padrões / anomalias",
+            "Resumo / síntese",
+            "Geração de texto"
+          ],
+          "problema": "Consolidação e análise manual dos resultados de vendas e custos demanda tempo excessivo, dificultando a identificação rápida de desvios e prejudicando a tomada de decisão financeira.",
+          "capacidadeIA": "O Analisador lê automaticamente planilhas padronizadas de vendas e custos, realiza análise e cruzamento dos dados, detecta padrões atípicos ou anomalias em relação ao histórico mensal, e gera relatórios sintéticos em linguagem natural destacando principais causas prováveis para as variações.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Mantém cálculos críticos sob revisão manual e entrega valor imediato ao reduzir esforço manual e explicar motivos relevantes para variações."
+        },
+        {
+          "id": "C2",
+          "solucao": "Motor Inteligente de Classificação e Priorização de Desvios",
+          "familias": [
+            "Análise de dados",
+            "Classificação / roteamento",
+            "Detecção de padrões / anomalias",
+            "Apoio à decisão"
+          ],
+          "problema": "O volume de variações mensais dificulta a priorização dos desvios com maior impacto e atraso ações corretivas.",
+          "capacidadeIA": "O Motor recebe dados consolidados de vendas e custos, classifica automaticamente as variações e desvios em categorias de risco/urgência, ordena as linhas ou contas mais críticas para investigação e sugere prioridades de análise ao gestor.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Dirige foco do gestor às variações relevantes, mas demanda análise adicional para justificação detalhada dos motivos."
+        },
+        {
+          "id": "C4",
+          "solucao": "Plataforma Integrada de Detecção, Priorização e Explicação Financeira",
+          "familias": [
+            "Análise de dados",
+            "Detecção de padrões / anomalias",
+            "Classificação / roteamento",
+            "Resumo / síntese"
+          ],
+          "problema": "O fluxo manual não só atrasa o fechamento, mas rende relatórios pouco claros e dificulta a reação rápida a anomalias significativas, prejudicando ciclos de decisão.",
+          "capacidadeIA": "A Plataforma conecta leitura automática dos fechamentos mensais, detecção e priorização de anomalias, e síntese dos principais motivos e recomendações, entregando um painel central ao gestor com alertas críticos e textos de apoio para ação.",
+          "impactoPotencial": "Alto",
+          "esforco": "Alto",
+          "observacao": "Entrega máxima cobertura, porém exige esforço organizacional e refinamento do processo para integração plena."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é o Analisador Inteligente de Fechamento Mensal. Essa solução automatiza a leitura, análise e interpretação das planilhas de vendas e custos, detecta de forma inteligente os principais desvios em relação ao histórico, e gera relatórios explicativos em linguagem clara para apoiar decisões rápidas do gestor. Ela cobre o gargalo central de excesso de esforço manual com risco baixíssimo, mantém a conferência humana obrigatória e pode ser implementada já aproveitando os dados existentes, ao contrário de alternativas que exigem maior reestruturação ou não entregam toda a cadeia de valor—como detalhamento dos motivos e clareza textual aos gestores."
+      },
+      "funcionamento": [
+        "Recebimento automático das planilhas mensais de vendas e custos em formato padronizado",
+        "Os valores e indicadores são calculados por regras conferidas; a IA interpreta os resultados e sinaliza variações para revisão.",
+        "Verificação da qualidade e consistência dos dados recebidos",
+        "Execução dos cálculos exatos de consolidação, margens e indicadores sob conferência manual",
+        "Processamento inteligente dos dados, identificando padrões e anomalias com base nos históricos",
+        "Geração automática de relatórios sintéticos com explicações das principais variações e alertas para desvios significativos",
+        "Disponibilização dos outputs para validação e revisão pela equipe financeira",
+        "Ajuste e complementação dos resultados finais conforme revisão e decisão do gestor"
+      ],
+      "preRequisitos": [
+        "Padronização mínima dos formatos das planilhas de vendas e custos",
+        "Acesso autorizado aos históricos mensais de resultados financeiros",
+        "Procedimento estabelecido para conferência manual de cálculos críticos",
+        "Definição clara de regras para validação e exceções dos resultados apresentados",
+        "Permissão expressa da equipe gestora para o uso dos dados no fluxo inteligente"
+      ],
+      "validacoes": [
+        "Conferir a consistência e padronização dos arquivos de vendas e custos recebidos",
+        "Avaliar se o histórico disponível cobre períodos e variáveis essenciais para boa detecção de desvios",
+        "Manter avaliação periódica sobre a precisão dos alertas e explicações geradas comparando com análises manuais anteriores"
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo para entender e explicar os principais desvios do resultado após recebimento das planilhas",
+          "comoMedir": "Comparar o tempo entre a entrega dos dados mensais e a geração do relatório explicativo sintético com o processo manual praticado anteriormente",
+          "gargalo": "Excesso de tempo e esforço manual para consolidar, interpretar e explicar desvios financeiros mensais"
+        },
+        "secundarias": [
+          {
+            "nome": "Taxa de detecção antecipada de anomalias relevantes",
+            "comoMedir": "Percentual de desvios destacados automaticamente pelo Analisador que coincidem com os pontos identificados manualmente como críticos pelo gestor",
+            "gargalo": "Excesso de tempo e esforço manual para consolidar, interpretar e explicar desvios financeiros mensais"
+          },
+          {
+            "nome": "Clareza e utilidade das explicações geradas para apoio à decisão",
+            "comoMedir": "Pesquisa qualitativa ou avaliação por parte do gestor e da equipe sobre a compreensão e aplicabilidade dos relatórios sintéticos gerados",
+            "gargalo": "Dificuldade em interpretar rapidamente os principais desvios e explicar variações de resultado"
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": []
+}

@@ -1,0 +1,154 @@
+{
+  "caso": "RH",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 6,
+  "duracaoMs": 104023,
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "O RH recebe muitos currículos em PDF, realiza leitura manual, resume as experiências e organiza as qualificações conforme critérios da vaga. O processo é lento e trabalhoso, e a decisão final é dos recrutadores.",
+        "fatos": [
+          "Recebimento de currículos em PDF por e-mail.",
+          "Leitura individual e manual de cada documento.",
+          "Resumo textual das experiências e qualificações relevantes de cada candidato.",
+          "Organização das qualificações em planilhas (Excel/Sheets).",
+          "Comparação explícita com critérios definidos para cada vaga.",
+          "Decisão sobre avanço para etapas posteriores é tomada exclusivamente pelo RH.",
+          "Decisão do RH depende de revisão e correção de possíveis vieses ou erros de extração."
+        ],
+        "workflow": [
+          "Receber currículos em PDF por e-mail.",
+          "Ler cada currículo manualmente.",
+          "Resumir texto das experiências e extrair qualificações de interesse.",
+          "Organizar informações estruturadas em planilhas.",
+          "Comparar qualificações com os critérios das oportunidades em aberto.",
+          "Equipe de RH revisa as sínteses e decide quem avança no processo."
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Processo moroso de leitura, resumo e organização manual dos currículos recebidos.",
+          "consequencia": "Atraso na triagem e possível perda de velocidade na seleção de candidatos alinhados à vaga.",
+          "evidencia": "Muito trabalho manual; Demora"
+        },
+        {
+          "problema": "Grande volume e variabilidade dos currículos dificultam síntese e padronização rápida das experiências.",
+          "consequencia": "Aumenta a carga de trabalho repetitiva e dificulta a comparação objetiva entre candidatos.",
+          "evidencia": "Resumir experiência e organizar qualificações"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Triagem inicial e organização das informações dos currículos",
+        "capacidadeNecessaria": "Extração automática, resumo sintético das experiências e comparação inteligente das qualificações conforme critérios da vaga, permitindo consulta em linguagem natural, com validação final do RH.",
+        "beneficioPotencial": "Acelera triagem, reduz trabalho repetitivo e oferece apoio interpretativo na comparação dos perfis, mantendo decisão e revisão com humanos para controle de viés e qualidade."
+      },
+      "familias": {
+        "principal": "Extração e interpretação de documentos",
+        "complementares": [
+          "Resumo / síntese",
+          "Classificação / roteamento",
+          "Recomendação / scoring / next best action"
+        ],
+        "justificativa": "A extração e interpretação de documentos são centrais para transformar PDFs em dados estruturados. A síntese resume as experiências; classificação e scoring permitem comparar e ranquear candidatos conforme critérios; consulta interpretativa agrega valor e transparência ao RH."
+      },
+      "solucoes": [
+        {
+          "id": "C4",
+          "solucao": "Assistente integrado de triagem, resumo sintético, scoring e busca, com explicações em linguagem natural",
+          "familias": [
+            "Extração e interpretação de documentos",
+            "Resumo / síntese",
+            "Classificação / roteamento",
+            "Recomendação / scoring / next best action"
+          ],
+          "problema": "A equipe enfrenta atraso e baixa visibilidade, pois precisa ler e resumir manualmente cada currículo, comparar com vagas e buscar dados entre perfis.",
+          "capacidadeIA": "Extrai e resume qualificações de cada currículo, compara automaticamente com diferentes critérios da vaga, gera score contextualizado, permite exploração em linguagem natural do acervo e fornece racionalidade da aderência dos perfis selecionados.",
+          "impactoPotencial": "Alto",
+          "esforco": "Alto",
+          "observacao": "Integra completa das capacidades-chave, com maior requisito de orquestração inicial e adaptação do RH."
+        },
+        {
+          "id": "C1",
+          "solucao": "Motor inteligente de extração, resumo e organização de qualificações profissionais a partir de currículos em  ",
+          "familias": [
+            "Extração e interpretação de documentos",
+            "Resumo / síntese",
+            "Classificação / roteamento",
+            "Apoio à decisão"
+          ],
+          "problema": "O processo manual de triagem de currículos gera atraso por exigir leitura, resumo e organização individual de cada PDF.",
+          "capacidadeIA": "Extrai de forma automática as informações profissionais relevantes dos PDFs, sintetiza experiências em resumos claros e padronizados, organiza qualificações conforme critérios da vaga e sugere o grau de aderência, mantendo revisão por RH.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Ataca extração, resumo e padronização, porém sem integrar scoring avançado ou consulta exploratória inteligente."
+        },
+        {
+          "id": "C2",
+          "solucao": "Copiloto de análise comparativa de candidatos, com scoring inteligente de adequação às vagas e recomendações",
+          "familias": [
+            "Recomendação / scoring / next best action",
+            "Classificação / roteamento",
+            "Apoio à decisão",
+            "Personalização"
+          ],
+          "problema": "É moroso comparar, qualificar e priorizar manualmente candidatos distintos por critérios de vaga.",
+          "capacidadeIA": "Gera automaticamente um score de aderência para cada currículo a partir da comparação personalizada entre qualificações extraídas e critérios definidos, fornecendo sugestões explicadas de priorização de candidatos para revisão crítica.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Aporta flexibilidade e racionalidade à priorização, mas requer extração prévia estruturada como base."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C4",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Assistente integrado de triagem, resumo sintético, scoring e busca, com explicações em linguagem natural.\n\nPor que essa solução: É a única opção que integra todas as funções-chave: extração, resumo, scoring, busca e consulta interpretativa, atacando o gargalo da triagem e comparação.\n\nComo a IA agrega valor: Ação inteligente de interpretar e sintetizar qualificações, analisar aderência multicritério e explicar decisões sob demanda.\n\nComo a arquitetura deve funcionar: Extração textual, estruturação dos dados em planilha, classificação inicial e regras de exclusão são pré-processadas por regras fixas. A camada de IA atua na interpretação e nas sugestões descritas acima.\n\nResultado potencial: Potencial para acelerar a triagem, reduzir carga manual e aumentar visão analítica qualificada, condicionado à revisão constante do RH em piloto."
+      },
+      "funcionamento": [
+        "PDFs de currículos enviados por e-mail e critérios estruturados das vagas em aberto.",
+        "Verificação de legibilidade do PDF e presença dos campos essenciais (nome, experiências, formação, contatos profissionais).",
+        "Extração bruta do texto, tabulação dos dados e organização por campos definidos (experiência, formação, habilidades), conforme regras de mapeamento dos critérios de vaga.",
+        "Interpretação do conteúdo relevante, síntese textual padronizada das experiências, classificação e comparação com requisitos da vaga, ranking e explicação textual das aderências.",
+        "Tabela estruturada dos candidatos com resumos sintéticos, scores e justificativas de aderência, disponível em planilha e interface de consulta do RH.",
+        "RH pode perguntar em linguagem natural sobre qualificações, justificativas de scores, comparações e dúvidas sobre critérios extraídos, recebendo respostas interpretativas da IA com referência ao currículo e parâmetros definidos.",
+        "Equipe de RH revisa outputs, pode corrigir resumos, ajustar classificação e contestar interpretações/scores. Decisão final permanece humana antes da próxima etapa."
+      ],
+      "preRequisitos": [
+        "Acesso autorizado aos currículos em PDF recebidos digitalmente.",
+        "Definição clara e mapeamento dos critérios das vagas para análise automatizada.",
+        "Permissões para processar e anonimizar dados sensíveis conforme diretrizes internas.",
+        "Procedimento de revisão e correção pelo RH.",
+        "Base mínima representativa para testes piloto.",
+        "Governança e logs de revisões humanas das extrações e sugestões da IA."
+      ],
+      "validacoes": [
+        "Precisão dos resumos e extrações automáticas perante revisão dos recrutadores.",
+        "Aderência dos scores e rankings às decisões históricas do RH.",
+        "Capacidade de identificar casos em que faltam informações essenciais no PDF.",
+        "Avaliação contínua sobre a compreensão da linguagem natural aplicada ao domínio de RH."
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo médio de triagem por currículo",
+          "comoMedir": "Data/hora de início e fim de processamento automático e revisão para cada currículo avaliado Média do tempo de processamento e revisão por currículo na solução de IA Comparação entre piloto da solução e triagem manual anterior Unidade: Minutos por currículo.",
+          "gargalo": "Processo moroso de leitura, resumo e organização manual dos currículos recebidos."
+        },
+        "secundarias": [
+          {
+            "nome": "Acurácia dos resumos automáticos",
+            "comoMedir": "Resumos automáticos revisados por RH e quantidade de corrigidos ou aprovados Proporção de resumos corretos sobre total revisado em amostra piloto Amostras de currículos, antes x depois Unidade: Proporção de acerto.",
+            "gargalo": "Processo moroso de leitura, resumo e organização manual dos currículos recebidos."
+          },
+          {
+            "nome": "Proporção de currículos triados sem intervenção manual adicional",
+            "comoMedir": "Candidatos processados automaticamente e aprovados sem correção Razão de candidatos aprovados sem ajuste sobre o total processado Período piloto comparado ao fluxo anterior Unidade: Proporção.",
+            "gargalo": "Processo moroso de leitura, resumo e organização manual dos currículos recebidos."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": []
+}

@@ -1,0 +1,151 @@
+{
+  "caso": "Atendimento",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 10,
+  "duracaoMs": 137825,
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Clientes enviam dúvidas recorrentes sobre produtos e entrega via WhatsApp. A equipe responde após consultar manualmente o catálogo digital. Fora do horário, ninguém responde e parte dos clientes desiste antes de comprar. Por política, as respostas não podem prometer condições comerciais nem efetivar compras, e casos de negociação ou questões sem resposta automatizada são encaminhados para uma pessoa.",
+        "fatos": [
+          "Clientes enviam dúvidas recorrentes sobre produtos e entrega via WhatsApp.",
+          "Equipe consulta catálogo atualizado e responde manualmente.",
+          "Fora do horário ninguém responde; clientes desistem por falta de retorno.",
+          "Desejam atendimento 24x7 sem prometer condições comerciais nem executar compras por IA.",
+          "Casos sem resposta ou envolvendo negociação são encaminhados à equipe."
+        ],
+        "workflow": [
+          "Cliente envia dúvida sobre produto ou entrega via WhatsApp.",
+          "Sistema confirma recebimento e valida formato textual.",
+          "Regra avalia se há menção a negociação, condição diferenciada ou ausência da informação no catálogo; se sim, encaminha à equipe.",
+          "IA interpreta a pergunta em linguagem natural, consulta e extrai resposta do catálogo digital.",
+          "IA compõe explicação estruturada e clara em linguagem natural, com fonte consultada.",
+          "Resposta automatizada enviada ao cliente; exceções vão para humano.",
+          "Respostas automatizadas e encaminhamentos ficam registrados para análise posterior."
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Demora ou ausência de resposta para dúvidas recorrentes fora do horário comercial.",
+          "consequencia": "Clientes desistem antes de realizar pedidos, reduzindo potencial de conversão.",
+          "evidencia": "Clientes enviam dúvidas recorrentes sobre produtos e entrega pelo WhatsApp. Queremos atendimento 24x7. A equipe consulta o catálogo atualizado e responde manualmente. Fora do horário ninguém responde, e clientes desistem antes de comprar. Queremos disponibilidade fora do horário com respostas baseadas no catálogo, sem prometer condições comerciais nem executar compras. Casos sem resposta ou com negociação devem ir a uma pessoa."
+        },
+        {
+          "problema": "Alto esforço manual para responder questões simples e frequentes.",
+          "consequencia": "Equipe sobrecarregada com tarefas repetitivas e baixo valor agregado.",
+          "evidencia": "Muito trabalho manual; Demora"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Atendimento automatizado a dúvidas frequentes sobre produtos e entrega via WhatsApp",
+        "capacidadeNecessaria": "Interpretação de perguntas abertas em linguagem natural, consulta analítica ao catálogo e geração de resposta estruturada.",
+        "beneficioPotencial": "Atendimento contínuo para o cliente, menos abandono e liberação da equipe de tarefas repetitivas."
+      },
+      "familias": {
+        "principal": "IA conversacional",
+        "complementares": [
+          "Busca inteligente / RAG",
+          "Geração de texto"
+        ],
+        "justificativa": "O gargalo exige interpretação em linguagem natural e explicação contextualizada de informações do catálogo. Busca inteligente localiza dados relevantes; geração de texto permite explicação clara e sintética na resposta automatizada."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Assistente de respostas automáticas via WhatsApp com consulta inteligente ao catálogo",
+          "familias": [
+            "IA conversacional",
+            "Busca inteligente / RAG",
+            "Geração de texto"
+          ],
+          "problema": "Dúvidas recorrentes de clientes sobre produtos e entrega geram trabalho manual e perda de vendas fora do horário.",
+          "capacidadeIA": "Interpretar perguntas abertas e fornecer respostas automáticas, baseando-se em consulta ao catálogo e explicação em linguagem clara.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "A IA consulta o acervo do catálogo para explicar respostas em linguagem natural, referência clara de fonte, e encaminha negociações para humanos."
+        },
+        {
+          "id": "C3",
+          "solucao": "Motor analítico contextual de respostas sobre catálogo para atendimento pós-horário",
+          "familias": [
+            "Busca inteligente / RAG",
+            "Personalização",
+            "Geração de texto"
+          ],
+          "problema": "Clientes têm dúvidas específicas e variadas sobre produtos e entrega, não padronizáveis em respostas fixas.",
+          "capacidadeIA": "Busca e apresenta informação específica do catálogo, adaptando resposta ao contexto e ao histórico da interação.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Oferece respostas mais personalizadas, demanda adaptação adicional do catálogo e possível uso de histórico do cliente."
+        },
+        {
+          "id": "C4",
+          "solucao": "Atendimento híbrido com copiloto inteligente e triagem automática para humanos",
+          "familias": [
+            "IA conversacional",
+            "Busca inteligente / RAG",
+            "Classificação / roteamento",
+            "Automação agentic"
+          ],
+          "problema": "Dúvidas frequentes demandam resposta ágil e encaminhamento correto dos casos fora do escopo de automação.",
+          "capacidadeIA": "Responde dúvidas do catálogo, identifica casos de negociação ou exceção e encaminha automaticamente à pessoa responsável.",
+          "impactoPotencial": "Alto",
+          "esforco": "Alto",
+          "observacao": "Exige engenharia mais completa e integração de fluxos. Cresce escopo para triagem além do foco principal."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Assistente de respostas automáticas via WhatsApp com consulta inteligente ao catálogo.\n\nPor que essa solução: Ataca o principal gargalo: dúvidas sem resposta fora do horário, liberando equipe e ampliando disponibilidade.\n\nComo a IA agrega valor: Consulta analítica ao catálogo e explicação contextualizada em linguagem natural para dúvidas abertas.\n\nComo a arquitetura deve funcionar: Validação de formato, regras de encaminhamento e consulta exata ao catálogo são determinísticas; IA foca na interpretação e resposta aberta. A camada de IA atua na interpretação e nas sugestões descritas acima.\n\nResultado potencial: Reduz desistência e libera equipe para exceções, mantendo precisão e automação validáveis em etapas controladas."
+      },
+      "funcionamento": [
+        "Mensagem de dúvida do cliente via WhatsApp sobre produto ou entrega.",
+        "Valida recebimento, formato textual e vínculo com acervo do catálogo digital.",
+        "Verifica regras de encaminhamento (negociação, temas fora do catálogo); casos fora do escopo vão para equipe.",
+        "Interpreta pergunta aberta, identifica intenção, consulta dados atuais do catálogo e compõe resposta estruturada em linguagem natural.",
+        "Envia resposta automática ao cliente e registra interação; exceções são encaminhadas para humanos.",
+        "Cliente pode enviar perguntas livres; IA responde com explicações baseadas nas fontes do catálogo. Respostas trazem referência à informação consultada e limites explícitos (sem negociação ou fechamento).",
+        "Casos sem resposta ou classificados como negociação/exceção são transferidos automaticamente para pessoa da equipe."
+      ],
+      "preRequisitos": [
+        "Catálogo digital de produtos e condições atualizado",
+        "Permissão de integração autorizada com WhatsApp",
+        "Regras explícitas para restrição de negociação e fechamento de compras",
+        "Procedimento de revisão periódica de respostas automáticas",
+        "Governança para atualização do catálogo",
+        "Histórico de dúvidas recorrentes para calibragem inicial"
+      ],
+      "validacoes": [
+        "Validar se consultas ao catálogo respondem corretamente às dúvidas abertas e recorrentes.",
+        "Revisar precisão contextual das respostas estruturadas em linguagem natural.",
+        "Analisar encaminhamentos automáticos para equipe, ajustando regras para minimizar exceções indevidas."
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Percentual de dúvidas respondidas automaticamente",
+          "comoMedir": "Mensagem recebida via WhatsApp e resposta gerada automaticamente pela IA, com registro de data e hora. Dividir o número de dúvidas com resposta automática pelo total de dúvidas recebidas em período equivalente. Comparar taxas antes e após implementação do piloto. Unidade: Proporção de respostas automáticas sobre total de dúvidas.",
+          "gargalo": "Demora ou ausência de resposta para dúvidas recorrentes fora do horário comercial."
+        },
+        "secundarias": [
+          {
+            "nome": "Tempo médio de resposta ao cliente",
+            "comoMedir": "Horário de recebimento da mensagem e envio da resposta automática. Calcular média do tempo entre recebimento e resposta em intervalos definidos. Comparação direta entre períodos equivalentes pré e pós implantação. Unidade: Tempo decorrido entre recebimento e resposta.",
+            "gargalo": "Demora ou ausência de resposta para dúvidas recorrentes fora do horário comercial."
+          },
+          {
+            "nome": "Taxa de encaminhamento para atendimento humano",
+            "comoMedir": "Número de mensagens transferidas para equipe manual sobre o total recebido. Razão entre encaminhamentos manuais e total de dúvidas recebidas. Variação da taxa com ajustes de cobertura da IA. Unidade: Proporção de encaminhamentos manuais.",
+            "gargalo": "Alto esforço manual para responder questões simples e frequentes."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": [
+    "Capacidade inteligente não descrita."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "caso": "RegraFixa",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 2,
+  "duracaoMs": 17388,
+  "saida": {
+    "needs_clarification": true,
+    "perguntas": [
+      {
+        "id": "q1",
+        "pergunta": "Além das tarefas de copiar ou conferir, que informação precisa ser interpretada ou que decisão variável precisa de apoio?",
+        "mudaRecomendacao": "Identifica uma capacidade de IA sustentada pelo processo."
+      },
+      {
+        "id": "q2",
+        "pergunta": "Pode descrever um caso concreto em que as regras atuais não bastam e alguém precisa analisar o contexto?",
+        "mudaRecomendacao": "Distingue uma oportunidade inteligente de uma tarefa com regras fixas."
+      }
+    ]
+  },
+  "avaliacao": []
+}

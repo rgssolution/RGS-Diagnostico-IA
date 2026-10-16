@@ -1,0 +1,19 @@
+{
+  "status": "VALIDACAO_REAL_PENDENTE",
+  "http": 429,
+  "codigo": "credit_balance_exhausted",
+  "tipo": "insufficient_quota",
+  "retryAfter": null,
+  "causa": "Saldo de créditos da organização esgotado.",
+  "casosTentados": [
+    "Financeiro",
+    "Atendimento",
+    "Marketing",
+    "Vendas",
+    "RH",
+    "Operacoes"
+  ],
+  "aprovacaoReal": false,
+  "observacao": "RH teve uma aprovação parcial anterior à correção da projeção factual. A versão final ainda exige reexecução dos seis casos.",
+  "aposRecarga": "Algumas chamadas passaram, mas nova tentativa financeira sequencial retornou credit_balance_exhausted na aderência."
+}

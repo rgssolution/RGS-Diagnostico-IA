@@ -1,0 +1,145 @@
+{
+  "caso": "Marketing",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 6,
+  "duracaoMs": 47951,
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "A equipe de marketing recebe briefings de campanhas e produz manualmente os textos (legendas) e imagens (artes) dos posts. O fluxo atual é sequencial: primeiro se cria o texto, depois as imagens, ambos passam posteriormente por revisão e aprovação humana, e só então são publicados. O processo utiliza e-mail para comunicação e planilhas para organizar referências, com estrita observância ao guia de marca e sem qualquer automação na publicação.",
+        "fatos": [
+          "Recebimento de briefing de campanha via e-mail ou planilhas.",
+          "Criação manual dos textos dos posts com base no briefing e no guia de marca.",
+          "Produção manual das artes visuais pelos próprios membros da equipe.",
+          "Aprovação obrigatória dos conteúdos (texto e imagem) por responsável ou equipe.",
+          "Publicação manual nas plataformas após revisão e ajustes."
+        ],
+        "workflow": [
+          "Receber briefing de campanha",
+          "Produzir textos de post manualmente",
+          "Criar imagens/artes para os posts",
+          "Submeter textos e imagens para aprovação humana",
+          "Ajustar conforme feedback",
+          "Publicar posts manualmente"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Demora significativa na produção manual de textos e imagens de posts, causando atraso nas publicações e sobrecarga de trabalho.",
+          "consequencia": "Atraso recorrente nas campanhas e uso ineficiente da equipe em tarefas repetitivas, com risco potencial de queda na frequência e qualidade das publicações.",
+          "evidencia": "Muito trabalho manual; Demora"
+        },
+        {
+          "problema": "Processo sequencial e fragmentado de criação de texto e imagem exige retrabalho e gera desalinhamento visual/temático entre legendas e artes.",
+          "consequencia": "Aumenta o tempo total do ciclo produtivo e pode comprometer a coesão das peças publicadas.",
+          "evidencia": "A equipe recebe um briefing de campanha e cria textos e imagens de posts manualmente. A aprovação é humana antes de publicar. Os textos levam muito tempo e as artes atrasam as publicações. Temos guia de marca e referências autorizadas. Precisamos criar rascunhos de texto e imagem mais rápido, sem publicação automática."
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Criação e preparação de textos e imagens para os posts",
+        "capacidadeNecessaria": "Gerar, a partir do briefing e do guia de marca, rascunhos alinhados e personalizáveis de textos e imagens para acelerar o início do fluxo criativo em sincronia, mantendo revisão e aprovação pela equipe.",
+        "beneficioPotencial": "Ganho significativo de velocidade e produtividade na etapa mais crítica do fluxo, maior coesão temática e visual dos conteúdos, liberação de tempo da equipe para revisão e criatividade estratégica."
+      },
+      "familias": {
+        "principal": "Geração de texto",
+        "complementares": [
+          "Geração de imagem",
+          "Personalização"
+        ],
+        "justificativa": "O maior gargalo consiste na criação manual e demorada de legendas e artes, enquanto se exige aderência personalizada ao briefing e ao guia de marca. IA generativa de texto e imagem, com camada de personalização, ataca diretamente a dor principal e mantém controle de qualidade via revisão humana."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Assistente Generativo para Rascunhos de Texto de Posts",
+          "familias": [
+            "Geração de texto",
+            "Personalização"
+          ],
+          "problema": "Demora na criação manual de legendas e textos de posts, gerando atrasos nas publicações.",
+          "capacidadeIA": "O assistente interpreta o briefing de campanha e aplica automaticamente o guia de marca e referências autorizadas para propor rascunhos de textos para posts, adaptando estilo e linguagem conforme a identidade da marca e o objetivo da campanha.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Focado apenas na aceleração da etapa textual; útil, mas não resolve o gargalo integrado do ciclo imagem-texto."
+        },
+        {
+          "id": "C2",
+          "solucao": "Gerador Inteligente de Artes Visuais para Posts",
+          "familias": [
+            "Geração de imagem",
+            "Personalização"
+          ],
+          "problema": "Atrasos e sobrecarga no desenvolvimento de imagens e artes visuais para publicações promocionais e institucionais.",
+          "capacidadeIA": "O gerador converte briefings e referências visuais da marca em sugestões de artes customizadas, oferecendo múltiplas variações e já adaptando paletas, logotipos e estilo visual conforme o guia da empresa.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Resolve a demora na criação visual, mas não integra o fluxo com as legendas e não elimina retrabalho em casos de desalinhamento com o texto."
+        },
+        {
+          "id": "C3",
+          "solucao": "Copiloto Multimodal de Conteúdo para Campanhas",
+          "familias": [
+            "Geração de texto",
+            "Geração de imagem",
+            "Personalização"
+          ],
+          "problema": "Sobreposição de atrasos na elaboração de textos e imagens, causando gargalo contínuo nas campanhas, mesmo com revisão obrigatória.",
+          "capacidadeIA": "O copiloto analisa o briefing, converte instruções em múltiplas versões de rascunhos de textos e artes visuais, já embarcando código de linguagem de marca, estilo e restrições visuais, para apresentação direta em interface única para revisão humana.",
+          "impactoPotencial": "Alto",
+          "esforco": "Alto",
+          "observacao": "Atua sobre ambos os principais gargalos, sincroniza texto e arte desde o início, minimizando retrabalho e atrasos; requer integração inicial mais estruturada."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C3",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é a adoção do Copiloto Multimodal de Conteúdo para Campanhas. Essa solução utiliza IA para gerar simultaneamente rascunhos alinhados de textos (legendas) e artes visuais das publicações a partir do briefing e do guia de marca, oferecendo opções integradas para revisão e ajustes humanos sem publicar automaticamente. Isso resolve, em uma única etapa, os dois principais gargalos: acelera o início do processo criativo e evita desalinhamento entre texto e imagem, otimizando a produtividade da equipe e assegurando a coesão do conteúdo publicado. As alternativas avaliadas são úteis, mas tratam isoladamente apenas parte do fluxo, deixando riscos de retrabalho e atrasos não plenamente atendidos."
+      },
+      "funcionamento": [
+        "Recebimento do briefing e referências visuais/autorizadas pela equipe.",
+        "Entrada do briefing e orientações no sistema do Copiloto Multimodal.",
+        "Geração automática de múltiplos rascunhos integrados (texto e imagem) baseados na identidade de marca.",
+        "Revisão e escolha dos pares texto-arte mais aderentes pela equipe de marketing.",
+        "Realização de ajustes finos nos rascunhos selecionados, conforme necessidade ou feedback.",
+        "Aprovação final dos conteúdos prontos para publicação por responsável designado.",
+        "Exportação dos conteúdos aprovados para o fluxo normal de publicação manual."
+      ],
+      "preRequisitos": [
+        "Digitalização e disponibilização do guia de marca e referências visuais autorizadas.",
+        "Estrutura padronizada de recebimento de briefings para facilitar a instrução à IA.",
+        "Ensino inicial do tom de voz, estilo e restrições visuais da marca à IA.",
+        "Permissão explícita para a equipe revisar/ajustar todos os conteúdos sugeridos.",
+        "Política clara de compliance sobre dados permitidos no processo criativo."
+      ],
+      "validacoes": [
+        "Garantir que o guia de marca e briefings estejam digitalizados e atualizados.",
+        "Testar a aderência dos rascunhos sugeridos ao padrão visual e textual exigido pela marca.",
+        "Confirmar se os ajustes feitos nos rascunhos são mínimos e não transferem o gargalo para a revisão.",
+        "Validar se a exportação dos conteúdos integra-se adequadamente ao fluxo manual de publicação."
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo total do ciclo de criação de conteúdos (texto e imagem) por campanha/post",
+          "comoMedir": "Comparar o tempo despendido da entrada do briefing até a aprovação dos conteúdos antes e depois da adoção do copiloto multimodal, usando registros de datas/horários das etapas.",
+          "gargalo": "Demora significativa na produção manual de textos e imagens de posts, causando atraso nas publicações e sobrecarga de trabalho."
+        },
+        "secundarias": [
+          {
+            "nome": "Grau de retrabalho (número de revisões por conteúdo)",
+            "comoMedir": "Registrar quantas rodadas de ajustes ou retrabalho são necessárias para aprovar as sugestões de IA versus o processo totalmente manual.",
+            "gargalo": "Processo sequencial e fragmentado de criação de texto e imagem exige retrabalho e gera desalinhamento visual/temático entre legendas e artes."
+          },
+          {
+            "nome": "Frequência de atraso nas publicações por indisponibilidade de artes ou textos prontos",
+            "comoMedir": "Levantar o número de vezes em que publicações foram adiadas por falta de entrega do conteúdo nos dois modelos (antes/depois).",
+            "gargalo": "Demora significativa na produção manual de textos e imagens de posts, causando atraso nas publicações e sobrecarga de trabalho."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": []
+}

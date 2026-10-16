@@ -1,0 +1,112 @@
+{
+  "data": "2026-10-15",
+  "natureza": "Consolidação após revisão e reexecução de Marketing e RH; não representa uma rodada única sem falhas.",
+  "casos": [
+    {
+      "caso": "Atendimento",
+      "modelos": {
+        "analise": "gpt-4.1",
+        "auditoria": "gpt-4.1"
+      },
+      "familia": "IA conversacional",
+      "metrica": {
+        "nome": "Tempo médio de resposta fora do horário",
+        "comoMedir": "Comparar o tempo entre o recebimento da dúvida fora do expediente e o envio da resposta automatizada. Monitorar redução em relação à situação anterior.",
+        "gargalo": "Indisponibilidade do atendimento fora do expediente."
+      },
+      "chamadas": 6,
+      "duracaoMs": 95915,
+      "avaliacao": []
+    },
+    {
+      "caso": "Financeiro",
+      "modelos": {
+        "analise": "gpt-4.1",
+        "auditoria": "gpt-4.1"
+      },
+      "familia": "Detecção de padrões / anomalias",
+      "metrica": {
+        "nome": "Tempo para entender e explicar os principais desvios do resultado após recebimento das planilhas",
+        "comoMedir": "Comparar o tempo entre a entrega dos dados mensais e a geração do relatório explicativo sintético com o processo manual praticado anteriormente",
+        "gargalo": "Excesso de tempo e esforço manual para consolidar, interpretar e explicar desvios financeiros mensais"
+      },
+      "chamadas": 6,
+      "duracaoMs": 78447,
+      "avaliacao": []
+    },
+    {
+      "caso": "Marketing",
+      "modelos": {
+        "analise": "gpt-4.1",
+        "auditoria": "gpt-4.1"
+      },
+      "familia": "Geração de texto",
+      "metrica": {
+        "nome": "Tempo total do ciclo de criação de conteúdos (texto e imagem) por campanha/post",
+        "comoMedir": "Comparar o tempo despendido da entrada do briefing até a aprovação dos conteúdos antes e depois da adoção do copiloto multimodal, usando registros de datas/horários das etapas.",
+        "gargalo": "Demora significativa na produção manual de textos e imagens de posts, causando atraso nas publicações e sobrecarga de trabalho."
+      },
+      "chamadas": 6,
+      "duracaoMs": 47951,
+      "avaliacao": []
+    },
+    {
+      "caso": "Vendas",
+      "modelos": {
+        "analise": "gpt-4.1",
+        "auditoria": "gpt-4.1"
+      },
+      "familia": "Recomendação / scoring / next best action",
+      "metrica": {
+        "nome": "Redução do tempo de priorização dos leads",
+        "comoMedir": "Comparar o tempo médio gasto na priorização manual dos leads antes e depois da adoção do sistema automatizado de recomendação.",
+        "gargalo": "Análise e priorização manual dos leads consome muito tempo, tornando o processo demorado e sujeito a erros ou perda de oportunidades."
+      },
+      "chamadas": 6,
+      "duracaoMs": 62433,
+      "avaliacao": []
+    },
+    {
+      "caso": "RH",
+      "modelos": {
+        "analise": "gpt-4.1",
+        "auditoria": "gpt-4.1"
+      },
+      "familia": "Extração e interpretação de documentos",
+      "metrica": {
+        "nome": "Tempo médio de triagem por currículo",
+        "comoMedir": "Comparar o tempo gasto anteriormente para triar um currículo com o tempo após implementação da extração, resumo e priorização automatizadas, considerando os momentos desde a recepção do PDF até a entrega da decisão de avanço para cada candidato.",
+        "gargalo": "Demora e esforço manual excessivo na leitura, resumo e organização dos currículos recebidos, atrasando o processo de triagem."
+      },
+      "chamadas": 6,
+      "duracaoMs": 75487,
+      "avaliacao": []
+    },
+    {
+      "caso": "Operacoes",
+      "modelos": {
+        "analise": "gpt-4.1",
+        "auditoria": "gpt-4.1"
+      },
+      "familia": "Classificação / roteamento",
+      "metrica": {
+        "nome": "Tempo médio de triagem por ocorrência",
+        "comoMedir": "Comparar o tempo decorrido do recebimento do relato até a priorização final comprovada pelo supervisor, antes e depois do uso da solução de IA.",
+        "gargalo": "Triagem manual de relatos livres é lenta, trabalhosa e arriscada quanto ao esquecimento de incidentes importantes."
+      },
+      "chamadas": 6,
+      "duracaoMs": 55923,
+      "avaliacao": []
+    }
+  ],
+  "httpFinanceiro": {
+    "status": 200,
+    "arquivo": "Financeiro-rota.json",
+    "familia": "Análise de dados"
+  },
+  "revalidacao": {
+    "casosSalvos": 6,
+    "checagens": 8,
+    "aprovadas": 8
+  }
+}

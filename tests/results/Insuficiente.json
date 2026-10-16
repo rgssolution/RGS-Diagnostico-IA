@@ -1,0 +1,30 @@
+{
+  "caso": "Insuficiente",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 0,
+  "duracaoMs": 90,
+  "saida": {
+    "needs_clarification": true,
+    "perguntas": [
+      {
+        "id": "q1",
+        "pergunta": "Qual atividade concreta você quer analisar e como ela começa e termina?",
+        "mudaRecomendacao": "Identifica a natureza da operação e a capacidade de IA eventualmente aderente."
+      },
+      {
+        "id": "q2",
+        "pergunta": "Em qual etapa ocorre a principal perda ou dificuldade? Conte um exemplo real.",
+        "mudaRecomendacao": "Distingue dor real de suposição e muda a solução candidata."
+      },
+      {
+        "id": "q3",
+        "pergunta": "Que resultado você quer melhorar com essa atividade?",
+        "mudaRecomendacao": "Permite comparar iniciativas e definir a métrica adequada."
+      }
+    ]
+  },
+  "avaliacao": []
+}
