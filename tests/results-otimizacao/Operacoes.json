@@ -1,0 +1,150 @@
+{
+  "caso": "Operacoes",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 4,
+  "duracaoMs": 51828,
+  "tokens": {
+    "stages": 4,
+    "durationMs": 51789,
+    "inputTokens": 15605,
+    "outputTokens": 4860,
+    "totalTokens": 20465,
+    "usageStages": 4
+  },
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Supervisores recebem relatos livres de ocorrências e atrasos por e-mail, registram em planilha, leem descrições variadas, interpretam, agrupam problemas semelhantes e priorizam o que investigar. A triagem é manual, demorada e sujeita a esquecimentos.",
+        "fatos": [
+          "Supervisores recebem relatos livres de ocorrências e atrasos por e-mail.",
+          "Relatos registrados em planilha.",
+          "Descrições variadas exigem leitura, interpretação e agrupamento manual.",
+          "Prioridade para investigação definida pela equipe a partir da triagem.",
+          "Triagem é manual, demorada e pode esquecer incidentes relevantes."
+        ],
+        "workflow": [
+          "Receber relatos por e-mail",
+          "Registrar relatos em planilha",
+          "Ler e interpretar descrições livres",
+          "Agrupar relatos semelhantes",
+          "Priorizar investigação",
+          "Supervisor confirma encaminhamentos"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Triagem manual de relatos livres ocupa tempo excessivo e gera risco de esquecimento de incidentes críticos.",
+          "consequencia": "Demora para priorizar ações e possíveis falhas em investigar ocorrências importantes.",
+          "evidencia": "Supervisores recebem relatos livres de ocorrências e atrasos por e-mail e registram na planilha. Leem descrições diferentes do mesmo problema, interpretam contexto e priorizam o que investigar. A triagem manual demora e incidentes importantes podem ser esquecidos. Queremos classificação semântica, identificação de padrões recorrentes e sugestão de prioridade com justificativas. O supervisor confirma os encaminhamentos."
+        },
+        {
+          "problema": "Leitura e agrupamento de descrições variadas exige esforço cognitivo recorrente.",
+          "consequencia": "Eleva carga da equipe e dificulta padronização da análise.",
+          "evidencia": "Ler relatos e agrupar problemas semelhantes"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Triagem inicial de relatos recebidos",
+        "capacidadeNecessaria": "Interpretação textual automatizada com classificação semântica, agrupamento de problemas semelhantes, detecção de padrões e sugestão de prioridade justificada",
+        "beneficioPotencial": "Acelera e torna confiável a priorização, reduz erros e libera equipe para investigação efetiva"
+      },
+      "familias": {
+        "principal": "Classificação / roteamento",
+        "complementares": [
+          "Detecção de padrões / anomalias",
+          "Apoio à decisão"
+        ],
+        "justificativa": "A classificação semântica automatizada organiza os relatos, identifica padrões recorrentes e fornece recomendações diretas para prioridade, cobrindo o ciclo analítico necessário ao supervisor."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Motor inteligente de triagem e priorização de ocorrências",
+          "familias": [
+            "Classificação / roteamento",
+            "Detecção de padrões / anomalias",
+            "Apoio à decisão"
+          ],
+          "problema": "Demora e erros na triagem de relatos operacionais variados, risco de esquecer incidentes críticos.",
+          "capacidadeIA": "Classifica relatos, identifica padrões recorrentes e sugere prioridades baseadas em contexto textual.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Cobre todo o fluxo crítico, entrega priorização pronta com justificativa, exige revisão final pontual do supervisor."
+        },
+        {
+          "id": "C2",
+          "solucao": "Assistente de agrupamento e justificativa de relatos",
+          "familias": [
+            "Classificação / roteamento",
+            "Resumo e síntese"
+          ],
+          "problema": "Agrupamento manual e elaboração de justificativas para priorização consomem tempo da equipe.",
+          "capacidadeIA": "Agrupa relatos por similaridade semântica e gera resumo do motivo dos agrupamentos.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Foca apenas no agrupamento e justificativa, não inova na priorização automática."
+        },
+        {
+          "id": "C3",
+          "solucao": "Analisador automático de padrões recorrentes em relatos operacionais",
+          "familias": [
+            "Detecção de padrões / anomalias"
+          ],
+          "problema": "Padrões críticos nem sempre são identificados rapidamente, atrasando correções.",
+          "capacidadeIA": "Detecta recorrências, variações e possíveis causas com base em análise textual de relatos.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Identifica padrões sistêmicos, mas não executa priorização; depende da ação manual para triagem e decisão."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Motor inteligente de triagem e priorização de ocorrências.\n\nPrimeira implementação: Classifica relatos livres, identifica padrões e sugere prioridade justificada por resumo; saída em planilha.\n\nPor que essa solução: Resolve o gargalo principal, priorizando e justificando relatos em ciclo único, com validação rápida e risco baixo.\n\nComo a IA agrega valor: Classifica relatos variados, identifica padrões críticos e sugere prioridades justificadas.\n\nComo a arquitetura deve funcionar: Extração e formatação dos relatos automatizadas antes da análise semântica; regulamentos e critérios fixos definidos à parte.\n\nResultado potencial: Pode acelerar a triagem, reduzir esquecimentos e trazer segurança à priorização do supervisor.\n\nEvolução possível após validação inicial: Análise automática de causas frequentes; Sugestão de encaminhamento por contexto"
+      },
+      "funcionamento": [
+        "Relatos recebidos (planilha ou e-mail consolidado)",
+        "Checagem de formato, campos obrigatórios e eliminação de duplicidades nos relatos.",
+        "Extração, consolidação de dados e padronização textual.",
+        "Classificação semântica, agrupamento automático, sugestão de prioridade e resumo justificado.",
+        "Saída estruturada com agrupamentos, sugestões de prioridade e justificativa por registro em planilha para revisão.",
+        "Supervisor revisa a saída, confirma prioridade e ajustes necessários."
+      ],
+      "preRequisitos": [
+        "Histórico recente de relatos em formato digital (planilha ou acesso autorizado ao e-mail consolidado)",
+        "Permissão formal para uso dos dados dos relatos",
+        "Definição de critérios de prioridade e exceções para avaliação humana",
+        "Supervisor designado para revisão e validação",
+        "Política clara para revisão de sugestões automáticas antes de ações corretivas"
+      ],
+      "validacoes": [
+        "Volume médio diário de relatos para estimar esforço e benefícios",
+        "Aderência dos padrões de agrupamento e prioridade aos critérios atuais da equipe",
+        "Comparação estruturada entre priorizações automatizadas e decisões tomadas previamente"
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo médio de triagem e priorização dos relatos",
+          "comoMedir": "Registrar data/hora de recebimento e de finalização da triagem para cada relato/processamento. Calcular a diferença média entre os tempos de recebimento e priorização final dos relatos. Comparar média do período pré-automatização com automatizado, mesmo volume e tipo de ocorrência. Unidade: minutos por relato processado.",
+          "gargalo": "Triagem manual de relatos livres ocupa tempo excessivo e gera risco de esquecimento de incidentes críticos."
+        },
+        "secundarias": [
+          {
+            "nome": "Percentual de coincidência entre priorização da IA e validação do supervisor",
+            "comoMedir": "Registrar prioridade sugerida e confirmada em cada caso piloto. Dividir o número de coincidências pelo total de relatos avaliados e multiplicar por cem. Avaliar percentual em amostras mensais ou períodos definidos. Unidade: porcentagem.",
+            "gargalo": "Triagem manual de relatos livres ocupa tempo excessivo e gera risco de esquecimento de incidentes críticos."
+          },
+          {
+            "nome": "Número de incidentes críticos não classificados inicialmente pela IA",
+            "comoMedir": "Registrar relatos reclassificados manualmente como críticos após análise. Contar casos não identificados pela IA e corrigidos pelo supervisor. Comparar com histórico manual e meta de redução. Unidade: casos.",
+            "gargalo": "Triagem manual de relatos livres ocupa tempo excessivo e gera risco de esquecimento de incidentes críticos."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": []
+}

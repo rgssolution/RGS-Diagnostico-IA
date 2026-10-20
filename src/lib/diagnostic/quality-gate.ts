@@ -1,3 +1,4 @@
+import {z} from "zod";
 import {solutionPolicyErrors,publicSolutionContent,unprovidedNumbers,calculationControl,precisionErrors,incrementalErrors} from "./solution-policy";
 import {auditSchema,auditChecks,displayFamily,families,type Audit,type Diagnosis,type Question} from "./schemas";
 import {AUDIT} from "./prompts";
@@ -34,9 +35,19 @@ export function deterministicChecks(d:Diagnosis,c:Context):string[] {
 export function isApproved(a:Audit,errors:string[]) {
  return a.status==="APPROVED" && auditChecks.every(k=>a.verificacoes[k].ok) && !a.correcoes.length && !a.perguntas.length && !errors.length;
 }
+export const compactAuditSchema=auditSchema.extend({verificacoes:z.object(Object.fromEntries(auditChecks.map(k=>[k,z.boolean()])) as Record<typeof auditChecks[number],z.ZodBoolean>).strict()});
+export function expandAudit(raw:z.infer<typeof compactAuditSchema>):Audit {
+ return auditSchema.parse({...raw,verificacoes:Object.fromEntries(auditChecks.map(k=>[k,{ok:raw.verificacoes[k],observacao:raw.verificacoes[k]?"Verificado.":raw.correcoes.join("; ")||"Requer correção."}]))});
+}
+export function auditContext(context:Context,diagnostico:Diagnosis){
+ return {fontes:context.fontes,perguntasContexto:context.perguntasContexto,lacunasNaoBloqueantes:context.lacunasNaoBloqueantes,
+ familiasDeExibicao:Object.fromEntries(families.map(f=>[f,displayFamily(f)])),
+ candidatos:context.candidatos.candidatos.map(c=>({id:c.id,evidencias:c.evidencias,escopoInicial:c.escopoInicial,engenharia:c.engenharia,risco:c.risco,dependencias:c.dependencias})),diagnostico};
+}
 export async function qualityGate(call:StageCall,context:Context,diagnostico:Diagnosis) {
  const errors=deterministicChecks(diagnostico,context);
- const audit=await call("quality_gate",auditSchema,AUDIT,{fontes:context.fontes,perguntasContexto:context.perguntasContexto,lacunasNaoBloqueantes:context.lacunasNaoBloqueantes,familiasDeExibicao:Object.fromEntries(families.map(f=>[f,displayFamily(f)])),candidatos:context.candidatos,diagnostico,errosDeterministicos:errors});
+ const raw=await call("quality_gate",compactAuditSchema,AUDIT+" Retorne verificacoes como booleanos; justifique SOMENTE falhas em correcoes, sem observações repetidas para aprovações.",{...auditContext(context,diagnostico),errosDeterministicos:errors});
+ const audit=expandAudit(raw);
  validateQuestions(audit.status==="NEEDS_CLARIFICATION",audit.perguntas);
  return {audit,errors,approved:isApproved(audit,errors)};
 }

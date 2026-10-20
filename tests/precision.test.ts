@@ -1,3 +1,4 @@
+import {stageResult} from "./fixture";
 import {evaluateQuality} from "./quality-evaluator";
 import {describe,it,expect} from "vitest";
 import {precisionErrors,criticalCalculations} from "../src/lib/diagnostic/solution-policy";
@@ -27,7 +28,7 @@ describe("precisão técnica e linguagem responsável",()=>{
   let reviewed:string[]=[];
   const call:StageCall=async(stage,schema,_prompt,data)=>{
    if(stage==="quality_gate")reviewed=(data as {diagnostico:typeof fixture}).diagnostico.funcionamento;
-   const value=stage==="generate_candidates"?{candidatos:candidates.candidatos.map(c=>({...c,engenharia:{...c.engenharia,calculosCriticos:"Separados do modelo de linguagem"}}))}:stage==="final_diagnosis"?{...stageValues.final_diagnosis,funcionamento:{entrada:"Receber vendas e custos autorizados.",validacaoEstrutural:"Conferir campos e integridade.",deterministica:"Calcular faturamento e lucro por regras conferidas.",inteligencia:"Interpretar tendências sobre os indicadores conferidos.",entrega:"Entregar síntese com fontes.",consultaLinguagemNatural:null,validacaoHumana:"Pessoa revisa exceções e decide."}}:stageValues[stage];
+   const value=stage==="solutions_selection"?{selecao:selection,candidatos:candidates.candidatos.map(c=>({...c,engenharia:{...c.engenharia,calculosCriticos:"Separados do modelo de linguagem"}}))}:stage==="final_diagnosis"?{...stageValues.final_diagnosis,funcionamento:{entrada:"Receber vendas e custos autorizados.",validacaoEstrutural:"Conferir campos e integridade.",deterministica:"Calcular faturamento e lucro por regras conferidas.",inteligencia:"Interpretar tendências sobre os indicadores conferidos.",entrega:"Entregar síntese com fontes.",consultaLinguagemNatural:null,validacaoHumana:"Pessoa revisa exceções e decide."}}:stageResult(stage);
    return schema.parse(value);
   };
   const r=await runPipeline(call,{...input,processo:input.processo+" Calcular lucro."});expect(r.needs_clarification).toBe(false);
@@ -48,14 +49,15 @@ describe("precisão técnica e linguagem responsável",()=>{
     drafts++;
     return schema.parse(drafts===1?{...stageValues.final_diagnosis,recomendacao:{...stageValues.final_diagnosis.recomendacao,resultadoPotencial:"Garante confiabilidade."}}:stageValues.final_diagnosis);
    }
-   return schema.parse(stageValues[stage]);
+   if(stage==="revise_diagnosis")return schema.parse({alteracoes:[{campo:"recomendacao.texto",valor:fixture.recomendacao.texto}],auditoria:stageValues.quality_gate});
+   return schema.parse(stageResult(stage));
   };
-  const result=await runPipeline(call,input);expect(drafts).toBe(2);expect(result.needs_clarification).toBe(false);
+  const result=await runPipeline(call,input);expect(drafts).toBe(1);expect(result.needs_clarification).toBe(false);
   if(!result.needs_clarification)expect(result.diagnostico.recomendacao.texto).not.toContain("Garante confiabilidade");
  });
 
  it("projeta o workflow atual da extração, sem usar o fluxo futuro da composição",async()=>{
-  const call:StageCall=async(stage,schema)=>schema.parse(stageValues[stage]);
+  const call:StageCall=async(stage,schema)=>schema.parse(stageResult(stage));
   const r=await runPipeline(call,input);expect(r.needs_clarification).toBe(false);
   if(!r.needs_clarification){expect(r.diagnostico.operacao.workflow).toEqual(facts.workflowAtual);expect(r.diagnostico.operacao.resumo).toBe(facts.processo);expect(r.diagnostico.operacao.workflow).not.toEqual(r.diagnostico.funcionamento);}
  });
@@ -66,6 +68,16 @@ describe("precisão técnica e linguagem responsável",()=>{
   d.solucoes[0].capacidadeIA="Busca e apresenta informação do catálogo, adaptando resposta ao contexto da conversa.";
   d.solucoes[1].capacidadeIA="Responde dúvidas, identifica casos de negociação ou exceção e encaminha ao humano.";
   expect(evaluateQuality(sample,{needs_clarification:false,diagnostico:d})).not.toContain("Capacidade inteligente não descrita.");
+  d.solucoes[1].capacidadeIA="Identifica padrão e tema da dúvida para encaminhar respostas ou atendimento humano.";
+  expect(evaluateQuality(sample,{needs_clarification:false,diagnostico:d})).not.toContain("Capacidade inteligente não descrita.");
+  d.solucoes[0].capacidadeIA="Explicar variações e identificar tendências nos dados conferidos.";
+  d.solucoes[1].capacidadeIA="Produzir imagens iniciais alinhadas ao briefing e à identidade visual.";
+  expect(evaluateQuality(sample,{needs_clarification:false,diagnostico:d})).not.toContain("Capacidade inteligente não descrita.");
+  d.oportunidade.capacidadeNecessaria="Respostas automáticas em linguagem natural, baseadas no catálogo.";
+  d.solucoes[0].capacidadeIA="Consulta inteligente ao catálogo e resposta baseada em correspondência de perguntas.";
+  expect(evaluateQuality(sample,{needs_clarification:false,diagnostico:d})).not.toContain("Capacidade inteligente não descrita.");
+  d.solucoes[0].capacidadeIA="Consultar catálogo e copiar o mesmo preço pelo identificador fixo.";
+  expect(evaluateQuality(sample,{needs_clarification:false,diagnostico:d})).toContain("Capacidade inteligente não descrita.");
   d.solucoes[0].capacidadeIA="Copiar campos por uma regra fixa.";
   expect(evaluateQuality(sample,{needs_clarification:false,diagnostico:d})).toContain("Capacidade inteligente não descrita.");
  });

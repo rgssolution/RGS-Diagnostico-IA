@@ -1,3 +1,4 @@
+import {stageResult} from "./fixture";
 import {describe,it,expect} from "vitest";
 import {candidateSchema,diagnosisSchema,families,auditChecks} from "../src/lib/diagnostic/schemas";
 import {solutionPolicyErrors,publicSolutionContent,criticalCalculations,calculationControl} from "../src/lib/diagnostic/solution-policy";
@@ -24,8 +25,8 @@ describe("contrato global de oportunidades de IA",()=>{
  it("bloqueia IA só no nome pelo auditor semântico",()=>{expect(isApproved({...approved,verificacoes:{...approved.verificacoes,iaSubstantiva:{ok:false,observacao:"Só copia campos, sem interpretação."}}},[])).toBe(false);});
  it("pede contexto inteligente quando nenhuma família é sustentada",async()=>{
   const low={...fit,familiasAvaliadas:fit.familiasAvaliadas.map(f=>({...f,aderencia:"Baixa" as const,evidencias:[]}))};let count=0;
-  const call:StageCall=async(stage,schema)=>{count++;return schema.parse(stage==="assess_ai_fit"?fitForApi(low):stage==="clarification_gate"?{revisoes:[...stageValues.clarification_gate.revisoes,{...stageValues.clarification_gate.revisoes[0],id:"q2"}]}:stageValues[stage]);};
-  const result=await runPipeline(call,input);expect(count).toBe(4);expect(result.needs_clarification).toBe(true);expect(result).not.toHaveProperty("diagnostico");
+  const call:StageCall=async(stage,schema)=>{count++;return schema.parse(stageResult(stage,stage==="clarification_gate"?{clarification_gate:{revisoes:[...stageValues.clarification_gate.revisoes,{...stageValues.clarification_gate.revisoes[0],id:"q2"}]}}:{assess_ai_fit:fitForApi(low)}));};
+  const result=await runPipeline(call,input);expect(count).toBe(3);expect(result.needs_clarification).toBe(true);expect(result).not.toHaveProperty("diagnostico");
  });
  it("detecta cálculo crítico e exige conferência antes da interpretação",()=>{
   expect(criticalCalculations({processo:"Calcular margens no fechamento financeiro."})).toBe(true);
@@ -42,7 +43,7 @@ describe("contrato global de oportunidades de IA",()=>{
     const d=(data as {diagnostico:typeof fixture}).diagnostico;
     audited=d.funcionamento.some(s=>s.includes(calculationControl));
    }
-   const v=stage==="generate_candidates"?{candidatos:candidates.candidatos.map(c=>({...c,engenharia:{...c.engenharia,calculosCriticos:"Separados do modelo de linguagem"}}))}:stage==="final_diagnosis"?{...stageValues.final_diagnosis,funcionamento:{...stageValues.final_diagnosis.funcionamento,validacaoEstrutural:"Validar estrutura e consistência dos dados.",deterministica:"Calcular margens por regras conferidas."}}:stageValues[stage];
+   const v=stage==="solutions_selection"?{selecao:selection,candidatos:candidates.candidatos.map(c=>({...c,engenharia:{...c.engenharia,calculosCriticos:"Separados do modelo de linguagem"}}))}:stage==="final_diagnosis"?{...stageValues.final_diagnosis,funcionamento:{...stageValues.final_diagnosis.funcionamento,validacaoEstrutural:"Validar estrutura e consistência dos dados.",deterministica:"Calcular margens por regras conferidas."}}:stageResult(stage);
    return schema.parse(v);
   };
   const result=await runPipeline(call,{...input,processo:input.processo+" Também precisamos calcular margens."});

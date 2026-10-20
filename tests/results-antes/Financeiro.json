@@ -1,0 +1,156 @@
+{
+  "caso": "Financeiro",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 6,
+  "duracaoMs": 89667,
+  "tokens": {
+    "stages": 6,
+    "durationMs": 89650,
+    "inputTokens": 37650,
+    "outputTokens": 8351,
+    "totalTokens": 46001,
+    "usageStages": 6
+  },
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Fechamento mensal financeiro com consolidação de dados de vendas e custos, cálculo de indicadores e apoio à decisão.",
+        "fatos": [
+          "Fechamento mensal financeiro com consolidação de dados de vendas e custos, cálculo de indicadores e apoio à decisão.",
+          "Recebimento de planilhas de vendas e custos por e-mail.",
+          "Consolidação e cruzamento manual de dados em Excel/Google Sheets.",
+          "Cálculo manual de faturamento, custos, lucro, margens e indicadores.",
+          "Montagem manual de dashboard.",
+          "Conferência manual dos resultados.",
+          "O gestor consulta o dashboard para interpretar variações e decidir ações.",
+          "Processo realizado por uma pequena equipe, com revisão humana obrigatória."
+        ],
+        "workflow": [
+          "Receber planilha de vendas",
+          "Receber planilha de custos",
+          "Consolidar e cruzar dados manualmente em Excel/Google Sheets",
+          "Calcular faturamento, custos, lucro, margens e indicadores",
+          "Montar dashboard manualmente",
+          "Conferir resultados manualmente",
+          "Gestor interpreta variações e decide ações"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Consolidação e conferência dos dados é manual, demanda muito tempo e gera atrasos para analisar os resultados e agir.",
+          "consequencia": "Atraso na compreensão das variações e no direcionamento de ações corretivas.",
+          "evidencia": "Muito trabalho manual; Demora"
+        },
+        {
+          "problema": "Explicação das variações e tendências depende de análise manual detalhada.",
+          "consequencia": "Demora para identificar e agir sobre desvios do resultado mensal.",
+          "evidencia": "Entender mais cedo os desvios do resultado"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Consolidação automática e análise interpretativa das variações e tendências mensais.",
+        "capacidadeNecessaria": "Identificação automática de desvios relevantes e explicação das principais causas em linguagem clara.",
+        "beneficioPotencial": "Redução do esforço manual, entendimento mais rápido das causas de variações e apoio direto à decisão do gestor."
+      },
+      "familias": {
+        "principal": "Análise de dados",
+        "complementares": [
+          "Detecção de padrões / anomalias",
+          "Apoio à decisão"
+        ],
+        "justificativa": "A análise de dados automatizada permite identificar padrões, desvios e tendências rapidamente. A detecção de anomalias foca os casos mais relevantes para revisão, enquanto o apoio à decisão oferece interpretações e recomendações em linguagem acessível, agregando contexto e antecipando diagnósticos importantes."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Motor inteligente para consolidação de resultados e análise de variações com síntese interpretativa para apoio",
+          "familias": [
+            "Análise de dados",
+            "Detecção de padrões / anomalias",
+            "Apoio à decisão"
+          ],
+          "problema": "Demora e esforço excessivo na consolidação dos dados, cálculo dos indicadores e análise das variações, atrasando ações do gestor.",
+          "capacidadeIA": "Detecta variações incomuns, oferece análise interpretativa das principais diferenças em relação a meses anteriores e prepara sínteses claras para o gestor.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Elimina o gargalo da etapa manual inicial; requer validação cruzada dos resultados e explicações, mantendo revisão humana."
+        },
+        {
+          "id": "C2",
+          "solucao": "Analisador preditivo de tendências e desvios para fechamento mensal com justificativas automáticas",
+          "familias": [
+            "Análise de dados",
+            "Previsão / modelos preditivos",
+            "Detecção de padrões / anomalias"
+          ],
+          "problema": "Dificuldade em identificar rapidamente tendências e desvios anormais no fechamento mensal, o que pode retardar a tomada de decisão.",
+          "capacidadeIA": "Modela o histórico de resultados, alerta para comportamentos incomuns e atribui possíveis causas por análise dos padrões de variação recorrentes.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Complementa a análise com visão preditiva, exigindo histórico confiável. Validação é comparativa e pode ser menos imediata."
+        },
+        {
+          "id": "C3",
+          "solucao": "Copiloto interpretativo com respostas em linguagem natural sobre resultados, variações e tendências",
+          "familias": [
+            "Análise de dados",
+            "Resumo e síntese",
+            "Apoio à decisão"
+          ],
+          "problema": "Dificuldade em compreender com rapidez causas das variações e contextualizar números sem análise manual detalhada.",
+          "capacidadeIA": "Entende e resume informações extraídas dos dados consolidados, respondendo perguntas e explicando variações diretamente em português acessível.",
+          "impactoPotencial": "Médio",
+          "esforco": "Médio",
+          "observacao": "Agiliza o entendimento pontual via linguagem natural, dependente de uma base consolidada. Sozinho não resolve a consolidação automática."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Motor inteligente para consolidação de resultados e análise de variações com síntese interpretativa para apoio.\n\nPrimeira implementação: Consolida automaticamente os dados estruturados de vendas e custos extraídos das planilhas, realiza o cálculo exato de indicadores principais (faturamento, lucro, margens) via rot.\n\nPor que essa solução: Ataca o gargalo principal, eliminando esforço manual e acelerando análise, com validação rápida e baixo risco.\n\nComo a IA agrega valor: Detecta padrões e variações relevantes, explicando causas em linguagem clara para apoiar a decisão.\n\nComo a arquitetura deve funcionar: Consolidação e cálculo exatos feitos por regras validadas, com IA dedicada à análise interpretativa.\n\nResultado potencial: Apoio direto na compreensão de desvios, acelerando decisões e diminuindo retrabalho.\n\nEvolução possível após validação inicial: Alertas automáticos de desvios relevantes com sugestões interpretativas; Explicação de causas prováveis para tendências identificadas"
+      },
+      "funcionamento": [
+        "Planilhas estruturadas de vendas e custos enviadas mensalmente.",
+        "Conferência automática de formato, campos e integridade das planilhas antes do processamento.",
+        "Cálculo exato de faturamento, custos, lucro, margens e demais indicadores por regras fixas validadas. As regras e validações objetivas são executadas por processamento conferido, separado da interpretação pela IA.",
+        "IA analisa os resultados consolidados, detecta variações significativas e padrões incomuns, produz explicações claras sobre desvios e tendências.",
+        "Relatório analítico com síntese interpretativa encaminhado para revisão do gestor.",
+        "Gestor e equipe revisam tanto os cálculos quanto as explicações antes de ações."
+      ],
+      "preRequisitos": [
+        "Acesso autorizado às planilhas mensais de vendas e custos estruturadas.",
+        "Definição das regras de cálculo e indicadores principais do fechamento.",
+        "Permissão para implementar validação automática no recebimento dos dados.",
+        "Revisão regular da equipe sobre os resultados gerados pelas análises.",
+        "Governança sobre atualização/regras de negócio dos cálculos."
+      ],
+      "validacoes": [
+        "Comparar os resultados automáticos com o processo manual de fechamento para garantir precisão.",
+        "Testar se a explicação AI das variações é considerada fiel e útil pelo gestor.",
+        "Validar se a identificação automatizada antecede a percepção manual e direciona ações mais rápidas.",
+        "Avaliar se a delegação da consolidação (não da decisão) mantém a confiabilidade da operação."
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo de consolidação e análise do fechamento",
+          "comoMedir": "Medição do tempo desde recebimento das planilhas até disponibilização do relatório analítico para revisão Duração total para consolidar, calcular e analisar os resultados do mês Comparado ao tempo médio registrado nos meses anteriores ao uso da automação Unidade: Tempo decorrido em horas ou dias úteis.",
+          "gargalo": "Consolidação e conferência dos dados é manual, demanda muito tempo e gera atrasos para analisar os resultados e agir."
+        },
+        "secundarias": [
+          {
+            "nome": "Confiabilidade das explicações das variações",
+            "comoMedir": "Revisão e classificação das explicações automáticas pelo gestor após fechamento Proporção de explicações consideradas corretas e úteis frente ao total gerado Comparação qualitativa entre explicações automáticas e análise manual anterior Unidade: Percentual aprovada/total avaliado.",
+            "gargalo": "Explicação das variações e tendências depende de análise manual detalhada."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": [
+    "Capacidade inteligente não descrita.",
+    "Consulta analítica complementar ausente."
+  ]
+}

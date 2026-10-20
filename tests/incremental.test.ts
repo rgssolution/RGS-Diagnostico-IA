@@ -1,3 +1,4 @@
+import {stageResult} from "./fixture";
 import {describe,it,expect} from "vitest";
 import {diagnosisSchema,families,family,publicFamily,displayFamily} from "../src/lib/diagnostic/schemas";
 import {incrementalErrors} from "../src/lib/diagnostic/solution-policy";
@@ -7,7 +8,7 @@ import {runPipeline} from "../src/lib/diagnostic/pipeline";
 import type {Stage,StageCall} from "../src/lib/diagnostic/client";
 import {fixture,input,candidates,fit,fitForApi,stageValues,approved} from "./fixture";
 function scripted(overrides:Partial<Record<Stage,unknown>>={}){
- const call:StageCall=async(stage,schema)=>schema.parse(overrides[stage]??stageValues[stage]);return call;
+ const call:StageCall=async(stage,schema)=>schema.parse(stageResult(stage,overrides));return call;
 }
 describe("primeira implementação enxuta e linguagem de negócio",()=>{
  it("mantém vinte famílias internas e traduz rótulos técnicos na saída",()=>{

@@ -1,0 +1,147 @@
+{
+  "caso": "Marketing",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 6,
+  "duracaoMs": 72586,
+  "tokens": {
+    "stages": 6,
+    "durationMs": 72556,
+    "inputTokens": 37876,
+    "outputTokens": 8478,
+    "totalTokens": 46354,
+    "usageStages": 6
+  },
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Receber briefing de campanha, criar textos e imagens de posts manualmente, revisar/aprovar conteúdo antes de publicar.",
+        "fatos": [
+          "A equipe de marketing recebe briefings de campanha.",
+          "Textos e imagens dos posts são criados manualmente com base no briefing.",
+          "O trabalho manual é considerado excessivo e lento.",
+          "Atrasos na produção de textos e imagens postergam as publicações.",
+          "Há um guia de marca e referências autorizadas para padronizar os conteúdos.",
+          "Aprovação e revisão dos conteúdos são obrigatoriamente humanas.",
+          "A publicação nunca é automática.",
+          "Participa uma pequena equipe usando e-mail e planilhas (Excel/Google Sheets)."
+        ],
+        "workflow": [
+          "Recebimento do briefing de campanha",
+          "Criação manual de textos de posts",
+          "Criação manual de imagens de posts",
+          "Aprovação humana dos conteúdos",
+          "Publicação"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Demora e sobrecarga manual na criação inicial de textos e imagens para posts.",
+          "consequencia": "Publicações atrasam, liberando menos tempo para ajustes criativos e revisão pela equipe.",
+          "evidencia": "A equipe recebe um briefing de campanha e cria textos e imagens de posts manualmente. A aprovação é humana antes de publicar. Os textos levam muito tempo e as artes atrasam as publicações. Temos guia de marca e referências autorizadas. Precisamos criar rascunhos de texto e imagem mais rápido, sem publicação automática."
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Geração inicial de textos (legendas) e imagens dos posts após o recebimento do briefing.",
+        "capacidadeNecessaria": "Geração assistida por IA de rascunhos de textos e imagens aderentes ao briefing e ao guia de marca.",
+        "beneficioPotencial": "Acelera substancialmente as etapas mais repetitivas, libera o time para revisão crítica e reduz atrasos de publicação."
+      },
+      "familias": {
+        "principal": "Geração de texto",
+        "complementares": [
+          "Geração de imagem",
+          "Personalização"
+        ],
+        "justificativa": "A solução exige geração automatizada de conteúdos textuais (legendas, chamadas) e visuais (imagens), ajustados ao briefing e adaptados às regras do guia de marca. A personalização é necessária para alinhar a identidade visual e de linguagem estabelecida pela empresa nos conteúdos sugeridos. Essas famílias, combinadas, permitem rascunhos úteis e revisáveis sem substituir a revisão humana."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Copiloto de criação de posts: gera automaticamente rascunhos de textos (legendas) e imagens baseados no guia e",
+          "familias": [
+            "Geração de texto",
+            "Geração de imagem",
+            "Personalização"
+          ],
+          "problema": "Demora e sobrecarga manual na criação inicial de textos e imagens de posts.",
+          "capacidadeIA": "Gerar versões preliminares de textos e imagens adaptadas ao briefing e guia de marca.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Cobre texto e imagem simultaneamente, requer parametrização dos guias e exemplos; revisão humana elimina riscos de publicação inadequada."
+        },
+        {
+          "id": "C2",
+          "solucao": "Motor de geração de legendas para posts: foco apenas no texto, entrega rascunhos rápidos conforme briefing.",
+          "familias": [
+            "Geração de texto",
+            "Personalização"
+          ],
+          "problema": "Excesso de tempo gasto e trabalho manual na elaboração dos textos (legendas) para posts.",
+          "capacidadeIA": "Gerar rapidamente rascunhos de legenda aderentes ao briefing e à identidade da marca.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Reduz só o esforço textual, mantendo gargalo visual sem solução. Esforço inicial menor, mas benefício parcial."
+        },
+        {
+          "id": "C4",
+          "solucao": "Gerador visual inteligente: foca na criação rápida de artes e imagens para posts com ajuste ao guia da marc",
+          "familias": [
+            "Geração de imagem",
+            "Personalização"
+          ],
+          "problema": "Atraso na produção de artes visuais para posts, onerando o fluxo criativo.",
+          "capacidadeIA": "Produzir imagens iniciais alinhadas ao briefing e diretrizes visuais, agilizando a preparação das peças.",
+          "impactoPotencial": "Médio",
+          "esforco": "Médio",
+          "observacao": "Alivia apenas o fluxo visual, mas textos seguem exigindo tempo manual. Útil como expansão, não resolve o gargalo central isoladamente."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Copiloto de criação de posts: gera automaticamente rascunhos de textos (legendas) e imagens baseados no guia e.\n\nPrimeira implementação: Ao receber o briefing e referências, a IA gera sugestões preliminares de textos (legendas) e imagens para posts, respeitando o guia de marca. Equipe revisa, ajusta ou descarta os r\n\nPor que essa solução: Ataca os dois gargalos centrais: legenda e arte visual, mantendo revisão e aprovação humanas.\n\nComo a IA agrega valor: Gera rascunhos de texto e imagem rápidos, reduzindo tempo perdido em tarefas mecânicas.\n\nComo a arquitetura deve funcionar: Separação total da etapa de aprovação: só humanos publicam; IA só sugere, sem executar regras finais.\n\nResultado potencial: Libera equipe da produção manual inicial, reduz atrasos e mantém qualidade revisada.\n\nEvolução possível após validação inicial: Ajuste fino da personalização ao tom da marca via feedback contínuo da equipe.; Consulta orientada ao guia de marca e políticas em linguagem natural."
+      },
+      "funcionamento": [
+        "Briefing da campanha e referências autorizadas (incluindo guia de marca e exemplos anteriores) inseridos pela equipe responsável.",
+        "Conferência se briefing está presente, guia e referências anexadas e formato conforme padrão aceito.",
+        "Checagem automatizada de preenchimento mínimo e formatação dos dados de entrada, bloqueando submissão incompleta.",
+        "IA interpreta briefing, guia de marca e referências e gera rascunhos de textos (legendas) e imagens para cada post pedido.",
+        "Sugestões de textos e imagens são entregues aos membros da equipe pelo canal já utilizado (e-mail, drive ou sistema interno) para avaliação.",
+        "Equipe revisa, ajusta ou rejeita as sugestões recebidas, decidindo pela publicação somente após aprovação manual."
+      ],
+      "preRequisitos": [
+        "Acesso autorizado aos briefings de campanha do fluxo normal.",
+        "Guia de marca e referências visuais/textuais digitalizados e organizados para consulta estruturada.",
+        "Canal seguro e autorizado para envio e armazenamento dos rascunhos de IA.",
+        "Permissão e compromisso da equipe de revisar todas as sugestões geradas antes de qualquer publicação.",
+        "Regras de exceção devidamente documentadas para cenários onde a IA não deve ser usada."
+      ],
+      "validacoes": [
+        "Tempo atualmente gasto pela equipe na criação manual das legendas e imagens.",
+        "Qualidade dos rascunhos gerados pela IA versus resultados manuais.",
+        "Aceitação da equipe quanto ao uso dos rascunhos no dia a dia.",
+        "Capacidade de adaptação da IA ao guia de marca e feedback real de aprovação/rejeição.",
+        "Demanda real: confirmar variedade suficiente de campanhas/posts para validar o ganho processual."
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Duração média da criação de rascunhos de posts (texto e imagem)",
+          "comoMedir": "Marca de tempo desde o recebimento do briefing até a entrega dos rascunhos prontos para revisão Duração média por post (do início do briefing à geração das sugestões completas) Comparar a duração média antes e depois do uso do copiloto de IA em ciclos equivalentes de campanha Unidade: Tempo em minutos por post.",
+          "gargalo": "Demora e sobrecarga manual na criação inicial de textos e imagens para posts."
+        },
+        "secundarias": [
+          {
+            "nome": "Aceitação dos rascunhos gerados pela equipe",
+            "comoMedir": "Registro de cada rascunho aprovado, ajustado ou rejeitado durante o ciclo de validação Proporção das sugestões aprovadas ou ajustadas sobre o total gerado pela IA Avaliação percentual por campanha/mês para medir adaptação ao processo Unidade: Percentual de aceitação.",
+            "gargalo": "Demora e sobrecarga manual na criação inicial de textos e imagens para posts."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": [
+    "Capacidade inteligente não descrita."
+  ]
+}

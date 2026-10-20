@@ -1,16 +1,17 @@
+import {compactAssessment} from "./fixture";
 import {issueClarification} from "../src/lib/diagnostic/clarification";
 import {beforeEach,describe,it,expect,vi} from "vitest";
 import {formSchema} from "../src/lib/form";
 import {diagnosticoSchema} from "../src/lib/diagnostico";
 import {RateLimiter} from "../src/lib/rate-limit";
 import {BodyTooLarge,readBody} from "../src/lib/body";
-import {fixture,input,stageValues,fit,question,fitForApi} from "./fixture";
+import {fixture,input,stageValues,fit,question} from "./fixture";
 const {parse,take}=vi.hoisted(()=>({parse:vi.fn(),take:vi.fn()}));
 vi.mock("openai",()=>({default:class{responses={parse}}}));
 vi.mock("../src/lib/rate-limit",async importOriginal=>({...await importOriginal<object>(),limiter:{take}}));
 import {POST} from "../src/app/api/analisar/route";
 const request=(body:unknown=input)=>new Request("http://localhost/api/analisar",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(body)});
-beforeEach(()=>{vi.stubEnv("OPENAI_API_KEY","test-only");vi.stubEnv("OPENAI_MODEL","test-analysis");vi.stubEnv("OPENAI_AUDIT_MODEL","test-audit");take.mockReturnValue({allowed:true});parse.mockReset();});
+beforeEach(()=>{vi.stubEnv("NODE_ENV","test");vi.stubEnv("OPENAI_API_KEY","test-only");vi.stubEnv("OPENAI_MODEL","test-analysis");vi.stubEnv("OPENAI_AUDIT_MODEL","test-audit");take.mockReturnValue({allowed:true});parse.mockReset();});
 describe("contratos preservados",()=>{
  it("valida formulário e múltipla escolha",()=>{expect(formSchema.safeParse(input).success).toBe(true);expect(formSchema.safeParse({...input,ferramentas:[]}).success).toBe(false);expect(formSchema.safeParse({...input,processo:"curto"}).success).toBe(false);expect(formSchema.safeParse({...input,ferramentas:["CRM","CRM"]}).success).toBe(false);});
  it("rejeita campos extras e tamanhos excessivos",()=>{expect(formSchema.safeParse({...input,objetivo:"x".repeat(301)}).success).toBe(false);expect(formSchema.safeParse({...input,extra:"x"}).success).toBe(false);});
@@ -19,9 +20,9 @@ describe("contratos preservados",()=>{
  it("limita corpo real sem confiar em content-length",async()=>{await expect(readBody(new Request("http://localhost",{method:"POST",body:"x".repeat(24001)}))).rejects.toBeInstanceOf(BodyTooLarge);});
 });
 describe("API",()=>{
- it("executa seis chamadas, store false e modelo independente para auditoria",async()=>{
+ it("executa quatro chamadas, store false e modelo independente para auditoria",async()=>{
   parse.mockImplementation(async(args)=>({status:"completed",output_parsed:stageValues[args.text.format.name as keyof typeof stageValues]}));
-  const r=await POST(request());expect(r.status).toBe(200);expect((await r.json()).diagnostico).toEqual(fixture);expect(parse).toHaveBeenCalledTimes(6);
+  const r=await POST(request());expect(r.status).toBe(200);expect((await r.json()).diagnostico).toEqual(fixture);expect(parse).toHaveBeenCalledTimes(4);
   for(const [args] of parse.mock.calls)expect(args.store).toBe(false);
   expect(parse.mock.calls.at(-1)![0].model).toBe("test-audit");
   expect(parse.mock.calls[0][0].model).toBe("test-analysis");
@@ -30,7 +31,7 @@ describe("API",()=>{
   let clarified=false;
   parse.mockImplementation(async(args)=>{
    const stage=args.text.format.name as keyof typeof stageValues;
-   return {status:"completed",output_parsed:stage==="assess_ai_fit" && !clarified?fitForApi({...fit,needs_clarification:true,perguntas:[question]}):stageValues[stage]};
+   return {status:"completed",output_parsed:stage==="analyze_process" && !clarified?{fatos:stageValues.extract_facts,aderencia:compactAssessment({...fit,needs_clarification:true,perguntas:[question]})}:stageValues[stage]};
   });
   const first=await POST(request());const pending=await first.json();
   expect(first.status).toBe(200);expect(pending.needs_clarification).toBe(true);expect(pending).not.toHaveProperty("diagnostico");
@@ -40,7 +41,7 @@ describe("API",()=>{
   expect(second.status).toBe(200);expect((await second.json()).diagnostico).toEqual(fixture);
  });
  it("não cria chat quando uma lacuna material indispensável persiste",async()=>{
-  parse.mockImplementation(async(args)=>({status:"completed",output_parsed:args.text.format.name==="assess_ai_fit"?fitForApi({...fit,needs_clarification:true,perguntas:[question]}):stageValues[args.text.format.name as keyof typeof stageValues]}));
+  parse.mockImplementation(async(args)=>({status:"completed",output_parsed:args.text.format.name==="analyze_process"?{fatos:stageValues.extract_facts,aderencia:compactAssessment({...fit,needs_clarification:true,perguntas:[question]})}:stageValues[args.text.format.name as keyof typeof stageValues]}));
   const pending=await (await POST(request())).json();
   const second=await POST(request({...input,esclarecimentos:{token:pending.token,respostas:[{id:"q1",resposta:"Não sei."}]}}));
   expect(second.status).toBe(422);expect(await second.text()).not.toContain("diagnostico");
@@ -49,7 +50,7 @@ describe("API",()=>{
   const ticket=issueClarification(input,[question],"test-only");
   parse.mockImplementation(async(args)=>{
    const stage=args.text.format.name as keyof typeof stageValues;
-   const value=stage==="assess_ai_fit"?fitForApi({...fit,needs_clarification:true,perguntas:[question]}):stage==="clarification_gate"?{revisoes:stageValues.clarification_gate.revisoes.map(r=>({...r,classe:"DIMENSIONAMENTO",mudancaMaterial:"nenhuma",indispensavel:false,direcaoUtilComRessalvas:true}))}:stageValues[stage];
+   const value=stage==="analyze_process"?{fatos:stageValues.extract_facts,aderencia:compactAssessment({...fit,needs_clarification:true,perguntas:[question]})}:stage==="clarification_gate"?{revisoes:stageValues.clarification_gate.revisoes.map(r=>({...r,classe:"DIMENSIONAMENTO",mudancaMaterial:"nenhuma",indispensavel:false,direcaoUtilComRessalvas:true}))}:stageValues[stage];
    return {status:"completed",output_parsed:value};
   });
   for(const answer of ["não sei","não tenho","não se aplica","não consigo informar"]){
@@ -62,6 +63,17 @@ describe("API",()=>{
  it("rejeita ticket adulterado antes de chamar IA",async()=>{
   const r=await POST(request({...input,esclarecimentos:{token:"invalid.token",respostas:[{id:"q1",resposta:"Teste."}]}}));
   expect(r.status).toBe(400);expect(parse).not.toHaveBeenCalled();
+ });
+ it("telemetria de desenvolvimento só registra números no servidor",async()=>{
+  vi.stubEnv("NODE_ENV","development");const info=vi.spyOn(console,"info").mockImplementation(()=>{});
+  try{
+   parse.mockImplementation(async(args)=>({status:"completed",output_parsed:stageValues[args.text.format.name as keyof typeof stageValues],usage:{input_tokens:10,output_tokens:5,total_tokens:15}}));
+   const r=await POST(request());const body=await r.json();expect(r.status).toBe(200);expect(body).not.toHaveProperty("inputTokens");expect(body).not.toHaveProperty("stages");expect(info).toHaveBeenCalledOnce();expect(info.mock.calls[0][0]).toBe("[diagnostico-usage]");expect(info.mock.calls[0][1]).toMatchObject({stages:4,inputTokens:40,outputTokens:20,totalTokens:60,usageStages:4});expect(JSON.stringify(info.mock.calls)).not.toContain(input.processo);
+  }finally{info.mockRestore();}
+ });
+ it("não registra telemetria de desenvolvimento em produção",async()=>{
+  vi.stubEnv("NODE_ENV","production");const info=vi.spyOn(console,"info").mockImplementation(()=>{});
+  try{parse.mockImplementation(async(args)=>({status:"completed",output_parsed:stageValues[args.text.format.name as keyof typeof stageValues]}));expect((await POST(request())).status).toBe(200);expect(info).not.toHaveBeenCalled();}finally{info.mockRestore();}
  });
  it("rejeita formulário inválido",async()=>{expect((await POST(request({}))).status).toBe(400);expect(parse).not.toHaveBeenCalled();});
  it("rejeita corpo grande",async()=>{expect((await POST(request({x:"x".repeat(25000)}))).status).toBe(413);});

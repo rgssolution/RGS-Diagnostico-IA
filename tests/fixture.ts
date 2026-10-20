@@ -1,3 +1,4 @@
+import type {Stage} from "../src/lib/diagnostic/client";
 import {recommendationText,measurementText} from "../src/lib/diagnostic/precision-plan";
 import {auditChecks,dimensions,families,displayFamily,internalFamily,type Audit,type Facts,type Fit,type Candidates,type Selection,type Diagnosis} from "../src/lib/diagnostic/schemas";
 export const input={area:"Vendas" as const,objetivo:"Acompanhar propostas",processo:"Recebemos pedidos por e-mail, registramos em planilha e enviamos propostas. O retorno é acompanhado manualmente. Lemos necessidades em texto livre para recomendar prioridades com justificativa e decisão humana.",participantes:"Eu e uma pequena equipe" as const,ferramentas:["E-mail" as const,"Excel / Google Sheets" as const],dificuldades:["Falta de acompanhamento" as const],tempo:"Conferir retornos",repeticoes:"Atualizar a planilha",decisoes:"Qual proposta acompanhar",melhoria:"Definir responsável por retorno"};
@@ -28,4 +29,27 @@ export function fitForApi(data:Fit){
 export function draftForApi(data:Diagnosis){
  return {...data,familias:{...data.familias,principal:internalFamily(data.familias.principal),complementares:data.familias.complementares.map(internalFamily)},solucoes:data.solucoes.map(s=>({...s,familias:s.familias.map(internalFamily)})),operacao:{fatos:data.operacao.fatos},recomendacao:recommendationPlan,funcionamento:{entrada:data.funcionamento[0],validacaoEstrutural:null,deterministica:null,inteligencia:data.funcionamento[1],entrega:data.funcionamento[2],consultaLinguagemNatural:null,validacaoHumana:data.funcionamento[3]},gargalos:data.gargalos.map(g=>({problema:g.problema,consequencia:g.consequencia,evidenciaId:"F3"})),metricas:{principal:mainMeasurement,secundarias:data.metricas.secundarias.map(m=>({...mainMeasurement,nome:m.nome,gargaloIndice:0}))}};
 }
-export const stageValues={extract_facts:extraction,assess_ai_fit:fitForApi(fit),generate_candidates:candidates,select_solution:selection,final_diagnosis:draftForApi(fixture),quality_gate:approved,clarification_gate:{revisoes:[{id:"q1",classe:"CRITICA",mudancaMaterial:"familia",indispensavel:true,direcaoUtilComRessalvas:false,justificativa:"Muda a natureza da oportunidade.",alternativaSeA:{familia:"Geração de texto",autonomia:"assistiva",descricao:"Criar propostas comerciais."},alternativaSeB:{familia:"Apoio à decisão",autonomia:"assistiva",descricao:"Apoio à decisão com IA."}}]}};
+const legacyValues={extract_facts:extraction,assess_ai_fit:fitForApi(fit),generate_candidates:candidates,select_solution:selection,final_diagnosis:draftForApi(fixture),quality_gate:approved,clarification_gate:{revisoes:[{id:"q1",classe:"CRITICA",mudancaMaterial:"familia",indispensavel:true,direcaoUtilComRessalvas:false,justificativa:"Muda a natureza da oportunidade.",alternativaSeA:{familia:"Geração de texto",autonomia:"assistiva",descricao:"Criar propostas comerciais."},alternativaSeB:{familia:"Apoio à decisão",autonomia:"assistiva",descricao:"Apoio à decisão com IA."}}]}};
+export function compactAudit(a:Audit){return {...a,verificacoes:Object.fromEntries(auditChecks.map(k=>[k,typeof a.verificacoes[k]==="boolean"?a.verificacoes[k]:a.verificacoes[k].ok]))};}
+export function compactAssessment(data:ReturnType<typeof fitForApi>|Fit){
+ const f={...data,familiasAvaliadas:Array.isArray(data.familiasAvaliadas)?data.familiasAvaliadas:Object.entries(data.familiasAvaliadas).map(([familia,v])=>({familia,...v}))};
+ return {...f,dimensoes:Object.entries(f.dimensoes).filter(([,v])=>v.classificacao!=="não evidenciada").map(([dimensao,v])=>({dimensao,...v})),familiasAvaliadas:f.familiasAvaliadas.filter(v=>v.aderencia!=="Baixa")};
+}
+export const stageValues={...legacyValues,
+ analyze_process:{fatos:legacyValues.extract_facts,aderencia:compactAssessment(legacyValues.assess_ai_fit)},
+ solutions_selection:{...candidates,selecao:selection},quality_gate:compactAudit(approved),
+ revise_diagnosis:{alteracoes:[],auditoria:compactAudit(approved)}
+};
+export function stageResult(stage:Stage,overrides:Partial<Record<Stage,unknown>>={}){
+ const v={...stageValues,...overrides};
+ if(overrides[stage]!==undefined){
+  if(stage==="quality_gate"){
+   const audit=overrides[stage] as Audit;
+   return compactAudit(audit);
+  }
+  return overrides[stage];
+ }
+ if(stage==="analyze_process")return {fatos:v.extract_facts,aderencia:compactAssessment(v.assess_ai_fit as ReturnType<typeof fitForApi>)};
+ if(stage==="solutions_selection")return {...v.generate_candidates as typeof candidates,selecao:v.select_solution};
+ return v[stage];
+}

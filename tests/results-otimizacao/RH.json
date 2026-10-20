@@ -1,0 +1,147 @@
+{
+  "caso": "RH",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 5,
+  "duracaoMs": 49674,
+  "tokens": {
+    "stages": 5,
+    "durationMs": 49599,
+    "inputTokens": 20999,
+    "outputTokens": 5916,
+    "totalTokens": 26915,
+    "usageStages": 5
+  },
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Triagem inicial de currículos recebidos em PDF por e-mail. Equipe lê manualmente, resume experiências e organiza qualificações em planilha. Decisão de avanço é humana.",
+        "fatos": [
+          "Triagem inicial de currículos recebidos em PDF por e-mail",
+          "Equipe lê manualmente, resume experiências e organiza dados em planilha",
+          "Decisão de avanço é humana, com revisão contra vieses",
+          "Demora nesse processo prejudica agilidade",
+          "Volume e repetição das tarefas dificultam o fluxo"
+        ],
+        "workflow": [
+          "Receber currículos por e-mail",
+          "Equipe lê cada PDF",
+          "Resumir experiências",
+          "Organizar informações em planilha",
+          "Comparar com critérios da vaga",
+          "Avaliação final pelo recrutador"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Tempo excessivo gasto lendo, resumindo e organizando currículos manualmente",
+          "consequencia": "Demora prejudica resposta rápida e sobrecarrega a equipe, sendo um ponto a analisar com a evolução de solução automatizada.",
+          "evidencia": "Muito trabalho manual; Demora"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Extração e resumo de experiências e qualificações profissionais dos currículos recebidos em PDF",
+        "capacidadeNecessaria": "Identificação, extração e síntese automática das experiências e dados relevantes para triagem",
+        "beneficioPotencial": "Potencial para reduzir o tempo de triagem e liberar equipe para atividades de maior valor, a ser confirmado em validação inicial."
+      },
+      "familias": {
+        "principal": "Extração e interpretação de documentos",
+        "complementares": [
+          "Resumo e síntese"
+        ],
+        "justificativa": "A dor central exige extração estruturada do PDF com compreensão semântica para resumo eficaz, ambos suportados por essas capacidades"
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Analisador inteligente de currículos em PDF para extração e síntese de qualificações",
+          "familias": [
+            "Extração e interpretação de documentos",
+            "Resumo e síntese"
+          ],
+          "problema": "Demora e esforço manual para resumir e organizar experiências de currículos recebidos em PDF.",
+          "capacidadeIA": "Extrai texto de currículos em PDF, identifica e resume experiências relevantes, preenche planilha estruturada.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Entrega síntese estruturada; validação rápida com dados já disponíveis e baixo risco de integração. Ganhos de desempenho são potenciais a serem verificados em piloto."
+        },
+        {
+          "id": "C2",
+          "solucao": "Motor de apoio à triagem com sugestão automatizada de alinhamento entre currículo e vaga",
+          "familias": [
+            "Extração e interpretação de documentos",
+            "Resumo e síntese",
+            "Apoio à decisão"
+          ],
+          "problema": "Equipe precisa resumir e também cruzar manualmente informações-chave com perfil da vaga.",
+          "capacidadeIA": "Além de extrair e resumir, sugere possível alinhamento com critérios, facilitando a priorização em lotes.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Aumenta abrangência, mas depende de integração prévia de critérios e apresenta maior risco inicial"
+        },
+        {
+          "id": "C3",
+          "solucao": "Classificador automático de currículos por palavras-chave com apoio à priorização",
+          "familias": [
+            "Classificação / roteamento"
+          ],
+          "problema": "Processo de priorização manual por presença de experiências e competências chave toma tempo da equipe.",
+          "capacidadeIA": "Identifica textos-chave nos PDFs e organiza a fila por relevância conforme critérios definidos.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Implementação rápida, mas resumida, com detalhamento limitado para síntese real das experiências"
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Analisador inteligente de currículos em PDF para extração e síntese de qualificações.\n\nPrimeira implementação: Extrai, resume e organiza experiências e qualificações profissionais de PDFs em planilha.\n\nPor que essa solução: Resolve o gargalo principal com risco baixo, validação rápida e sem exigir integração complexa inicial\n\nComo a IA agrega valor: Gera síntese automatizada das experiências e qualificações profissionais a partir de PDFs\n\nComo a arquitetura deve funcionar: Validação estrutural dos campos extraídos e padronização antes da análise de IA\n\nResultado potencial: Tem potencial para reduzir o tempo de triagem e liberar esforço para análise qualificada, sujeito à validação inicial\n\nEvolução possível após validação inicial: Sugerir alinhamento automático com critérios da vaga; Incluir detecção de anomalias ou inconsistências."
+      },
+      "funcionamento": [
+        "Currículos recebidos em PDF por e-mail",
+        "Checagem de integridade do PDF, leitura básica e presença dos campos essenciais",
+        "Verificação de preenchimento e padronização de campos antes da análise por IA",
+        "IA interpreta o texto extraído, identifica e resume experiências e qualificações profissionais",
+        "Resumo estruturado enviado para planilha para revisão e confirmação do RH",
+        "Equipe de RH revisa o resumo, ajusta e aprova ou solicita refinamento"
+      ],
+      "preRequisitos": [
+        "Acesso autorizado aos currículos em PDF",
+        "Definição clara dos campos e critérios de extração",
+        "Planilha preparada para receber os resultados",
+        "Procedimento formal de revisão e validação dos resultados extraídos"
+      ],
+      "validacoes": [
+        "Volume real de currículos por período para dimensionar ganho",
+        "Precisão e clareza dos resumos gerados para RH",
+        "Frequência e natureza dos ajustes necessários após extração automática"
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo médio de triagem por currículo",
+          "comoMedir": "Marcação de início e fim de cada triagem na etapa de resumo Duração média entre início e conclusão da triagem por currículo Antes e depois da implantação da IA Unidade: minutos por currículo.",
+          "gargalo": "Tempo excessivo gasto lendo, resumindo e organizando currículos manualmente"
+        },
+        "secundarias": [
+          {
+            "nome": "Acurácia dos resumos extraídos",
+            "comoMedir": "Comparação entre resumos gerados pela IA e revisados por RH Percentual de resumos sem necessidade de retrabalho Processo automatizado versus manual Unidade: porcentagem.",
+            "gargalo": "Tempo excessivo gasto lendo, resumindo e organizando currículos manualmente"
+          },
+          {
+            "nome": "Correções necessárias pós-extração",
+            "comoMedir": "Registro de cada ajuste feito pela equipe nos resumos gerados Número de correções dividido pelo total de resumos processados Períodos equivalentes antes e depois Unidade: correções por currículo.",
+            "gargalo": "Tempo excessivo gasto lendo, resumindo e organizando currículos manualmente"
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": [],
+  "avaliacaoInicial": [
+    "Capacidade inteligente não descrita."
+  ],
+  "reavaliacao": "Avaliador final: reconhecimento lexical corrigido, sem alteração da geração real."
+}

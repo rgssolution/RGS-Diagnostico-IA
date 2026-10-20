@@ -1,0 +1,143 @@
+{
+  "caso": "Financeiro",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 4,
+  "duracaoMs": 45529,
+  "tokens": {
+    "stages": 4,
+    "durationMs": 45417,
+    "inputTokens": 15038,
+    "outputTokens": 4705,
+    "totalTokens": 19743,
+    "usageStages": 4
+  },
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Fechamento mensal financeiro com recebimento de planilhas de vendas e custos, consolidação manual, cálculo de indicadores, montagem de dashboard e análise de variações.",
+        "fatos": [
+          "Fechamento mensal financeiro com recebimento de planilhas de vendas e custos",
+          "Consolidação manual dos dados em Excel/Google Sheets",
+          "Cálculo de faturamento, custos, lucro, margens e indicadores",
+          "Conferência manual dos resultados",
+          "Montagem de dashboard",
+          "Gestor interpreta variações e decide ações",
+          "Pequena equipe envolvida",
+          "Ferramentas: E-mail, Excel/Google Sheets",
+          "Trabalho manual excessivo e demora para consolidar e analisar resultados",
+          "Processo exige cálculo exato e revisão humana"
+        ],
+        "workflow": [
+          "Recebimento de planilhas por e-mail",
+          "Consolidação manual dos dados em Excel/Google Sheets",
+          "Cálculo de faturamento, custos, lucro, margens e indicadores",
+          "Conferência manual dos resultados",
+          "Montagem de dashboard",
+          "Gestor interpreta variações e decide ações"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Demora na consolidação e interpretação dos resultados financeiros mensais devido ao trabalho manual",
+          "consequencia": "Gestor entende os desvios do resultado tardiamente, dificultando ação rápida sobre variações financeiras",
+          "evidencia": "Muito trabalho manual; Demora"
+        },
+        {
+          "problema": "Etapas repetitivas de conferência e explicação das variações mensais",
+          "consequencia": "Tempo significativo gasto em atividades operacionais, reduzindo foco na análise estratégica",
+          "evidencia": "Cruzar vendas e custos e explicar variações"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Consolidação de dados e análise de variações no fechamento financeiro mensal",
+        "capacidadeNecessaria": "Geração automatizada de síntese de desvios e tendências baseada em dados confiáveis e cálculos validados",
+        "beneficioPotencial": "Reduz o tempo de trabalho operacional e antecipa o entendimento das variações financeiras pelo gestor"
+      },
+      "familias": {
+        "principal": "Análise de dados",
+        "complementares": [
+          "Detecção de padrões / anomalias",
+          "Resumo e síntese"
+        ],
+        "justificativa": "A análise eficiente e a detecção de variações são centrais para fechar e interpretar resultados mensais; a síntese agiliza o apoio à decisão."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Motor inteligente de fechamento financeiro com síntese de variações e tendências",
+          "familias": [
+            "Análise de dados",
+            "Detecção de padrões / anomalias",
+            "Resumo e síntese"
+          ],
+          "problema": "Consolidação e interpretação de resultados mensais são lentas e manuais.",
+          "capacidadeIA": "Identifica padrões, sintetiza variações e gera explicações financeiras com base nos dados consolidados.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Entrega valor com implantação rápida, reduzindo o trabalho manual sem exigir mudanças profundas no fluxo operacional."
+        },
+        {
+          "id": "C2",
+          "solucao": "Analisador de desvios e tendências para fechamento financeiro com consulta em linguagem natural",
+          "familias": [
+            "Detecção de padrões / anomalias",
+            "Apoio à decisão",
+            "Resumo e síntese"
+          ],
+          "problema": "Compreensão das variações exige análise demorada e o gestor busca respostas detalhadas rapidamente.",
+          "capacidadeIA": "Detecta padrões, explica causas de desvios e responde perguntas específicas do gestor sobre os resultados mensais.",
+          "impactoPotencial": "Alto",
+          "esforco": "Alto",
+          "observacao": "Permite exploração ativa dos dados, mas demanda ajuste fino e revisão intensificada, tornando a entrega e adoção mais lentas."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Motor inteligente de fechamento financeiro com síntese de variações e tendências.\n\nPrimeira implementação: Consolida dados, calcula indicadores e entrega resumo de tendências e variações para revisão.\n\nPor que essa solução: Resolve a dor central de forma direta, reduz esforço manual e permite teste rápido, sem elevar risco ou complexidade.\n\nComo a IA agrega valor: Gera síntese de tendências e variações, priorizando achados relevantes para acelerar a revisão e o entendimento.\n\nComo a arquitetura deve funcionar: Consolidação e cálculos validados são feitos fora da IA; apenas resultados revisados entram na geração de resumos.\n\nResultado potencial: Pode antecipar desvios críticos e reduzir o tempo de fechamento, aumentando o valor gerencial do processo.\n\nEvolução possível após validação inicial: Recomendação automática de ações ao gestor; Consulta em linguagem natural para aprofundar análises"
+      },
+      "funcionamento": [
+        "Planilhas mensais de vendas e custos recebidas em formato padronizado",
+        "Validação da estrutura e integridade dos dados recebidos",
+        "Cálculos exatos de faturamento, custos, lucro, margens e outros indicadores As regras e validações objetivas são executadas por processamento conferido, separado da interpretação pela IA.",
+        "Análise de padrões, síntese dos desvios, tendências e geração de explicações para o gestor",
+        "Resumo estruturado e revisável de achados financeiros mensais entregue ao gestor",
+        "Gestor revisa, valida e delibera sobre os resultados e explicações apresentadas"
+      ],
+      "preRequisitos": [
+        "Padronização dos formatos de planilhas recebidas",
+        "Acesso controlado ao histórico de dados financeiros",
+        "Regras claras para o cálculo de indicadores financeiros",
+        "Permissão para revisão de resultados pelo gestor"
+      ],
+      "validacoes": [
+        "Testar se o resumo gerado cobre todos principais desvios e tendências identificados manualmente anteriormente",
+        "Validar se indicadores calculados batem com os resultados conferidos manualmente",
+        "Avaliar se o tempo de fechamento realmente diminui em cada ciclo piloto"
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo total do fechamento financeiro mensal",
+          "comoMedir": "Medida de início e término do ciclo de fechamento Duração entre recebimento dos dados e entrega do resumo revisado ao gestor Comparar duração média antes e após implantação Unidade: Horas corridas.",
+          "gargalo": "Demora na consolidação e interpretação dos resultados financeiros mensais devido ao trabalho manual"
+        },
+        "secundarias": [
+          {
+            "nome": "Cobertura dos desvios relevantes na síntese gerada",
+            "comoMedir": "Total de desvios significativos identificados na revisão do gestor Proporção dos desvios relevantes presentes na síntese frente ao total de desvios identificados manualmente Comparar cobertura em amostras dos ciclos anteriores e pós-implantação Unidade: Porcentagem.",
+            "gargalo": "Demora na consolidação e interpretação dos resultados financeiros mensais devido ao trabalho manual"
+          },
+          {
+            "nome": "Número de revisões solicitadas pelo gestor",
+            "comoMedir": "Solicitações de ajustes/mudanças após recebimento do resumo Contagem de solicitações por fechamento Comparar frequência antes e depois do piloto Unidade: Ocorrências.",
+            "gargalo": "Etapas repetitivas de conferência e explicação das variações mensais"
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": []
+}

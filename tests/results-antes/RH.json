@@ -1,0 +1,149 @@
+{
+  "caso": "RH",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 6,
+  "duracaoMs": 68048,
+  "tokens": {
+    "stages": 6,
+    "durationMs": 68026,
+    "inputTokens": 38163,
+    "outputTokens": 8651,
+    "totalTokens": 46814,
+    "usageStages": 6
+  },
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Recebemos muitos currículos em PDF; a equipe lê cada documento, resume as experiências e compara com critérios da vaga. Queremos extrair, resumir e organizar qualificações profissionais relevantes, sem usar atributos pessoais sensíveis. A decisão segue com recrutadores, que revisam possíveis vieses e corrigem extrações.",
+        "fatos": [
+          "Recebimento de muitos currículos em PDF via e-mail.",
+          "A equipe lê manualmente cada currículo.",
+          "Resumo das experiências e organização de qualificações é feito manualmente em Excel/Google Sheets.",
+          "Comparação com critérios da vaga é feita na planilha.",
+          "Seleção dos candidatos que avançam é feita por recrutadores humanos.",
+          "O trabalho é considerado manual e causa demora.",
+          "Objetivo de acelerar a triagem com revisão humana e sem uso de atributos pessoais sensíveis."
+        ],
+        "workflow": [
+          "Recebimento de currículos em PDF via e-mail",
+          "Leitura manual de cada currículo",
+          "Resumo das experiências profissionais e organização das qualificações em planilhas",
+          "Comparação com critérios da vaga em Excel ou Sheets",
+          "Equipe de recrutadores decide quem avança"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Leitura manual, resumo e extração dos conteúdos dos currículos em PDF, demandando tempo e esforço intensivos da equipe.",
+          "consequencia": "Demora na análise dos candidatos e sobrecarga do time de RH na triagem inicial.",
+          "evidencia": "Muito trabalho manual; Demora"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Triagem inicial de currículos recebidos em PDF",
+        "capacidadeNecessaria": "Interpretar e resumir experiências profissionais descritas em linguagem natural, conectando-as aos critérios da vaga, e organizar informações relevantes para facilitar análise por humanos.",
+        "beneficioPotencial": "Reduz esforço repetitivo e acelera a obtenção de uma visão clara sobre os candidatos, liberando equipe para decisões e revisões qualitativas."
+      },
+      "familias": {
+        "principal": "Extração e interpretação de documentos",
+        "complementares": [
+          "Resumo e síntese",
+          "Apoio à decisão"
+        ],
+        "justificativa": "A tarefa central é extrair experiências de currículos em PDF e organizar as informações relevantes de acordo com critérios da vaga, processo que exige interpretação textual (extração/documentos), condensação da informação (resumo) e apresentação para facilitar decisões humanas (apoio à decisão)."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Motor de extração e síntese de currículos para triagem com resumo estruturado",
+          "familias": [
+            "Extração e interpretação de documentos",
+            "Resumo e síntese",
+            "Apoio à decisão"
+          ],
+          "problema": "Leitura manual e resumo de currículos em PDF geram sobrecarga e atraso na triagem inicial, dificultando identificar rapidamente qualificações relevantes.",
+          "capacidadeIA": "Identifica e resume experiências profissionais e qualificações em linguagem livre dos PDFs, conectando-as aos critérios da vaga; entrega informações organizadas para análise humana.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Ataca diretamente o ponto de maior esforço e validação é prática, pois depende apenas da revisão da equipe sobre os resumos; a estrutura pode evoluir para personalização e consulta em linguagem natural."
+        },
+        {
+          "id": "C2",
+          "solucao": "Analisador de currículos com extração direcionada por vaga e sinalizador de aderência mínima",
+          "familias": [
+            "Extração e interpretação de documentos",
+            "Classificação / roteamento",
+            "Personalização"
+          ],
+          "problema": "Equipe gasta tempo cruzando informações dos currículos com critérios mínimos das vagas e organizando estas correspondências manualmente.",
+          "capacidadeIA": "Faz extração direcionada das experiências e atribuições do currículo e indica presença de requisitos-chave definidos pela vaga.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Foca na identificação de aderência mínima, mas pode ser limitado por sinais ambíguos em textos pouco padronizados e não resolve toda a estruturação inicial."
+        },
+        {
+          "id": "C3",
+          "solucao": "Resumo estruturado e comparativo dos currículos para painel de triagem manual",
+          "familias": [
+            "Resumo e síntese",
+            "Apoio à decisão",
+            "Personalização"
+          ],
+          "problema": "Comparar e resumir manualmente os pontos importantes dos currículos demanda tempo e dificulta visão geral dos perfis.",
+          "capacidadeIA": "Sintetiza dados essenciais de cada currículo, organiza em estrutura comparável e facilita a análise lado a lado para decisão humana.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Facilita triagem visual e agiliza comparação, porém depende da extração estar completa e pode omitir detalhes capturados pelo motor do candidato principal."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Motor de extração e síntese de currículos para triagem com resumo estruturado.\n\nPrimeira implementação: Extrai de cada PDF as experiências profissionais e qualificações relevantes, gera resumos claros conforme critérios fornecidos para a vaga, organiza informações em formato padroniz\n\nPor que essa solução: Resolve o gargalo central da extração e resumo manual; permite testar resultados rapidamente sob validação da equipe de RH.\n\nComo a IA agrega valor: Identifica e organiza experiências profissionais e qualificações relevantes para a vaga a partir do texto livre dos PDFs.\n\nComo a arquitetura deve funcionar: Separação por regras dos campos sensíveis e organização final dos dados seguem critérios predefinidos, não delegados ao LLM.\n\nResultado potencial: Agiliza triagem, reduz trabalho repetitivo e mantém decisão e revisão sob controle humano.\n\nEvolução possível após validação inicial: Personalizar extração conforme requisitos detalhados de diferentes vagas; Permitir consultar o histórico de qualificações extraídas por linguagem natural"
+      },
+      "funcionamento": [
+        "Currículos em PDF e critérios definidos para a vaga (atributos ou palavras-chave profissionais).",
+        "Confirmação de que cada arquivo PDF contém texto acessível; exclusão automática de campos pessoais sensíveis conforme regra.",
+        "Organização do output em estrutura padronizada por critérios definidos pelo processo (campos de qualificação, experiência, formação); separação do que pode ou não ser extraído.",
+        "IA interpreta e sintetiza experiências profissionais extraídas dos currículos, mapeando para critérios da vaga, e resume as informações relevantes.",
+        "Planilha ou arquivo estruturado com resumos e qualificações organizadas para revisão pelos recrutadores.",
+        "Equipe de RH revisa e corrige resumos antes de decidir sobre avanço ou contratação dos candidatos."
+      ],
+      "preRequisitos": [
+        "Acesso autorizado aos PDFs dos currículos recebidos.",
+        "Definição e comunicação dos critérios relevantes da vaga antes do processamento.",
+        "Regra para exclusão de atributos pessoais sensíveis durante extração.",
+        "Revisão e validação dos resultados extraídos por responsáveis de RH."
+      ],
+      "validacoes": [
+        "Verificar precisão dos resumos de experiências e informações extraídas frente ao currículo original.",
+        "Avaliar se os critérios da vaga são suficientemente claros para guiar extrações.",
+        "Medição da redução do esforço manual e tempo necessário para triagem com auxílio da IA.",
+        "Revisar possíveis vieses na extração e síntese das informações relevantes."
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo médio para triagem inicial por currículo com apoio da IA",
+          "comoMedir": "Hora de início e fim da análise de um lote de currículos até geração dos resumos estruturados Tempo consumido desde recebimento do lote até entrega dos resumos para revisão da equipe, dividido pelo número de currículos processados Comparar com média de tempo anterior (sem IA) do mesmo processo Unidade: Minutos por currículo.",
+          "gargalo": "Leitura manual, resumo e extração dos conteúdos dos currículos em PDF, demandando tempo e esforço intensivos da equipe."
+        },
+        "secundarias": [
+          {
+            "nome": "Acurácia dos resumos de experiências frente à revisão humana",
+            "comoMedir": "Contagem de campos de qualificações/experiências corretos nos resumos conforme revisão da equipe Proporção de campos extraídos corretamente em relação ao total revisado Comparar taxa de correção entre versões do motor de extração Unidade: Percentual de campos corretos.",
+            "gargalo": "Leitura manual, resumo e extração dos conteúdos dos currículos em PDF, demandando tempo e esforço intensivos da equipe."
+          },
+          {
+            "nome": "Taxa de necessidade de correção nos resumos gerados",
+            "comoMedir": "Contagem de ajustes ou correções feitas nos resumos pelos recrutadores Número de currículos com correção divididos pelo total processado Comparar taxa de correção entre testes de diferentes vagas ou ciclos Unidade: Percentual de currículos corrigidos.",
+            "gargalo": "Leitura manual, resumo e extração dos conteúdos dos currículos em PDF, demandando tempo e esforço intensivos da equipe."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": []
+}

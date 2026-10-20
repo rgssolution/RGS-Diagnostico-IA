@@ -1,0 +1,1 @@
+{"caso":"Marketing","chamadas":6,"duracaoMs":72592,"tokens":{"stages":6,"durationMs":72556,"inputTokens":37876,"outputTokens":8478,"totalTokens":46354,"usageStages":6},"status":"O caso não passou na validação final do teste.","codigo":"quality_evaluation_failed","avaliacao":["Capacidade inteligente não descrita."]}

@@ -1,0 +1,148 @@
+{
+  "caso": "Vendas",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 4,
+  "duracaoMs": 50877,
+  "tokens": {
+    "stages": 4,
+    "durationMs": 50833,
+    "inputTokens": 15774,
+    "outputTokens": 4536,
+    "totalTokens": 20310,
+    "usageStages": 4
+  },
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Recebimento e registro de leads vindos de formulário, classificação manual em planilha por segmento e porte, leitura e análise de necessidades em texto livre para priorização conforme critérios flexíveis de cliente ideal.",
+        "fatos": [
+          "Leads chegam por formulário e são registrados em planilha com campos estruturados e necessidade em texto livre.",
+          "Análise e priorização dos leads é feita manualmente, comparando com critérios flexíveis de cliente ideal.",
+          "A ordem de contato é definida sem regras rígidas e requer explicação para a equipe.",
+          "Decisão final sobre contato e priorização é humana.",
+          "Atualmente, demora-se para priorizar e há risco de perder oportunidades aderentes."
+        ],
+        "workflow": [
+          "Leads chegam por formulário",
+          "Registro em planilha com campos estruturados e campo de necessidade livre",
+          "Leitura manual de todos os leads",
+          "Comparação com critérios de cliente ideal",
+          "Definição manual da ordem de contato"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Priorização manual trabalhosa e demorada de leads aderentes ao perfil ideal.",
+          "consequencia": "Risco potencial de perder oportunidades relevantes; tempo excessivo dedicado à análise em vez de atuação comercial.",
+          "evidencia": "Muito trabalho manual; Demora"
+        },
+        {
+          "problema": "Dificuldade em justificar de forma clara as recomendações e prioridades de contato.",
+          "consequencia": "Decisão pode parecer arbitrária, dificultando alinhamento da equipe e validação do processo.",
+          "evidencia": "Priorizar com evidências"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Priorização e explicação da ordem de contato com leads.",
+        "capacidadeNecessaria": "Interpretar necessidades em texto livre, comparar com critérios flexíveis e explicar recomendação.",
+        "beneficioPotencial": "Acelerar avaliação dos leads mais aderentes, reduzir trabalho manual e fundamentar a decisão com explicabilidade."
+      },
+      "familias": {
+        "principal": "Recomendação e priorização",
+        "complementares": [
+          "Apoio à decisão"
+        ],
+        "justificativa": "Priorizar leads exige interpretação situacional, ranqueamento e justificativa qualitativa alinhada a critérios flexíveis e não a regras fixas."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Motor inteligente de priorização de leads com explicação de aderência ao cliente ideal",
+          "familias": [
+            "Recomendação e priorização",
+            "Apoio à decisão"
+          ],
+          "problema": "Muito esforço manual para priorizar leads aderentes, risco de perder oportunidades, falta de explicação das recomendações atuais.",
+          "capacidadeIA": "Interpretar necessidade em texto livre, comparar com critérios detalhados e explicar prioridade sugerida.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Entrega priorização ordenada e justificável alinhada ao processo decisório; exige integração mínima e permite validação rápida."
+        },
+        {
+          "id": "C2",
+          "solucao": "Analisador automático de leads por critérios de aderência com justificativa resumida",
+          "familias": [
+            "Apoio à decisão",
+            "Resumo e síntese"
+          ],
+          "problema": "Tempo excessivo na análise manual e dificuldade em justificar priorização dos leads na comunicação interna.",
+          "capacidadeIA": "Interpretar o texto livre das necessidades e sintetizar justificativas claras de aderência ao perfil ideal.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Agiliza explicação, mas não ordena diretamente os leads; útil para processos sem foco em ranking imediato."
+        },
+        {
+          "id": "C3",
+          "solucao": "Classificador automático de leads por segmento e porte com painel mínimo de recomendação",
+          "familias": [
+            "Classificação / roteamento"
+          ],
+          "problema": "Demora no filtro inicial e dificuldade de encontrar rapidamente leads alinhados ao perfil.",
+          "capacidadeIA": "Classifica campos estruturados e sugere grupos de leads para atenção prioritária.",
+          "impactoPotencial": "Baixo",
+          "esforco": "Baixo",
+          "observacao": "Resolve etapa inicial apenas, sem avaliação textual nem justificativa ou explicação de prioridade."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Motor inteligente de priorização de leads com explicação de aderência ao cliente ideal.\n\nPrimeira implementação: Gera recomendação ordenada de leads priorizando aderência por critérios flexíveis com justificativa textual.\n\nPor que essa solução: Resolve a principal dor ao priorizar leads com justificativa interpretável, reduz esforço e acelera resposta, validando critérios flexíveis.\n\nComo a IA agrega valor: Analisa texto livre, cruza com critérios de cliente ideal e recomenda prioridades com explicação clara.\n\nComo a arquitetura deve funcionar: Extração, padronização e filtros obrigatórios são feitos antes; IA prioriza e explica. Regras explícitas ficam fora do modelo.\n\nResultado potencial: Pode aumentar aproveitamento de leads e reduzir tempo de decisão no teste piloto.\n\nEvolução possível após validação inicial: Permitir ajuste dos critérios e reprocessamento de prioridades; Identificar padrões de ganhos anteriores para melhorar explicações"
+      },
+      "funcionamento": [
+        "Planilha de leads com campos estruturados e necessidades em texto livre.",
+        "Conferir formatos e preenchimento mínimo dos campos obrigatórios na planilha.",
+        "Aplicar filtros obrigatórios (ex: excluir segmentos proibidos). As regras e validações objetivas são executadas por processamento conferido, separado da interpretação pela IA.",
+        "IA interpreta necessidades e critérios, recomenda ordem e justifica prioridade de cada lead.",
+        "Recomendações e justificativas registradas em nova aba da planilha ou relatório.",
+        "Equipe pode consultar explicação do motivo da prioridade ou revisar critérios em linguagem natural.",
+        "Equipe revisa recomendações e justificativas; decisão final é sempre humana."
+      ],
+      "preRequisitos": [
+        "Planilha padronizada dos leads com necessidade em texto livre e campos estruturados de segmento e porte.",
+        "Critérios de cliente ideal definidos e registrados.",
+        "Permissão de acesso à base para recomendações.",
+        "Regra clara de filtros obrigatórios (segmentos, portes ou restrições comerciais).",
+        "Rotina de validação e revisão das recomendações pela equipe."
+      ],
+      "validacoes": [
+        "Validação se critérios do cliente ideal são atualizados e confiáveis para priorização.",
+        "Adesão da equipe às explicações e sugestões da IA.",
+        "Acurácia das recomendações frente ao resultado comercial dos leads priorizados."
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Proporção de leads aderentes priorizados corretamente",
+          "comoMedir": "Revisão mensal dos leads priorizados que resultaram em avanço comercial. Contar quantos leads recomendados na prioridade foram considerados aderentes e avançaram vs. total priorizados. Comparar taxa de avanço antes e depois da solução. Unidade: % de leads priorizados que avançam.",
+          "gargalo": "Priorização manual trabalhosa e demorada de leads aderentes ao perfil ideal."
+        },
+        "secundarias": [
+          {
+            "nome": "Tempo médio para priorização dos leads",
+            "comoMedir": "Registro do tempo desde recebimento até ordem final definida. Média de tempo entre registro do lead e definição da ordem de contato. Comparação do tempo médio antes e depois da adoção da solução. Unidade: horas.",
+            "gargalo": "Priorização manual trabalhosa e demorada de leads aderentes ao perfil ideal."
+          },
+          {
+            "nome": "Precisão das justificativas segundo revisão da equipe",
+            "comoMedir": "Registros da equipe validando se a explicação da recomendação é clara e útil. Proporção de justificativas validadas como adequadas vs. total apresentadas. Períodos mensais ou amostras trimestrais. Unidade: % de justificativas validadas.",
+            "gargalo": "Dificuldade em justificar de forma clara as recomendações e prioridades de contato."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": []
+}

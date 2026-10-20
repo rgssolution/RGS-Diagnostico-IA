@@ -24,14 +24,16 @@ As variáveis opcionais de análise e auditoria usam OPENAI_MODEL como fallback.
 
 ## Motor e contratos
 
-1. Extração factual das fontes originais; evidências literais e identificação de cálculos críticos são anexadas pelo servidor.
-2. Avaliação de quinze dimensões e das vinte famílias, com evidências obrigatórias para classificações positivas.
-3. Geração de duas a quatro alternativas com IA substantiva, problema, capacidade, família, evidência, impacto, esforço, riscos e engenharia interna.
-4. Seleção comparativa de uma iniciativa e alternativas existentes.
-5. Composição das dez seções públicas, com duas a três soluções e uma métrica principal ligada ao primeiro gargalo; até duas secundárias.
-6. Auditoria independente das fontes, candidatos, conteúdo final e erros determinísticos. O auditor não recebe as conclusões prévias da extração, aderência ou seleção.
+1. Análise consolidada: fatos do processo atual, gargalos, cálculos críticos, quinze dimensões e vinte famílias; devolve somente avaliações sustentadas. Evidências literais são anexadas pelo servidor.
+2. Soluções e seleção: duas a três alternativas, comparação, escopo inicial, evolução, engenharia e escolha de uma iniciativa na mesma chamada.
+3. Composição das dez seções públicas, com duas a três soluções e métrica principal de negócio; até duas secundárias.
+4. Quality Gate independente: fontes originais, contexto essencial dos candidatos, conteúdo final exato e erros determinísticos. Sem conclusões prévias da extração/aderência/seleção.
 
-O fluxo base usa seis chamadas. Uma revisão refaz candidatos, seleção, composição e auditoria, totalizando dez chamadas antes de eventuais auditorias de perguntas. Há no máximo uma revisão; reprovação persistente impede a entrega. O usuário recebe exatamente o diagnóstico auditado.
+O fluxo normal usa quatro chamadas. Um erro pontual permite uma quinta chamada ao revisor auditor, independente do redator: retorna apenas patches de campos existentes e a avaliação dos trinta e um critérios sobre o resultado exato dos patches. O servidor aplica os patches literalmente e reexecuta o gate determinístico. Não existe nova geração de candidatos ou seleção. Revisão vazia para defeito real, patches duplicados, mudança de candidato/família/evidência e defeitos persistentes impedem a entrega. Problemas que exigem redesenhar a solução não são disfarçados por correções de texto.
+
+O limite de cinco é a meta para um desvio isolado, não uma regra que dispensa auditoria: pedidos críticos tardios, mais de uma proposta de pergunta ou reavaliação de aderência combinada com revisão podem excedê-lo. O esclarecimento só chama modelo se houver pergunta candidata. Uma rodada realmente crítica pode envolver duas requisições HTTP e, portanto, mais de cinco chamadas no total; sem cache persistente de análises. Não há chamadas extras ocultas ou retry automático da SDK.
+
+analysisContext carrega fatos, evidências e avaliações relevantes sem duplicar fontes/formulário nem devolver as avaliações negativas extensas. Referências positivas são restringidas no schema aos IDs criados pelo servidor e verificadas de novo localmente. A composição consome esse contexto; a auditoria reavalia fontes originais, preservando independência.
 
 A seleção prioriza impacto potencial, viabilidade e velocidade de validação. Entre soluções suficientes para o gargalo, prefere o menor escopo inicial; funções úteis mas não necessárias ficam em evolução. Maior sofisticação não vence por si.
 
@@ -74,7 +76,7 @@ Até duas perguntas críticas passam por auditoria específica de necessidade. O
 
 Trinta e um critérios: dor real, coerência da família, família mais aderente, especificidade, conservadorismo excessivo, oportunidade relevante, infraestrutura oculta, IA substantiva, dados inventados, hipóteses como fatos, sinais ignorados, metodologia, pré-requisitos, métrica, contradições e competência; cálculo pelo LLM; quantidades justificadas; promessas responsáveis; capacidade de negócio; inteligência explícita; arquitetura separada; consulta contextual; mensurabilidade; bloqueio por dimensionamento; escopo necessário; alternativa enxuta; métrica de negócio; volume sustentado; linguagem para empresário; ausência de redundância.
 
-APPROVED exige todos verdadeiros, nenhuma correção/pergunta pendente e nenhum erro determinístico. REVISE exige correção e nova auditoria. NEEDS_CLARIFICATION admite somente lacunas críticas.
+APPROVED exige todos verdadeiros, nenhuma correção/pergunta pendente e nenhum erro determinístico. REVISE exige correção direcionada pelo revisor auditor e certificação dos patches antes da entrega. NEEDS_CLARIFICATION admite somente lacunas críticas.
 
 O servidor valida ids, famílias sustentadas, referências literais, igualdade entre alternativas avaliadas e exibidas, capacidade de IA, infraestrutura proibida na proposta pública, vínculo das métricas, números não fornecidos e controle dos cálculos. Nome, problema, capacidade, impacto e esforço públicos são projetados dos candidatos. Famílias exibidas formam um subconjunto relevante das famílias avaliadas, com rótulos de negócio; a solução escolhida mantém a classificação principal e complementares do relatório.
 
@@ -100,14 +102,16 @@ $env:RGS_LIVE='1'
 npm run test:live
 ```
 
-Para selecionar outros casos, configure RGS_LIVE_CASES com os ids separados por vírgula. Há no máximo duas gerações simultâneas. `tests/results-refinamento` armazena somente relatórios sintéticos e avaliações, sem chave ou raciocínio interno. Falhas são registradas separadamente. Os relatórios em `tests/results` são da versão anterior e não comprovam a validação deste refinamento.
+Para selecionar outros casos, configure RGS_LIVE_CASES com os ids separados por vírgula. As gerações são sequenciais para evitar disputar limites da conta. `tests/results-refinamento` armazena somente relatórios sintéticos e avaliações, sem chave ou raciocínio interno. Falhas são registradas separadamente. Os relatórios em `tests/results` são da versão anterior e não comprovam a validação deste refinamento.
 
 E2E cobre três tamanhos de tela, obrigatoriedade, loading, erro, preservação de respostas, dez seções e esclarecimento. CSS, logo, formulário, ordem dos campos e rate limit são preservados. A página apenas acompanha o novo contrato do resultado.
 
 ## Limites de execução
 
-SDK oficial OpenAI, Responses API e store:false. Sem login, banco ou histórico persistente da aplicação. Corpo máximo de 24.000 bytes, respostas de esclarecimento até mil caracteres por pergunta. Resultado por etapa até 48.000 bytes. Até 5.500 tokens por etapa e 6.500 na composição.
+SDK oficial OpenAI, Responses API e store:false. Sem login, banco ou histórico persistente da aplicação. Corpo máximo de 24.000 bytes, respostas de esclarecimento até mil caracteres por pergunta. Resultado por etapa até 48.000 bytes. Orçamentos de saída: análise 2.400, soluções e seleção 2.600, composição 3.200, auditoria 1.400, esclarecimento 1.000 e revisão por patches 3.800 tokens. As etapas consolidadas preservam mais campos do que um resumo simples, por isso usam pequena margem sobre a referência inicial. Resposta truncada é rejeitada, sem retry oculto.
 
 Prazo global de 270 segundos, 65 segundos por chamada, sem repetição automática do SDK; navegador aguarda 285 segundos. A rota declara maxDuration=300; a hospedagem precisa suportar isso. Rate limit original de cinco tentativas por dez minutos, em memória por instância. Erros não expõem credenciais, conteúdo do provedor ou rascunhos rejeitados.
 
-Nenhum commit, integração ou deploy é automático. Consulte VALIDACAO-MVP.md para esta atualização e VALIDACAO.md para a rodada anterior.
+Em desenvolvimento, o servidor registra [diagnostico-usage] com chamadas, duração, tokens e quantidade de chamadas com usage disponível, incluindo falhas. Nunca registra conteúdo, credenciais, prompts ou respostas completos; a telemetria não integra a resposta HTTP. Os testes reais podem gravar relatórios sintéticos com RGS_RESULTS_DIR; os relatórios antigos não comprovam a versão otimizada.
+
+Nenhum commit, integração ou deploy é automático. Consulte VALIDACAO-OTIMIZACAO.md para esta atualização, VALIDACAO-MVP.md e VALIDACAO.md para as rodadas anteriores.

@@ -2,7 +2,7 @@ import {z} from "zod";
 import {fitSchema,dimensions,families,text,type Facts,type Fit} from "./schemas";
 import {ASSESS} from "./prompts";
 import type {StageCall} from "./client";
-export async function assessAiFit(call:StageCall,fatos:Facts,correcoes:string[]=[]) {
+export function assessmentSchema(fatos:Facts) {
  const ids=fatos.evidencias.map(e=>e.id) as [string,...string[]];
  const ref=z.enum(ids);
  // Impor na geração a diferença entre sinal fraco comprovado e informação ausente.
@@ -17,7 +17,11 @@ export async function assessAiFit(call:StageCall,fatos:Facts,correcoes:string[]=
  const dimShape=Object.fromEntries(dimensions.map(d=>[d,dimension])) as Record<typeof dimensions[number],typeof dimension>;
  const familyShape=Object.fromEntries(families.map(f=>[f,familyAssessment])) as Record<typeof families[number],typeof familyAssessment>;
  const schema=fitSchema.extend({dimensoes:z.object(dimShape).strict(),familiasAvaliadas:z.object(familyShape).strict()});
- const raw=await call("assess_ai_fit",schema,ASSESS,{fatos,correcoes});
+ return schema;
+}
+export async function assessAiFit(call:StageCall,fatos:Facts,correcoes:string[]=[]) {
+ const ids=fatos.evidencias.map(e=>e.id);
+ const raw=await call("assess_ai_fit",assessmentSchema(fatos),ASSESS,{fatos,correcoes});
  const fit:Fit={...raw,familiasAvaliadas:families.map(familia=>({familia,...raw.familiasAvaliadas[familia]}))};
  const known=new Set(ids);
  if(fit.consultaLinguagemNatural.evidencias.some(id=>!known.has(id)) || (fit.consultaLinguagemNatural.adequada && (!fit.consultaLinguagemNatural.evidencias.length || !fit.consultaLinguagemNatural.usoProposto)))throw new Error("invalid_consultation_evidence");

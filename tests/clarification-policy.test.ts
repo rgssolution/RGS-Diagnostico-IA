@@ -1,3 +1,4 @@
+import {stageResult,compactAssessment} from "./fixture";
 import {describe,it,expect,vi} from "vitest";
 import {z} from "zod";
 import {runPipeline,initialDirection} from "../src/lib/diagnostic/pipeline";
@@ -34,7 +35,7 @@ function values(){
 }
 function scripted(overrides:Partial<Record<Stage,unknown>>={}){
  const base=values();
- const spy=vi.fn(async(stage:Stage,schema:z.ZodType)=>schema.parse(overrides[stage]??base[stage]));
+ const spy=vi.fn(async(stage:Stage,schema:z.ZodType)=>schema.parse(stageResult(stage,{...base,...overrides,analyze_process:undefined,solutions_selection:undefined})));
  return {call:spy as StageCall,spy};
 }
 describe("esclarecimento material, no máximo duas perguntas",()=>{
@@ -57,10 +58,10 @@ describe("esclarecimento material, no máximo duas perguntas",()=>{
  it("pedido não material persistente da auditoria não esgota revisão nem impede entrega",async()=>{
   const {call,spy}=scripted({quality_gate:{...stageValues.quality_gate,status:"NEEDS_CLARIFICATION",perguntas:[contextQuestion]}});
   const r=await runPipeline(call,financial);expect(r.needs_clarification).toBe(false);
-  expect(spy.mock.calls.filter(c=>c[0]==="quality_gate")).toHaveLength(2);
+  expect(spy.mock.calls.filter(c=>c[0]==="revise_diagnosis")).toHaveLength(1);
  });
  it("não ignora defeito real de qualidade junto ao pedido não material",async()=>{
-  const {call}=scripted({quality_gate:{...stageValues.quality_gate,status:"NEEDS_CLARIFICATION",perguntas:[contextQuestion],verificacoes:{...stageValues.quality_gate.verificacoes,metrica:{ok:false,observacao:"A métrica não mede o gargalo."}}}});
+  const {call}=scripted({quality_gate:{...stageValues.quality_gate,status:"NEEDS_CLARIFICATION",perguntas:[contextQuestion],verificacoes:{...stageValues.quality_gate.verificacoes,metrica:false}}});
   await expect(runPipeline(call,financial)).rejects.toThrow("quality_gate_rejected");
  });
  for(const change of ["solucao","risco","arquitetura"])
@@ -76,7 +77,7 @@ describe("esclarecimento material, no máximo duas perguntas",()=>{
  it("reavalia classificação conservadora antes de pedir outro exemplo",async()=>{
   let assessments=0;const {call}=scripted();
   const wrapped:StageCall=async(stage,schema,prompt,data)=>{
-   if(stage==="assess_ai_fit" && assessments++===0)return schema.parse(fitForApi({...fit,familiasAvaliadas:fit.familiasAvaliadas.map(f=>({...f,aderencia:"Baixa" as const,evidencias:[]}))}));
+   if(stage==="analyze_process" && assessments++===0)return schema.parse({fatos:values().extract_facts,aderencia:compactAssessment({...fit,familiasAvaliadas:fit.familiasAvaliadas.map(f=>({...f,aderencia:"Baixa" as const,evidencias:[]}))})});
    return call(stage,schema,prompt,data);
   };
   expect((await runPipeline(wrapped,financial)).needs_clarification).toBe(false);expect(assessments).toBe(2);
@@ -92,10 +93,11 @@ describe("esclarecimento material, no máximo duas perguntas",()=>{
  it("o novo check provoca revisão e segue com diagnóstico em vez de pedir mais contexto",async()=>{
   let audits=0;const {call}=scripted();
   const wrapped:StageCall=async(stage,schema,prompt,data)=>{
-   if(stage==="quality_gate" && audits++===0)return schema.parse({...stageValues.quality_gate,status:"REVISE",verificacoes:{...stageValues.quality_gate.verificacoes,bloqueioDimensionamento:{ok:false,observacao:"Não exigir exemplo contextual para análise."}},correcoes:["Continuar a direção inicial e registrar o detalhamento como validação." ]});
+   if(stage==="quality_gate" && audits++===0)return schema.parse({...stageValues.quality_gate,status:"REVISE",verificacoes:{...stageValues.quality_gate.verificacoes,bloqueioDimensionamento:false},correcoes:["Continuar a direção inicial e registrar o detalhamento como validação." ]});
+   if(stage==="revise_diagnosis")return schema.parse({alteracoes:[{campo:"solucoes.0.observacao",valor:"Teste inicial com interpretação dos indicadores conferidos e revisão humana."}],auditoria:stageValues.quality_gate});
    return call(stage,schema,prompt,data);
   };
-  const r=await runPipeline(wrapped,financial);expect(r.needs_clarification).toBe(false);expect(audits).toBe(2);
+  const r=await runPipeline(wrapped,financial);expect(r.needs_clarification).toBe(false);expect(audits).toBe(1);
  });
 
  it("correções que só repetem pedidos de contexto não bloqueiam após revisão independente",async()=>{

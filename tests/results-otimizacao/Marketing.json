@@ -1,0 +1,135 @@
+{
+  "caso": "Marketing",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 5,
+  "duracaoMs": 49900,
+  "tokens": {
+    "stages": 5,
+    "durationMs": 49865,
+    "inputTokens": 19003,
+    "outputTokens": 4778,
+    "totalTokens": 23781,
+    "usageStages": 5
+  },
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Criação de conteúdo para campanhas de marketing baseada em briefing recebido, com geração manual de textos e imagens, e aprovação humana antes da publicação.",
+        "fatos": [
+          "Recebem briefing de campanhas por e-mail ou planilha.",
+          "Criação manual de textos e imagens para posts.",
+          "Equipe pequena revisa e aprova todo conteúdo antes de publicar.",
+          "Atrasos nas publicações devido ao tempo consumido pela produção manual.",
+          "Obrigação de seguir guia de marca e referências.",
+          "Uso de ferramentas básicas (e-mail, planilhas)."
+        ],
+        "workflow": [
+          "Receber briefing de campanha",
+          "Criar textos e imagens manualmente",
+          "Revisar e aprovar conteúdos",
+          "Publicar posts"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Demora e esforço manual na criação de textos e artes para campanhas.",
+          "consequencia": "Atrasos frequentes na publicação de posts e sobrecarga da equipe.",
+          "evidencia": "Muito trabalho manual; Demora"
+        },
+        {
+          "problema": "Repetitividade na redação de legendas e elaboração de imagens.",
+          "consequencia": "Tempo desperdiçado em tarefas de baixo valor criativo.",
+          "evidencia": "Escrever legendas e criar artes"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Geração inicial de rascunhos de texto e imagem a partir do briefing.",
+        "capacidadeNecessaria": "Gerar textos e imagens originais, customizados ao briefing, prontos para revisão.",
+        "beneficioPotencial": "Acelerar significativamente a produção inicial, antecipando etapas e liberando a equipe para ajustes criativos e revisão."
+      },
+      "familias": {
+        "principal": "Geração de texto",
+        "complementares": [
+          "Geração de imagem"
+        ],
+        "justificativa": "O fluxo depende de drafts tanto textuais quanto visuais baseados em briefing; automatizar ambos ataca diretamente o gargalo de velocidade."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Copiloto de Rascunhos de Texto e Imagem",
+          "familias": [
+            "Geração de texto",
+            "Geração de imagem"
+          ],
+          "problema": "Demora e esforço manual excessivo para criar textos e artes, atrasando publicações.",
+          "capacidadeIA": "Geração de drafts textuais e visuais a partir de briefings em linguagem natural.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Permite validar resultados rapidamente sem riscos de publicação automática; cobre texto e imagem sem impor integrações complexas no MVP."
+        },
+        {
+          "id": "C2",
+          "solucao": "Analisador Inteligente de Briefing para Geração de Texto",
+          "familias": [
+            "Geração de texto"
+          ],
+          "problema": "Textos manuais tomam tempo, atrasando as publicações e consumindo capacidade da equipe.",
+          "capacidadeIA": "Geração automatizada de rascunhos de legendas conforme briefing textual.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "A implementação foca só no texto; menor abrangência, porém facilidade e validação rápida para ajustar o modelo ao perfil da marca."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Copiloto de Rascunhos de Texto e Imagem.\n\nPrimeira implementação: Assistente gera rascunhos de legendas e artes com base no briefing recebido por texto.\n\nPor que essa solução: Ataca direto o principal gargalo (tempo em texto e imagem), dá maior cobertura e mantém revisão obrigatória.\n\nComo a IA agrega valor: Gera rapidamente drafts customizados de textos e imagens com base no briefing, acelerando a etapa inicial.\n\nComo a arquitetura deve funcionar: Valida adequação mínima à marca com regras/separação antes de liberar drafts para revisão humana. Os drafts são entregues por canal interativo (chat ou formulário textual), permitindo ajuste e iteração de solicitações e respostas desde o MVP.\n\nResultado potencial: Pode liberar a equipe de tarefas repetitivas e acelerar publicações conforme os testes.\n\nEvolução possível após validação inicial: Sugestão automática de variações de texto baseado no perfil de campanha; Geração de rascunhos a partir de referências visuais enviadas junto ao briefing."
+      },
+      "funcionamento": [
+        "Briefing textual estruturado, referências e guias de marca.",
+        "Checagem de campos mínimos (contexto, objetivo, referências) do briefing.",
+        "Aplicação automática de regras básicas (linguagem, presença de temática, conformidade mínima à marca).",
+        "Geração de rascunho de texto e imagem de acordo com briefing e guia de marca.",
+        "Rascunhos entregues para a equipe revisar e ajustar antes da publicação.",
+        "Permite solicitação, ajuste e iteração dos drafts pelo time usando canal interativo (chat ou formulário textual), integrando a consulta em linguagem natural ao fluxo de revisão desde o MVP.",
+        "Equipe obrigatoriamente revisa e aprova cada material antes da publicação."
+      ],
+      "preRequisitos": [
+        "Briefings estruturados em formato claro para a IA",
+        "Acesso autorizado a referências visuais e textuais da marca",
+        "Definição das regras de adequação mínima à marca",
+        "Permissão explícita para gerar drafts sem publicação automática",
+        "Canal definido para entrega e recebimento de drafts aos revisores"
+      ],
+      "validacoes": [
+        "Provar consistência e aderência dos drafts gerados às referências e guia da marca.",
+        "Testar aceitação e utilidade dos rascunhos em campanhas reais com validação de tempo ganho.",
+        "Checar facilidade de integração ao canal cotidiano de briefings."
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo médio de produção do rascunho por post",
+          "comoMedir": "Data/hora de recebimento do briefing e entrega do draft ao revisor Diferença de tempo entre briefing recebido e draft entregue para revisão Comparação com amostras de campanhas manuais recentes Unidade: minutos por post.",
+          "gargalo": "Demora e esforço manual na criação de textos e artes para campanhas."
+        },
+        "secundarias": [
+          {
+            "nome": "Taxa de aprovação do rascunho na primeira revisão",
+            "comoMedir": "Total de drafts entregues e número aprovados sem retrabalho pelo revisor Aprovações diretas dividido pelo total de drafts entregues Revisões anteriores feitas manualmente Unidade: percentual.",
+            "gargalo": "Demora e esforço manual na criação de textos e artes para campanhas."
+          },
+          {
+            "nome": "Tempo de revisão do rascunho gerado",
+            "comoMedir": "Data/hora de início e término da revisão de cada draft Tempo gasto por revisor para analisar e ajustar draft da IA Tempo de revisão de posts feitos do zero manualmente Unidade: minutos por post.",
+            "gargalo": "Demora e esforço manual na criação de textos e artes para campanhas."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": []
+}

@@ -1,0 +1,1 @@
+{"caso":"Financeiro","chamadas":6,"duracaoMs":89672,"tokens":{"stages":6,"durationMs":89650,"inputTokens":37650,"outputTokens":8351,"totalTokens":46001,"usageStages":6},"status":"O caso não passou na validação final do teste.","codigo":"quality_evaluation_failed","avaliacao":["Capacidade inteligente não descrita.","Consulta analítica complementar ausente."]}

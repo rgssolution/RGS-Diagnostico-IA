@@ -1,3 +1,4 @@
+import {analysisContext} from "./consolidated";
 import {recommendationPlanSchema,workflowPlanSchema,measurementPlanSchema,recommendationText,measurementText} from "./precision-plan";
 import {z} from "zod";
 import {diagnosisSchema,text,family,displayFamily,type Facts,type Fit,type Candidates,type Selection,type Sources,type Diagnosis} from "./schemas";
@@ -9,18 +10,18 @@ export async function finalDiagnosis(call:StageCall,context:Context,correcoes:st
  const ids=context.fatos.evidencias.map(e=>e.id) as [string,...string[]];
  const prose=Object.values(context.fontes).some(v=>/\d/.test(v))?text:text.regex(/^[^0-9]*$/);
  const list=z.array(prose).max(15);
- const metric=measurementPlanSchema;
+ const metric=measurementPlanSchema.extend({nome:prose.max(180),registro:prose.max(220),calculo:prose.max(240),comparacao:prose.max(200),unidade:prose.max(60)});
  const schema=diagnosisSchema.extend({
   operacao:z.object({fatos:list}).strict(),
   oportunidade:diagnosisSchema.shape.oportunidade.extend({parteProcesso:prose,capacidadeNecessaria:prose,beneficioPotencial:prose}),
   familias:z.object({principal:family,complementares:z.array(family).max(2),justificativa:prose}).strict(),
   solucoes:z.array(diagnosisSchema.shape.solucoes.element.extend({solucao:prose,observacao:prose,familias:z.array(family).min(1).max(3)})).min(2).max(3),
-  recomendacao:recommendationPlanSchema.extend({candidatoId:z.literal(context.selecao.candidatoId)}),
-  funcionamento:workflowPlanSchema.extend({validacaoEstrutural:context.fatos.exigeCalculoExato?prose:prose.nullable(),deterministica:context.fatos.exigeCalculoExato?prose:prose.nullable()}),preRequisitos:z.array(prose).min(1).max(15),validacoes:list,
+  recomendacao:recommendationPlanSchema.extend({candidatoId:z.literal(context.selecao.candidatoId),porQue:prose.max(160),valorIA:prose.max(160),arquiteturaDeterministica:prose.max(180),resultadoPotencial:prose.max(140)}),
+  funcionamento:workflowPlanSchema.extend({entrada:prose,inteligencia:prose,entrega:prose,consultaLinguagemNatural:prose.nullable(),validacaoHumana:prose,validacaoEstrutural:context.fatos.exigeCalculoExato?prose:prose.nullable(),deterministica:context.fatos.exigeCalculoExato?prose:prose.nullable()}),preRequisitos:z.array(prose).min(1).max(15),validacoes:list,
   gargalos:z.array(z.object({problema:prose,consequencia:prose,evidenciaId:z.enum(ids)}).strict()).min(1).max(3),
   metricas:z.object({principal:metric.extend({finalidade:z.literal("Resultado do negócio")}),secundarias:z.array(metric.extend({gargaloIndice:z.number().int().min(0).max(2)})).max(2)}).strict()
  });
- const raw=await call("final_diagnosis",schema,FINAL,{...context,correcoes,anterior});
+ const raw=await call("final_diagnosis",schema,FINAL,{analysisContext:analysisContext(context.fatos,context.aderencia),candidatos:context.candidatos,selecao:context.selecao,lacunasNaoBloqueantes:context.lacunasNaoBloqueantes,correcoes,anterior});
  const gargalos=raw.gargalos.map(g=>({problema:g.problema,consequencia:g.consequencia,evidencia:context.fatos.evidencias.find(e=>e.id===g.evidenciaId)!.trecho}));
  const solucoes=raw.solucoes.map(s=>{
   const c=context.candidatos.candidatos.find(c=>c.id===s.id);

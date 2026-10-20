@@ -1,0 +1,149 @@
+{
+  "baselineCommit": "053cf52",
+  "casos": [
+    {
+      "caso": "Atendimento",
+      "antes": {
+        "chamadas": 10,
+        "duracaoMs": 119454,
+        "inputTokens": 66066,
+        "outputTokens": 14869,
+        "totalTokens": 80935,
+        "qualidade": []
+      },
+      "depois": {
+        "chamadas": 5,
+        "duracaoMs": 38585,
+        "inputTokens": 20519,
+        "outputTokens": 5267,
+        "totalTokens": 25786,
+        "qualidade": []
+      }
+    },
+    {
+      "caso": "Financeiro",
+      "antes": {
+        "chamadas": 6,
+        "duracaoMs": 89667,
+        "inputTokens": 37650,
+        "outputTokens": 8351,
+        "totalTokens": 46001,
+        "qualidade": [
+          "Consulta analítica complementar ausente."
+        ]
+      },
+      "depois": {
+        "chamadas": 4,
+        "duracaoMs": 45529,
+        "inputTokens": 15038,
+        "outputTokens": 4705,
+        "totalTokens": 19743,
+        "qualidade": []
+      }
+    },
+    {
+      "caso": "Marketing",
+      "antes": {
+        "chamadas": 6,
+        "duracaoMs": 72586,
+        "inputTokens": 37876,
+        "outputTokens": 8478,
+        "totalTokens": 46354,
+        "qualidade": []
+      },
+      "depois": {
+        "chamadas": 5,
+        "duracaoMs": 49900,
+        "inputTokens": 19003,
+        "outputTokens": 4778,
+        "totalTokens": 23781,
+        "qualidade": []
+      }
+    },
+    {
+      "caso": "Vendas",
+      "antes": {
+        "chamadas": 6,
+        "duracaoMs": 92790,
+        "inputTokens": 38777,
+        "outputTokens": 8658,
+        "totalTokens": 47435,
+        "qualidade": []
+      },
+      "depois": {
+        "chamadas": 4,
+        "duracaoMs": 50877,
+        "inputTokens": 15774,
+        "outputTokens": 4536,
+        "totalTokens": 20310,
+        "qualidade": []
+      }
+    },
+    {
+      "caso": "RH",
+      "antes": {
+        "chamadas": 6,
+        "duracaoMs": 68048,
+        "inputTokens": 38163,
+        "outputTokens": 8651,
+        "totalTokens": 46814,
+        "qualidade": []
+      },
+      "depois": {
+        "chamadas": 5,
+        "duracaoMs": 49674,
+        "inputTokens": 20999,
+        "outputTokens": 5916,
+        "totalTokens": 26915,
+        "qualidade": []
+      }
+    },
+    {
+      "caso": "Operacoes",
+      "antes": {
+        "chamadas": 6,
+        "duracaoMs": 67951,
+        "inputTokens": 39200,
+        "outputTokens": 8738,
+        "totalTokens": 47938,
+        "qualidade": []
+      },
+      "depois": {
+        "chamadas": 4,
+        "duracaoMs": 51828,
+        "inputTokens": 15605,
+        "outputTokens": 4860,
+        "totalTokens": 20465,
+        "qualidade": []
+      }
+    }
+  ],
+  "medias": {
+    "chamadas": {
+      "antes": 6.666666666666667,
+      "depois": 4.5,
+      "reducaoPercentual": 32.50000000000001
+    },
+    "duracaoMs": {
+      "antes": 85082.66666666667,
+      "depois": 47732.166666666664,
+      "reducaoPercentual": 43.89907070770389
+    },
+    "inputTokens": {
+      "antes": 42955.333333333336,
+      "depois": 17823,
+      "reducaoPercentual": 58.50806263870998
+    },
+    "outputTokens": {
+      "antes": 9624.166666666666,
+      "depois": 5010.333333333333,
+      "reducaoPercentual": 47.94008139232834
+    },
+    "totalTokens": {
+      "antes": 52579.5,
+      "depois": 22833.333333333332,
+      "reducaoPercentual": 56.5736963391943
+    }
+  },
+  "observacao": "Mesmos seis casos e modelos, execuções sequenciais em cada lote; baseline e lote otimizado parcialmente simultâneos. Uma amostra por caso retida após correções, sem estimativa estatística ou custo monetário. Tentativas intermediárias não entram nas médias; a qualidade foi reavaliada com o mesmo avaliador final."
+}

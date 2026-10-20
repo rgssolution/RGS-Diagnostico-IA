@@ -1,7 +1,7 @@
 import {formSchema} from "@/lib/form";
 import {limiter} from "@/lib/rate-limit";
 import {BodyTooLarge,readBody} from "@/lib/body";
-import {createStageCall} from "@/lib/diagnostic/client";
+import {createStageCall,createUsage} from "@/lib/diagnostic/client";
 import {runPipeline} from "@/lib/diagnostic/pipeline";
 import {issueClarification,readClarification,requestSchema} from "@/lib/diagnostic/clarification";
 export const runtime="nodejs";
@@ -30,9 +30,10 @@ export async function POST(request:Request){
   try{additional=readClarification(input,esclarecimentos,process.env.OPENAI_API_KEY);}
   catch{return reply({error:"As perguntas expiraram ou o formulário mudou. Gere uma nova análise com os dados atuais."},400);}
  }
+ const usage=createUsage();const started=Date.now();
  try{
   const signal=AbortSignal.any([request.signal,AbortSignal.timeout(270000)]);
-  const result=await runPipeline(createStageCall(signal),input,additional.fontes,additional.perguntasContexto);
+  const result=await runPipeline(createStageCall(signal,usage),input,additional.fontes,additional.perguntasContexto);
   if(result.needs_clarification){
    // Uma rodada. Só chega aqui se a lacuna material persistir após avaliar toda a base disponível.
    if(esclarecimentos)return reply({error:"Falta esclarecer um ponto essencial sobre a natureza ou os limites da solução. Revise a descrição do processo."},422);
@@ -42,5 +43,7 @@ export async function POST(request:Request){
   return reply(result);
  }catch{
   return reply({error:"Não foi possível concluir um diagnóstico aprovado agora. Suas respostas foram preservadas; tente novamente."},502);
+ }finally{
+  if(process.env.NODE_ENV==="development")console.info("[diagnostico-usage]",{...usage,durationMs:Date.now()-started});
  }
 }

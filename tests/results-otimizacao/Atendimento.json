@@ -1,0 +1,155 @@
+{
+  "caso": "Atendimento",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 5,
+  "duracaoMs": 38585,
+  "tokens": {
+    "stages": 5,
+    "durationMs": 38478,
+    "inputTokens": 20519,
+    "outputTokens": 5267,
+    "totalTokens": 25786,
+    "usageStages": 5
+  },
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Clientes enviam dúvidas recorrentes sobre produtos e entrega pelo WhatsApp. A equipe consulta catálogo por Excel/Sheets e responde manualmente. Fora do horário não há resposta; clientes desistem.",
+        "fatos": [
+          "Clientes enviam dúvidas recorrentes sobre produtos e entrega pelo WhatsApp.",
+          "Equipe consulta catálogo em Excel/Sheets para responder.",
+          "Respostas apenas em horário comercial; fora disso, clientes podem desistir.",
+          "Equipe é pequena.",
+          "Dúvidas frequentes geram muito trabalho manual e demoras.",
+          "Casos de negociação são encaminhados para pessoa.",
+          "Objetivo: converter dúvidas em pedidos com atendimento ampliado, sem prometer condições comerciais ou executar compras."
+        ],
+        "workflow": [
+          "Cliente envia dúvida via WhatsApp",
+          "Equipe consulta catálogo (Excel/Sheets)",
+          "Responder manualmente",
+          "Fora do horário não responde; cliente pode desistir",
+          "Situações de negociação encaminhadas para pessoa"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Indisponibilidade de respostas fora do horário comercial, levando à desistência de clientes.",
+          "consequencia": "Potencial perda de pedidos por falta de resposta imediata.",
+          "evidencia": "Clientes enviam dúvidas recorrentes sobre produtos e entrega pelo WhatsApp. Queremos atendimento 24x7. A equipe consulta o catálogo atualizado e responde manualmente. Fora do horário ninguém responde, e clientes desistem antes de comprar. Queremos disponibilidade fora do horário com respostas baseadas no catálogo, sem prometer condições comerciais nem executar compras. Casos sem resposta ou com negociação devem ir a uma pessoa."
+        },
+        {
+          "problema": "Demora e sobrecarga do time para responder dúvidas repetitivas.",
+          "consequencia": "Tempo excessivo gasto em tarefas de baixo valor.",
+          "evidencia": "Muito trabalho manual; Demora"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Atendimento inicial de dúvidas sobre produtos e entrega via WhatsApp.",
+        "capacidadeNecessaria": "Respostas automáticas em linguagem natural, baseadas no catálogo.",
+        "beneficioPotencial": "Cobertura das dúvidas recorrentes a qualquer hora, aumentando conversões e reduzindo trabalho manual."
+      },
+      "familias": {
+        "principal": "IA conversacional",
+        "complementares": [
+          "Busca inteligente em informações da empresa",
+          "Classificação / roteamento"
+        ],
+        "justificativa": "A base é automação de respostas via conversa em linguagem natural. Busca inteligente aciona o catálogo e classificação separa casos comuns de exceções humanas."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Atendente inteligente para dúvidas sobre produtos e entrega com base em catálogo",
+          "familias": [
+            "IA conversacional",
+            "Busca inteligente em informações da empresa",
+            "Classificação / roteamento"
+          ],
+          "problema": "Demora e indisponibilidade para responder dúvidas de clientes sobre o catálogo no WhatsApp, inclusive fora do horário.",
+          "capacidadeIA": "Interpretação de perguntas, busca estruturada no catálogo, resposta clara e roteiro para exceções.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Abrange perguntas abertas, garante disponibilidade e filtra para pessoa onde necessário; viável com catálogo já digital; piloto rápido."
+        },
+        {
+          "id": "C2",
+          "solucao": "Motor de busca automatizada do catálogo com respostas pré-validadas",
+          "familias": [
+            "Busca inteligente em informações da empresa"
+          ],
+          "problema": "Equipe consome tempo buscando e respondendo perguntas que poderiam ser respondidas automaticamente com dados do catálogo.",
+          "capacidadeIA": "Consulta inteligente ao catálogo e resposta automatizada baseada em correspondência de perguntas, sem adaptação conversacional.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Mais simples, mas não cobre linguagem aberta ou triagem de exceções; limite em nuances e autonomia do fluxo."
+        },
+        {
+          "id": "C3",
+          "solucao": "Classificador inteligente para encaminhamento de dúvidas e exceções",
+          "familias": [
+            "Classificação / roteamento"
+          ],
+          "problema": "Nem todas as dúvidas simples exigem intervenção humana; atraso e sobrecarga para equipe.",
+          "capacidadeIA": "Classifica perguntas e encaminha apenas exceções humanas, melhorando triagem e descartando repetições desnecessárias.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Agiliza encaminhamento, mas mantém dependência manual para toda resposta; cobertura parcial da dor principal."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Atendente inteligente para dúvidas sobre produtos e entrega com base em catálogo.\n\nPrimeira implementação: Responder dúvidas de produtos e entrega via WhatsApp após interpretar pergunta e consultar catálogo estruturado.\n\nPor que essa solução: Resolve a dor crítica: disponibilidade automática e respostas em linguagem natural, reduzindo desistência.\n\nComo a IA agrega valor: Interpreta perguntas, responde do catálogo e filtra exceções humanas.\n\nComo a arquitetura deve funcionar: Catálogo estruturado e regras fixas conferidas antes da IA formular a resposta.\n\nResultado potencial: Pode ampliar conversões e reduzir perdas com atendimento imediato.\n\nEvolução possível após validação inicial: Identificar automaticamente perguntas que exigem encaminhamento humano; Análise de motivos das dúvidas não respondidas"
+      },
+      "funcionamento": [
+        "Mensagem do cliente via WhatsApp.",
+        "Verificar formato e origem da mensagem, garantindo dados mínimos para consulta ao catálogo.",
+        "Consulta e validação determinística do catálogo para garantir que a informação está correta e atual.",
+        "IA interpreta a dúvida, busca resposta no catálogo e redige em linguagem natural.",
+        "Responder ao cliente de forma clara; dúvidas ou negociações não compreendidas são roteadas para pessoa.",
+        "Disponível no fluxo; interpreta perguntas e elabora resposta textual automática.",
+        "Respostas ou exceções sem correspondência são revisadas periodicamente, com ajuste do sistema."
+      ],
+      "preRequisitos": [
+        "Acesso ao catálogo atualizado e autorizado.",
+        "WhatsApp disponível como canal de atendimento.",
+        "Definição clara de exceções para encaminhamento humano.",
+        "Regras de atualização e manutenção do catálogo digital.",
+        "Permissão explícita para uso e compartilhamento de dados relevantes."
+      ],
+      "validacoes": [
+        "Verificar qualidade e estrutura do catálogo frente às principais dúvidas.",
+        "Testar clareza e aderência da IA nas respostas automáticas.",
+        "Medição real da redução de dúvidas perdidas e impacto nas conversões."
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Dúvidas de clientes perdidas por falta de resposta imediata",
+          "comoMedir": "Marca dúvidas recebidas fora do horário e sua resolução (sim/não e tempo) Conta quantidade de dúvidas não respondidas imediatamente versus total recebidas Comparar taxa antes e depois da implantação Unidade: % dúvidas perdidas.",
+          "gargalo": "Indisponibilidade de respostas fora do horário comercial, levando à desistência de clientes."
+        },
+        "secundarias": [
+          {
+            "nome": "Tempo médio de resposta automatizada",
+            "comoMedir": "Timestamp de recebimento e de resposta Média do tempo entre recebimento e resposta automática Comparar tempo antes/depois Unidade: minutos.",
+            "gargalo": "Indisponibilidade de respostas fora do horário comercial, levando à desistência de clientes."
+          },
+          {
+            "nome": "Taxa de encaminhamentos humanos",
+            "comoMedir": "Marca cada pergunta encaminhada a pessoa Percentual do total de dúvidas que exigem ação manual Comparar distribuição antes/depois Unidade: % dúvidas encaminhadas.",
+            "gargalo": "Demora e sobrecarga do time para responder dúvidas repetitivas."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": [],
+  "avaliacaoInicial": [
+    "Capacidade inteligente não descrita."
+  ],
+  "reavaliacao": "Avaliador final: reconhecimento lexical corrigido, sem alteração da geração real."
+}
