@@ -71,9 +71,9 @@ describe("API",()=>{
    const r=await POST(request());const body=await r.json();expect(r.status).toBe(200);expect(body).not.toHaveProperty("inputTokens");expect(body).not.toHaveProperty("stages");expect(info).toHaveBeenCalledOnce();expect(info.mock.calls[0][0]).toBe("[diagnostico-usage]");expect(info.mock.calls[0][1]).toMatchObject({stages:4,inputTokens:40,outputTokens:20,totalTokens:60,usageStages:4});expect(JSON.stringify(info.mock.calls)).not.toContain(input.processo);
   }finally{info.mockRestore();}
  });
- it("não registra telemetria de desenvolvimento em produção",async()=>{
+ it("registra telemetria segura também em produção",async()=>{
   vi.stubEnv("NODE_ENV","production");const info=vi.spyOn(console,"info").mockImplementation(()=>{});
-  try{parse.mockImplementation(async(args)=>({status:"completed",output_parsed:stageValues[args.text.format.name as keyof typeof stageValues]}));expect((await POST(request())).status).toBe(200);expect(info).not.toHaveBeenCalled();}finally{info.mockRestore();}
+  try{parse.mockImplementation(async(args)=>({status:"completed",output_parsed:stageValues[args.text.format.name as keyof typeof stageValues]}));expect((await POST(request())).status).toBe(200);expect(info).toHaveBeenCalledOnce();expect(info.mock.calls[0][0]).toBe("[diagnostico-usage]");}finally{info.mockRestore();}
  });
  it("rejeita formulário inválido",async()=>{expect((await POST(request({}))).status).toBe(400);expect(parse).not.toHaveBeenCalled();});
  it("rejeita corpo grande",async()=>{expect((await POST(request({x:"x".repeat(25000)}))).status).toBe(413);});

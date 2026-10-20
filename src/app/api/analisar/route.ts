@@ -41,9 +41,14 @@ export async function POST(request:Request){
   }
   if(Buffer.byteLength(JSON.stringify(result))>48000)throw new Error("output_limit");
   return reply(result);
- }catch{
+ }catch(error){
+  const message=error instanceof Error?error.message:"unknown_error";
+  // Log only known technical codes; unexpected messages may contain private data.
+  const stageCode=/^stage_(?:analyze_process|solutions_selection|final_diagnosis|quality_gate|clarification_gate|revise_diagnosis|extract_facts|assess_ai_fit|generate_candidates|select_solution)_(?:api_status_[0-9]{3}|timeout|incomplete_tokens|incomplete_response|missing_parsed_response|invalid_json|invalid_response|schema_[A-Za-z0-9_]{1,180}|output_limit_(?:analyze_process|solutions_selection|final_diagnosis|quality_gate|clarification_gate|revise_diagnosis|extract_facts|assess_ai_fit|generate_candidates|select_solution))$/.test(message);
+  const knownCode=["quality_gate_rejected","quality_gate_no_supported_opportunity","model_not_configured","output_limit","invalid_consultation_evidence","missing_families","invalid_family_evidence","duplicate_assessment","invalid_question_review","invalid_metric_reference","invalid_recommendation","ungrounded_facts","duplicate_candidates","candidate_evidence","candidate_consultation_evidence","candidate_consultation_scope","candidate_type","duplicate_family","unsupported_candidate_family","unsupported_ai_opportunity","invalid_clarification","invalid_duplicate_patch","invalid_noop_patch","invalid_family_label","invalid_selection"].includes(message) || /^invalid_dimension_evidence_(?:repetitividade|escala|disponibilidade|linguagemNatural|variabilidade|decisao|dadosHistorico|personalizacao|velocidade|dependenciaHumana|interpretacao|geracaoConteudo|multimodalidade|multiplasEtapas|conhecimentoInterno)_(?:unknown_ref|missing_ref|unsupported_ref)$/.test(message);
+  console.error("[diagnostico-error]",stageCode || knownCode?message:"unknown_error");
   return reply({error:"Não foi possível concluir um diagnóstico aprovado agora. Suas respostas foram preservadas; tente novamente."},502);
  }finally{
-  if(process.env.NODE_ENV==="development")console.info("[diagnostico-usage]",{...usage,durationMs:Date.now()-started});
+  console.info("[diagnostico-usage]",{stages:usage.stages,durationMs:Date.now()-started,inputTokens:usage.inputTokens,outputTokens:usage.outputTokens,totalTokens:usage.totalTokens,usageStages:usage.usageStages});
  }
 }
