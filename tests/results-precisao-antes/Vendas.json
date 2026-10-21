@@ -1,0 +1,146 @@
+{
+  "caso": "Vendas",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 4,
+  "duracaoMs": 36986,
+  "tokens": {
+    "stages": 4,
+    "durationMs": 36967,
+    "inputTokens": 16057,
+    "outputTokens": 4940,
+    "totalTokens": 20997,
+    "usageStages": 4
+  },
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Análise e priorização de leads que chegam por formulário, registrados em planilha, contendo informações estruturadas e necessidade em texto livre; equipe lê todos os registros, interpreta necessidade, compara com critérios explícitos de cliente ideal e decide ordem de contato.",
+        "fatos": [
+          "Análise e priorização de leads de formulário registrados em planilha com dados estruturados e texto livre.",
+          "Equipe lê registros, interpreta necessidades e compara com critérios explícitos de cliente ideal.",
+          "Decisão sobre prioridade de contato dos leads é humana e exige explicação.",
+          "Muito trabalho manual, demora e risco de perder leads bons.",
+          "Não se deseja priorizar só por velocidade de resposta."
+        ],
+        "workflow": [
+          "Leads recebidos por formulário",
+          "Registro em planilha com campos estruturados e texto livre",
+          "Leitura e análise manual dos registros",
+          "Interpretação de necessidades e comparação com cliente ideal",
+          "Decisão de ordem de contato dos leads"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Análise manual e demorada dos leads dificulta priorização e pode causar perda de leads aderentes.",
+          "consequencia": "Potencial perda de vendas e desperdício de oportunidade por atraso na triagem.",
+          "evidencia": "Leads chegam por formulário e são registrados em planilha com segmento e porte estruturados, e necessidade em texto livre com termos diferentes. É necessário interpretar necessidades ambíguas e relações semânticas: a aderência comercial não pode ser calculada por uma regra fixa de campos nem por soma rígida de pontos. Temos critérios explícitos de cliente ideal e histórico de propostas e resultados, ainda sem qualidade validada. A equipe lê todos os registros para decidir a ordem de contato e perde oportunidades com boa aderência. Queremos recomendação de prioridade explicável, com decisão humana. Não queremos substituir a prioridade por apenas responder mais rápido."
+        },
+        {
+          "problema": "Necessidade de interpretar textos livres aumenta o esforço e o tempo de análise.",
+          "consequencia": "Risco de decisões inconsistentes e sobrecarga da equipe.",
+          "evidencia": "Muito trabalho manual; Demora"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Priorizar leads com base em aderência explícita aos critérios de cliente ideal e necessidades em texto livre.",
+        "capacidadeNecessaria": "IA para interpretar necessidades em linguagem natural e recomendar prioridade de contato explicada.",
+        "beneficioPotencial": "Reduz o tempo na análise e triagem dos leads e aumenta as chances de captar oportunidades aderentes."
+      },
+      "familias": {
+        "principal": "Recomendação e priorização",
+        "complementares": [
+          "Apoio à decisão"
+        ],
+        "justificativa": "A necessidade central é recomendar e justificar a ordem dos leads, apoiando decisão sem substituir critérios de negócio ou a escolha humana."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Motor inteligente de priorização de leads com explicação de aderência e recomendação de ordem",
+          "familias": [
+            "Recomendação e priorização",
+            "Apoio à decisão"
+          ],
+          "problema": "Lentidão e perda de leads bons por análise manual; aderência difícil de comparar sistematicamente.",
+          "capacidadeIA": "Interpreta dados estruturados e necessidades em texto livre, avalia aderência comparando múltiplos critérios e recomenda prioridade com justificativa clara.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Maior redução de gargalo e resultado objetivo; requer configuração inicial de critérios e ajuste do modelo."
+        },
+        {
+          "id": "C2",
+          "solucao": "Assistente de apoio à decisão para leads com síntese das necessidades e aderência",
+          "familias": [
+            "Apoio à decisão",
+            "Resumo e síntese"
+          ],
+          "problema": "Grande esforço para ler e interpretar as necessidades descritas em texto livre de cada lead.",
+          "capacidadeIA": "Interpreta texto livre, sintetiza a demanda do lead e destaca aderência a critérios explícitos.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Facilita leitura, mas decisão e priorização seguem manuais; serve como etapa intermediária ou evolução."
+        },
+        {
+          "id": "C3",
+          "solucao": "Analisador automatizado de classificação de leads com etiquetagem de fit comercial",
+          "familias": [
+            "Classificação / roteamento"
+          ],
+          "problema": "Processo manual de triagem dificulta padronizar e priorizar rapidamente os leads com melhor perfil.",
+          "capacidadeIA": "Avalia fit e atribui etiquetas objetivas de prioridade, com base em interpretação de campos livres e estruturados.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Rótulos automatizados agilizam triagem, mas priorização fina e explicação ainda exigem análise adicional."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Motor inteligente de priorização de leads com explicação de aderência e recomendação de ordem.\n\nPrimeira implementação: Processa planilha, compara cada lead ao critério de cliente ideal, recomenda prioridade e explica principais motivos.\n\nPor que essa solução: Resolve o principal gargalo ao priorizar automaticamente, mantendo clareza e decisão humana.\n\nComo a IA agrega valor: Gera recomendação inteligente e explicável, comparando múltiplos critérios e textos livres.\n\nComo a arquitetura deve funcionar: Regras fixas extraem dados e aplicam cálculos simples antes da IA priorizar.\n\nResultado potencial: Pode reduzir perdas e acelerar o foco nos leads aderentes.\n\nEvolução possível após validação inicial: Ajuste fino do modelo com histórico e feedback da equipe; Sugestão automática de próximos passos por segmento"
+      },
+      "funcionamento": [
+        "Planilha estruturada de leads com campos e texto livre de necessidades.",
+        "Checagem de campos obrigatórios, formatação e integridade dos dados.",
+        "Aplicação de regras objetivas sobre dados estruturados: filtros básicos, cálculos de porte, segmento, pontuação simples. As regras e validações objetivas são executadas por processamento conferido, separado da interpretação pela IA.",
+        "IA interpreta necessidades em texto livre, avalia aderência contextual, recomenda prioridade e explica motivos.",
+        "Exibe ranking dos leads com explicação resumida de cada prioridade.",
+        "Equipe revisa as recomendações, ajusta prioridades e valida explicações antes de agir."
+      ],
+      "preRequisitos": [
+        "Planilha integrada e atualizada com campos estruturados e texto livre",
+        "Critérios de cliente ideal claros e documentados",
+        "Permissão e governança de acesso aos dados",
+        "Histórico básico para avaliar recomendações"
+      ],
+      "validacoes": [
+        "Testar recomendação com amostra real de leads para medir acurácia em relação à decisão humana",
+        "Conferir se explicações produzidas correspondem aos critérios explicitados",
+        "Avaliar consistência dos dados e preencher campos críticos"
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo entre recebimento do lead e definição da prioridade de contato",
+          "comoMedir": "Hora/data de chegada e de priorização do lead Duração média entre chegada do lead e sugestão de prioridade pela IA Antes e depois da implantação Unidade: Minutos/horas.",
+          "gargalo": "Análise manual e demorada dos leads dificulta priorização e pode causar perda de leads aderentes."
+        },
+        "secundarias": [
+          {
+            "nome": "Percentual de leads prioritários resgatados",
+            "comoMedir": "Leads marcados como prioritários pela IA e revisados pela equipe Proporção de leads com alta aderência atuados em tempo adequado Períodos equivalentes pré e pós-automação Unidade: Percentual.",
+            "gargalo": "Análise manual e demorada dos leads dificulta priorização e pode causar perda de leads aderentes."
+          },
+          {
+            "nome": "Taxa de concordância entre recomendação da IA e decisão humana",
+            "comoMedir": "Registros das recomendações e decisões finais Acurácia das recomendações em relação à decisão revisada Amostra de casos avaliados manualmente Unidade: Percentual.",
+            "gargalo": "Necessidade de interpretar textos livres aumenta o esforço e o tempo de análise."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": []
+}

@@ -1,0 +1,1 @@
+{"caso":"Atendimento","chamadas":4,"duracaoMs":43026,"tokens":{"stages":4,"durationMs":42975,"inputTokens":15110,"outputTokens":4671,"totalTokens":19781,"usageStages":4},"status":"O caso não passou na validação final do teste.","codigo":"quality_evaluation_failed","avaliacao":["Capacidade inteligente não descrita."]}

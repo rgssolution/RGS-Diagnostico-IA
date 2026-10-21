@@ -1,0 +1,1 @@
+{"caso":"Financeiro","chamadas":5,"duracaoMs":40211,"tokens":{"stages":5,"durationMs":40193,"inputTokens":15727,"outputTokens":5252,"totalTokens":20979,"usageStages":4},"status":"O caso não passou na validação final do teste.","codigo":"stage_revise_diagnosis_invalid_response","avaliacao":[]}

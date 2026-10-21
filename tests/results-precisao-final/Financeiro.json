@@ -1,0 +1,151 @@
+{
+  "caso": "Financeiro",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 4,
+  "duracaoMs": 42488,
+  "tokens": {
+    "stages": 4,
+    "durationMs": 42445,
+    "inputTokens": 15909,
+    "outputTokens": 5260,
+    "totalTokens": 21169,
+    "usageStages": 4
+  },
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Fechamento mensal financeiro: consolidação manual de planilhas de vendas e de fornecedores/gastos, cálculo de receita, gastos e lucro, double check, dashboard e revisão das variações pelo gestor.",
+        "fatos": [
+          "Fechamento mensal financeiro com planilhas de vendas e gastos consolidadas manualmente.",
+          "Cálculo manual de receita, gastos e lucro.",
+          "Double check e dashboard manual.",
+          "Revisão e explicação das variações pelo gestor.",
+          "Ferramentas atuais: e-mail e Excel/Google Sheets.",
+          "Gerente único participa de todo o fluxo."
+        ],
+        "workflow": [
+          "Recebe planilhas por e-mail",
+          "Consolida manualmente dados de vendas e gastos",
+          "Calcula receita, gastos e lucro",
+          "Faz double check manual",
+          "Monta dashboard",
+          "Revisa resultados e compara meses",
+          "Decide ações"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Tempo elevado e retrabalho frequente na consolidação manual, cálculos e explicação de variações.",
+          "consequencia": "Potencial atraso no fechamento, possibilidade de erros e sobrecarga do gestor.",
+          "evidencia": "Muito trabalho manual; Demora; Retrabalho; Erros"
+        },
+        {
+          "problema": "Erros recorrentes por trabalho manual em múltiplas etapas críticas.",
+          "consequencia": "Necessidade de checagem dupla e correção, aumentando esforço mensal.",
+          "evidencia": "Todo mês, um gestor recebe uma planilha de vendas e uma planilha de fornecedores e gastos. Consolida manualmente os dados, calcula receita, gastos e lucro, faz double check manual e monta um dashboard. Erros e retrabalho são frequentes. O gestor revisa os resultados, compara os meses para explicar variações e decide ações. Queremos reduzir tempo e retrabalho do fechamento mensal e entender os resultados, mantendo revisão humana final."
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Consolidação, cálculo e explicação sintética das variações no fechamento mensal.",
+        "capacidadeNecessaria": "Automação de cálculos, análise de variações e geração de sínteses",
+        "beneficioPotencial": "Redução de tempo e retrabalho, com explicação mais clara das variações e foco do gestor no resultado."
+      },
+      "familias": {
+        "principal": "Análise de dados",
+        "complementares": [
+          "Resumo e síntese"
+        ],
+        "justificativa": "Automação de cálculos e consolidação resolve o gargalo central; síntese gera explicação clara das variações, aliando eficiência e clareza."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Motor inteligente de fechamento financeiro: consolidação automática, cálculo e explicação sintética de varianç",
+          "familias": [
+            "Análise de dados",
+            "Resumo e síntese"
+          ],
+          "problema": "Muito tempo e erro na consolidação manual e explicação das variações financeiras mensais.",
+          "capacidadeIA": "Analisar dados, resumir variações e explicar tendências principais de resultado.",
+          "impactoPotencial": "Alto",
+          "esforco": "Baixo",
+          "observacao": "Cobre o fluxo central; reduz esforço do gestor sem mudanças estruturais ou dependências avançadas."
+        },
+        {
+          "id": "C2",
+          "solucao": "Analisador IA de variações: explicação automática de desvios relevantes e sugestão de foco para revisão",
+          "familias": [
+            "Detecção de padrões / anomalias",
+            "Resumo e síntese"
+          ],
+          "problema": "Dificuldade em detectar rapidamente variações e anomalias críticas entre períodos; revisão exaustiva e lenta.",
+          "capacidadeIA": "Identificar anomalias e gerar resumos automáticos focando na revisão de desvios críticos.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Acelera o foco da revisão, mas mantém etapas manuais e não automatiza consolidação completa."
+        },
+        {
+          "id": "C3",
+          "solucao": "Copiloto financeiro IA: consolidação, análise e respostas em linguagem natural para revisão mensal",
+          "familias": [
+            "Análise de dados",
+            "Resumo e síntese",
+            "Apoio à decisão"
+          ],
+          "problema": "Fechamento manual exige consolidação, análise e explicações detalhadas para decisões rápidas.",
+          "capacidadeIA": "Consolida e analisa dados, resume em linguagem natural e responde perguntas do gestor online.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Cobre do cálculo à explicação em linguagem natural, com maior esforço de implantação inicial."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Motor inteligente de fechamento financeiro: consolidação automática, cálculo e explicação sintética de varianç.\n\nPrimeira implementação: Consolidar planilhas mensais, calcular receita, gastos e lucro, gerar resumo de variações e enviar para revisão.\n\nPor que essa solução: Resolve o gargalo central de tempo e retrabalho; cobre mais etapas sem elevar risco ou esforço.\n\nComo a IA agrega valor: Gera análise automatizada e explicação sintética de variações financeiras mensais.\n\nComo a arquitetura deve funcionar: Cálculos e consolidação exatos seguem regras manuais validadas antes da síntese por IA.\n\nResultado potencial: Pode reduzir ciclo, erros e retrabalho, facilitando foco do gestor na tomada de decisão.\n\nEvolução possível após validação inicial: Explicação detalhada das principais variações por linguagem natural sob demanda.; Identificação automatizada de potenciais anomalias."
+      },
+      "funcionamento": [
+        "Recebimento das planilhas mensais padronizadas de vendas e gastos.",
+        "Checagem automática de formato, datas, colunas e dados essenciais.",
+        "Consolidação, somas e cálculos (receita, gastos, lucro) feitos por regras exatas. As regras e validações objetivas são executadas por processamento conferido, separado da interpretação pela IA.",
+        "IA gera resumo das principais variações, tendências e explicação sintética por mês.",
+        "Dashboard do fechamento e resumo entregue ao gestor para revisão.",
+        "Gestor avalia, revisa e aprova ou solicita ajustes antes do fechamento."
+      ],
+      "preRequisitos": [
+        "Planilhas em padrão definido de vendas e gastos",
+        "Permissão do gestor para revisão dos resultados automáticos",
+        "Regras claras para cálculos de receita, despesas e lucro",
+        "Governança para revisão e validação dos resultados antes do fechamento"
+      ],
+      "validacoes": [
+        "Avaliar se as planilhas entregues seguem o padrão exigido para automação",
+        "Testar a explicação das variações e medida de entendimento pelo gestor",
+        "Comparar quantitativamente tempo, erros e retrabalho antes e depois"
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Tempo total para fechamento mensal revisado",
+          "comoMedir": "Data/hora de recebimento das planilhas e de entrega do fechamento aprovado Duração entre recebimento dos dados e aprovação final pelo gestor Comparar a média dos meses anteriores e posteriores à implantação Unidade: Horas.",
+          "gargalo": "Tempo elevado e retrabalho frequente na consolidação manual, cálculos e explicação de variações."
+        },
+        "secundarias": [
+          {
+            "nome": "Incidência de correções/retrabalho no fechamento",
+            "comoMedir": "Quantidade de revisões ou ajustes feitos após primeira entrega automática Número de ocorrências por fechamento mensal Entre etapas manuais e solução automatizada Unidade: Ocorrências.",
+            "gargalo": "Tempo elevado e retrabalho frequente na consolidação manual, cálculos e explicação de variações."
+          },
+          {
+            "nome": "Número de erros detectados no fechamento consolidado",
+            "comoMedir": "Quantidade de erros identificados no fechamento ao revisar resultados automáticos Total de erros corrigidos por ciclo mensal Antes e depois do uso automatizado Unidade: Erros por mês.",
+            "gargalo": "Erros recorrentes por trabalho manual em múltiplas etapas críticas."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": []
+}

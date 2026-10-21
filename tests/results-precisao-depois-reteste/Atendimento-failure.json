@@ -1,0 +1,1 @@
+{"caso":"Atendimento","chamadas":5,"duracaoMs":53692,"tokens":{"stages":5,"durationMs":53584,"inputTokens":22254,"outputTokens":6244,"totalTokens":28498,"usageStages":5},"status":"O caso não passou na validação final do teste.","codigo":"quality_evaluation_failed","avaliacao":["Família esperada ausente."]}

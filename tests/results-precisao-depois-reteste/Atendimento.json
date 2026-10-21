@@ -1,0 +1,152 @@
+{
+  "caso": "Atendimento",
+  "modelos": {
+    "analise": "gpt-4.1",
+    "auditoria": "gpt-4.1"
+  },
+  "chamadas": 5,
+  "duracaoMs": 53690,
+  "tokens": {
+    "stages": 5,
+    "durationMs": 53584,
+    "inputTokens": 22254,
+    "outputTokens": 6244,
+    "totalTokens": 28498,
+    "usageStages": 5
+  },
+  "saida": {
+    "needs_clarification": false,
+    "diagnostico": {
+      "operacao": {
+        "resumo": "Atendimento a dúvidas de clientes via WhatsApp, com consulta manual ao catálogo. Fora do horário não há resposta. Dúvidas recorrentes e solicitações simples. Casos que exigem negociação são encaminhados à equipe. A automação pode ampliar a disponibilidade e agilizar o retorno, sujeito a validação do piloto.",
+        "fatos": [
+          "Clientes enviam dúvidas recorrentes sobre produtos e entregas via WhatsApp.",
+          "Equipe consulta manualmente o catálogo e responde.",
+          "Fora do horário, não há atendimento e clientes podem desistir sem resposta.",
+          "Consultas e respostas seguem padrão, exceções e negociações vão para humano.",
+          "Catálogo é atualizado em Excel ou Google Sheets."
+        ],
+        "workflow": [
+          "Cliente envia dúvida repetitiva via WhatsApp",
+          "Equipe consulta catálogo manualmente",
+          "Equipe responde pelo WhatsApp",
+          "Se há negociação ou exceção, encaminha para pessoa",
+          "Fora do horário não há resposta"
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Dúvidas de clientes fora do horário e durante sobrecarregam a equipe, pois respostas são manuais e dependem do catálogo.",
+          "consequencia": "Clientes podem desistir sem resposta fora do horário e há sobrecarga no atendimento manual.",
+          "evidencia": "Clientes enviam dúvidas recorrentes sobre produtos e entrega pelo WhatsApp. Queremos atendimento 24x7. A equipe consulta o catálogo atualizado e responde manualmente. Fora do horário ninguém responde, e clientes desistem antes de comprar. Queremos disponibilidade fora do horário com respostas baseadas no catálogo, sem prometer condições comerciais nem executar compras. Casos sem resposta ou com negociação devem ir a uma pessoa."
+        },
+        {
+          "problema": "Tempo elevado no atendimento por tarefa repetitiva de consulta ao catálogo para perguntas padrão.",
+          "consequencia": "Atendimento lento e risco de perder vendas.",
+          "evidencia": "Muito trabalho manual; Demora"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Respostas a dúvidas recorrentes e simples, baseadas no catálogo.",
+        "capacidadeNecessaria": "Classificação automática da intenção e consulta estruturada ao catálogo para gerar respostas precisas e encaminhar exceções.",
+        "beneficioPotencial": "Pode ampliar o atendimento a dúvidas em outros horários, reduzindo tempo e esforço manual, além de potencialmente diminuir perdas por falta de resposta, sujeito a validação do piloto."
+      },
+      "familias": {
+        "principal": "Busca inteligente em informações da empresa",
+        "complementares": [
+          "Classificação / roteamento"
+        ],
+        "justificativa": "A busca estrutural no catálogo garante precisão nas respostas frequentes e o roteamento separa casos fora do padrão, aderindo ao modelo desejado."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Assistente IA para responder dúvidas sobre produtos e entregas via WhatsApp consultando catálogo estruturado",
+          "familias": [
+            "IA conversacional",
+            "Busca inteligente em informações da empresa",
+            "Geração de texto"
+          ],
+          "problema": "Respostas demoradas e indisponibilidade fora do horário, gerando desistência de clientes e sobrecarga manual.",
+          "capacidadeIA": "Interpreta perguntas em linguagem natural, consulta catálogo estruturado e gera respostas precisas, encaminhando exceções.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Amplia possibilidades conversacionais, mas pode demandar ajuste fino de contexto; esforço moderado pela flexibilidade e refinamento contínuo."
+        },
+        {
+          "id": "C2",
+          "solucao": "Motor de respostas inteligente para dúvidas recorrentes sobre produtos e entregas em WhatsApp, sem consulta em",
+          "familias": [
+            "Busca inteligente em informações da empresa",
+            "Classificação / roteamento"
+          ],
+          "problema": "Demanda manual e falta de resposta fora do expediente para dúvidas simples, ocasionando perda de vendas potenciais.",
+          "capacidadeIA": "Detecta a intenção do cliente, realiza busca contextual no catálogo, retorna resposta estruturada e aciona humano via WhatsApp se necessário.",
+          "impactoPotencial": "Alto",
+          "esforco": "Baixo",
+          "observacao": "Foca apenas no essencial: automatiza respostas padrão com separação clara, fácil medição e risco muito baixo."
+        },
+        {
+          "id": "C3",
+          "solucao": "Copiloto IA para atender dúvidas sobre produtos e entregas via WhatsApp, usando consulta híbrida de texto e R",
+          "familias": [
+            "IA conversacional",
+            "Classificação / roteamento"
+          ],
+          "problema": "Respostas fora do horário e trabalho repetitivo na triagem e resposta a dúvidas simples sobre produtos/entregas.",
+          "capacidadeIA": "Atende, interpreta e responde perguntas simples com apoio do catálogo, aciona humano em dúvidas.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "A solução pode transferir volume excessivo para humanos se o catálogo não for claro; validação rápida, mas menor ganho inicial."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C2",
+        "texto": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Motor de respostas inteligente para dúvidas recorrentes sobre produtos e entregas em WhatsApp, sem consulta em.\n\nPrimeira implementação: Extrair pergunta do cliente, consultar automaticamente informações do catálogo e retornar resposta estruturada. Casos não encontrados ou que fogem à regra geram encaminhamento para\n\nPor que essa solução: Principal dor é falta de resposta automática para dúvidas padrão; abordagem simples garante rápida medição de impacto e separa exceções.\n\nComo a IA agrega valor: Classifica intenção em linguagem natural, identifica padrão e retorna resposta direta ou encaminha com mínimo erro.\n\nComo a arquitetura deve funcionar: Consulta ao catálogo traduzida em respostas estruturadas totalmente regrada; apenas dúvidas padrão são respondidas pela IA.\n\nResultado potencial: Pode aumentar o volume de dúvidas respondidas automaticamente, ampliando a disponibilidade e liberando a equipe, sujeito à efetividade e validação do piloto.\n\nEvolução possível após validação inicial: Classificação mais detalhada para separar casos complexos; Inclusão de respostas sugeridas a perguntas recém registradas"
+      },
+      "funcionamento": [
+        "Pergunta do cliente por WhatsApp.",
+        "Verifica se a mensagem está em formato de texto adequado.",
+        "Consulta regras de correspondência no catálogo: identifica produto, dados de entrega e formato padrão.",
+        "Classifica intenção e recupera, em linguagem natural, resposta estruturada do catálogo; encaminha ao humano se fora do padrão.",
+        "Resposta automática pelo WhatsApp ou redirecionamento para atendimento humano.",
+        "Permite ao usuário perguntar em texto livre; IA interpreta e retorna resposta ou aciona fallback.",
+        "Equipe revisa respostas encaminhadas por exceção ou avalia dúvidas sem correspondência automática."
+      ],
+      "preRequisitos": [
+        "Catálogo atualizado e estruturado (Excel, Google Sheets ou equivalente)",
+        "Integração autorizada entre WhatsApp e solução de IA",
+        "Permissão de acesso ao canal digital para automação",
+        "Regras claras de encaminhamento para humanos",
+        "Política de uso e revisão de respostas automáticas"
+      ],
+      "validacoes": [
+        "Verificação de clareza e atualização do catálogo para respostas automáticas",
+        "Testar se a classificação de perguntas cobre a maioria dos casos padrão",
+        "Ajustar regras para separar dúvidas consideradas exceções"
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Proporção de dúvidas respondidas automaticamente",
+          "comoMedir": "Logs de respostas automáticas e manuais pelo WhatsApp Quantidade de respostas dadas pela IA dividida pelo total de dúvidas recebidas Comparar período com IA versus anterior ao piloto Unidade: Proporção (%).",
+          "gargalo": "Dúvidas de clientes fora do horário e durante sobrecarregam a equipe, pois respostas são manuais e dependem do catálogo."
+        },
+        "secundarias": [
+          {
+            "nome": "Tempo médio de resposta automática",
+            "comoMedir": "Tempo entre recebimento da dúvida e envio da resposta via IA Média dos tempos de resposta automática para dúvidas padrão Períodos antes e depois da automação Unidade: Minutos.",
+            "gargalo": "Dúvidas de clientes fora do horário e durante sobrecarregam a equipe, pois respostas são manuais e dependem do catálogo."
+          },
+          {
+            "nome": "Proporção de encaminhamentos para humanos",
+            "comoMedir": "Logs de dúvidas encaminhadas pelo motor de respostas Quantidade de perguntas encaminhadas para humanos dividida pelo total de dúvidas recebidas Proporção antes e depois da IA para monitorar variação Unidade: Proporção (%).",
+            "gargalo": "Tempo elevado no atendimento por tarefa repetitiva de consulta ao catálogo para perguntas padrão."
+          }
+        ]
+      }
+    }
+  },
+  "avaliacao": [
+    "Família esperada ausente."
+  ]
+}

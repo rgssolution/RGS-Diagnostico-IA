@@ -19,7 +19,11 @@ export function deterministicChecks(d:Diagnosis,c:Context):string[] {
  }
  if(selected){
   if(!d.solucoes.find(s=>s.id===selected.id)?.familias.includes(d.familias.principal))errors.push("Família principal ausente da solução exibida.");
-  if(selected.engenharia.consultaLinguagemNatural.adequada && selected.escopoInicial.consultaEssencial && !d.funcionamento.some(s=>/linguagem natural|perguntas? sobre|consult(?:a|ar).*(?:dados|documentos|resultados)/i.test(s)))errors.push("Consulta analítica adequada não incorporada ao workflow.");
+  if(selected.engenharia.consultaLinguagemNatural.adequada && selected.escopoInicial.consultaEssencial && !d.funcionamento.some(s=>/linguagem (?:natural|livre)|perguntas? (?:sobre|livres)|consult(?:a|ar).*(?:dados|documentos|resultados)/i.test(s)))errors.push("Consulta analítica adequada não incorporada ao workflow.");
+  if(selected.engenharia.consultaLinguagemNatural.adequada && !selected.escopoInicial.consultaEssencial){
+   const evolution=d.recomendacao.texto.split("Evolução possível após validação inicial:")[1]||"";
+   if(!/linguagem natural|(?:consultas?|perguntas?) (?:como|sobre)/i.test(evolution))errors.push("Consulta útil não essencial ausente da evolução.");
+  }
   if((!d.familias.principal || !selected.familias.map(displayFamily).includes(d.familias.principal)))errors.push("Família principal incompatível com candidato.");
   if(d.familias.complementares.length>2 || d.familias.complementares.some(f=>!selected.familias.map(displayFamily).includes(f) || f===d.familias.principal) || new Set(d.familias.complementares).size!==d.familias.complementares.length)errors.push("Famílias complementares incoerentes.");
  }

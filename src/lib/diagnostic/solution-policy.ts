@@ -26,11 +26,22 @@ export function unprovidedNumbers(d:Diagnosis,fontes:Sources){
  const content=JSON.stringify({...d,metricas:{principal:metric(d.metricas.principal),secundarias:d.metricas.secundarias.map(metric)}}).replace(/\b[FC]\d+\b/g,"");
  return [...new Set(content.match(/\d+(?:[.,]\d+)?/g)||[])].filter(n=>!known.has(n));
 }
+const absolutePromise=/\b(?:cobr(?:e|ir)\s+(?:toda\s+(?:a\s+)?dor|todos?\s+(?:os?\s+)?gargalos)|resolv(?:e|er)\s+(?:completamente|integralmente)|elimin(?:a|ar)\s+(?:(?:o|todo\s+o)\s+)?(?:problema|retrabalho)|garant(?:e|ir)\s+(?:a\s+)?reducao|beneficios?\s+garantidos?)\b/g;
+function affirmativeMatch(content:string,pattern:RegExp){
+ for(const match of content.matchAll(pattern)){
+  const prefix=content.slice(0,match.index);
+  if(!/\b(?:nao|sem)\s+(?:(?:pode|deve|ha|e possivel|prometer)\s+)?$/.test(prefix))return true;
+ }
+ return false;
+}
 export function precisionErrors(d:Diagnosis,fontes:Sources):string[]{
  const errors:string[]=[];
  const content=normalized(JSON.stringify(publicSolutionContent(d))).replace(/\b(?:nao|sem)\s+(?:(?:podemos|pode)\s+)?(?:garant\w*|assegur\w*)\s+(?:(?:a|total|plena)\s+)?(?:confiabilidade|seguranca|agilidade|resultados)\b/g,"sem garantia");
  if(/\b(?:ia|llm|modelo de linguagem)\s+(?:(?:e responsavel por|vai|deve|pode|ira)\s+)?(?:calcul\w*|som(?:a|ar|am|ando)|executa os calculos|realiza os calculos|cruza os dados e calcula)\b/.test(content))errors.push("Cálculo crítico atribuído ao modelo de linguagem.");
  if(/\b(?:reduz\w*\s+(?:drasticamente|substancialmente|significativamente)|elimina(?:r)? (?:a maior parte|todo|todos)|cobre integralmente|beneficios imediatos|risco (?:zero|baixissimo)|(?:garant\w*|assegur\w*)\s+(?:(?:a|total|plena)\s+)?(?:confiabilidade|seguranca|agilidade|resultados))\b/.test(content))errors.push("Promessa forte sem sustentação verificável.");
+ if(affirmativeMatch(content,absolutePromise))errors.push("Promessa forte sem sustentação verificável.");
+ const mathErrorBenefit=/\b(?:ia|llm|modelo de linguagem)\s+(?:(?:pode|deve|ajuda a|tem potencial para|contribui para)\s+)?(?:reduz(?:ir)?|diminui(?:r)?|evita(?:r)?|corrig(?:e|ir)|previne)\s+(?:os?\s+)?erros?\s+(?:de|nos?|dos?)\s+calculos?\b/g;
+ if(affirmativeMatch(content,mathErrorBenefit))errors.push("Benefício matemático atribuído à IA que apenas interpreta resultados.");
  const known=normalized(Object.values(fontes).join(" "));
  const quantity=/\b(?:\d+|um|uma|dois|duas|tres|quatro|cinco|seis|sete|oito|nove|dez|cem|mil)\s+(?:mes(?:es)?|anos?|dias?|registros?|atendimentos?|amostras?|exemplos?|transacoes?)\b/g;
  for(const p of d.preRequisitos){const normalizedP=normalized(p);for(const q of normalizedP.match(quantity)||[])if(!known.includes(q))errors.push("Pré-requisito quantitativo sem base nas fontes.");}

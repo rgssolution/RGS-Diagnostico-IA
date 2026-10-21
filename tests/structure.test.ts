@@ -14,7 +14,7 @@ describe("contrato global de oportunidades de IA",()=>{
   expect(diagnosisSchema.safeParse({...fixture,familias:{...fixture.familias,principal:null}}).success).toBe(false);
   expect(candidateSchema.safeParse({...candidates.candidatos[0],capacidadeIA:""}).success).toBe(false);
  });
- it("cobre vinte famílias distintas e trinta e um critérios",()=>{expect(new Set(families).size).toBe(20);expect(new Set(auditChecks).size).toBe(31);});
+ it("cobre vinte famílias distintas e trinta e três critérios",()=>{expect(new Set(families).size).toBe(20);expect(new Set(auditChecks).size).toBe(33);});
  for(const tool of ["Make","n8n","Zapier","script","macro","Python","API","webhook","banco de dados","cron","ferramenta de orquestração"])
  it("bloqueia infraestrutura como recomendação: "+tool,()=>{expect(solutionPolicyErrors("Implantar "+tool)).not.toHaveLength(0);});
  it("preserva citações técnicas reais, mas bloqueia recomendá-las",()=>{

@@ -1,0 +1,1 @@
+{"caso":"Atendimento","chamadas":5,"duracaoMs":36756,"tokens":{"stages":5,"durationMs":36695,"inputTokens":20751,"outputTokens":5133,"totalTokens":25884,"usageStages":5},"status":"O caso não passou na validação final do teste.","codigo":"quality_gate_rejected","avaliacao":["Consulta analítica adequada não incorporada ao workflow."]}

@@ -1,0 +1,1 @@
+{"caso":"Vendas","chamadas":5,"duracaoMs":36772,"tokens":{"stages":5,"durationMs":36732,"inputTokens":14987,"outputTokens":4699,"totalTokens":19686,"usageStages":4},"status":"O caso não passou na validação final do teste.","codigo":"stage_revise_diagnosis_invalid_response","avaliacao":[]}

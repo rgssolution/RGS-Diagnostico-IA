@@ -1,0 +1,587 @@
+[
+  {
+    "stage": "analyze_process",
+    "result": {
+      "fatos": {
+        "processo": "Clientes enviam dúvidas sobre produtos e entrega via WhatsApp. Equipe consulta catálogo e responde manualmente. Fora do horário, não há resposta e clientes desistem. Objetivo: garantir respostas automáticas fora do horário, sem prometer condições comerciais nem finalizar compras. Encaminhar negociações para pessoa.",
+        "objetivo": "Converter dúvidas em pedidos e garantir atendimento fora do horário, automatizando respostas baseadas no catálogo.",
+        "workflowAtual": [
+          "Cliente envia dúvida via WhatsApp",
+          "Equipe consulta catálogo",
+          "Equipe responde manualmente",
+          "Fora do horário não há resposta",
+          "Encaminhamento à pessoa quando há negociação"
+        ],
+        "participantes": [
+          "Equipe interna pequena"
+        ],
+        "ferramentas": [
+          "WhatsApp",
+          "E-mail",
+          "Excel / Google Sheets"
+        ],
+        "dificuldades": [
+          "Muito trabalho manual",
+          "Demora no atendimento",
+          "Perda de clientes fora do horário"
+        ],
+        "tarefasRepetitivas": [
+          "Respostas a dúvidas recorrentes",
+          "Consulta ao catálogo"
+        ],
+        "decisoes": [
+          "Encaminhamento de negociações para pessoa"
+        ],
+        "restricoes": [
+          "Não prometer condições comerciais",
+          "Não executar compras automáticas"
+        ],
+        "sinaisDePerda": [
+          "Clientes desistem antes de comprar por falta de resposta"
+        ],
+        "informacoesAusentes": [],
+        "exigeCalculoExato": false
+      },
+      "aderencia": {
+        "consultaLinguagemNatural": {
+          "motivo": "Dúvidas sobre produtos são apresentadas livremente pelo cliente em linguagem natural e exigem consulta e interpretação do catálogo. Resposta precisa corresponder a perguntas de linguagem variada e contexto amplo.",
+          "evidencias": [
+            "F3",
+            "F7",
+            "F8"
+          ],
+          "adequada": true,
+          "usoProposto": "IA interpreta perguntas feitas em linguagem natural e gera respostas automáticas baseadas no catálogo."
+        },
+        "aderencia": "Alta",
+        "conclusoes": [
+          "Alto potencial para IA conversacional especializada em dúvidas recorrentes baseada em catálogo.",
+          "Consulta e resposta em linguagem natural essencial para automatizar o atendimento fora do horário.",
+          "Encaminhamento automático dos casos de negociação para pessoa reduz dependência e mantém regras de restrição comercial."
+        ],
+        "medirParaDimensionar": [
+          "Volume diário e horário das dúvidas",
+          "Taxa de dúvidas resolvidas automaticamente vs. encaminhadas",
+          "Motivos de encaminhamento manual",
+          "Impacto no tempo médio de resposta"
+        ],
+        "needs_clarification": false,
+        "perguntas": [],
+        "dimensoes": [
+          {
+            "dimensao": "repetitividade",
+            "classificacao": "forte",
+            "evidencias": [
+              "F7",
+              "F8"
+            ],
+            "justificativa": "Respostas repetidas às mesmas dúvidas e consulta frequente ao catálogo."
+          },
+          {
+            "dimensao": "disponibilidade",
+            "classificacao": "forte",
+            "evidencias": [
+              "F3",
+              "F10"
+            ],
+            "justificativa": "Necessidade de atendimento fora do horário como motivação central do projeto."
+          },
+          {
+            "dimensao": "linguagemNatural",
+            "classificacao": "forte",
+            "evidencias": [
+              "F3",
+              "F7",
+              "F8"
+            ],
+            "justificativa": "Perguntas de clientes expressas em linguagem livre precisam de interpretação."
+          },
+          {
+            "dimensao": "dependenciaHumana",
+            "classificacao": "moderada",
+            "evidencias": [
+              "F4",
+              "F3",
+              "F9"
+            ],
+            "justificativa": "Equipe pequena e encaminhamento de negociações ainda necessita pessoas."
+          },
+          {
+            "dimensao": "multiplasEtapas",
+            "classificacao": "moderada",
+            "evidencias": [
+              "F3",
+              "F9"
+            ],
+            "justificativa": "Atendimento inclui resposta/encaminhamento dependendo do tipo de dúvida."
+          },
+          {
+            "dimensao": "interpretacao",
+            "classificacao": "moderada",
+            "evidencias": [
+              "F3",
+              "F8"
+            ],
+            "justificativa": "Exige interpretar pedidos e dúvidas aplicadas ao catálogo."
+          },
+          {
+            "dimensao": "velocidade",
+            "classificacao": "moderada",
+            "evidencias": [
+              "F6"
+            ],
+            "justificativa": "Demora é problema; atendimento automático acelera respostas."
+          }
+        ],
+        "familiasAvaliadas": [
+          {
+            "familia": "IA conversacional",
+            "aderencia": "Alta",
+            "evidencias": [
+              "F3",
+              "F7",
+              "F8",
+              "F4"
+            ],
+            "justificativa": "Conversão de dúvidas em respostas automáticas via WhatsApp com base em catálogo."
+          },
+          {
+            "familia": "Classificação / roteamento",
+            "aderencia": "Média",
+            "evidencias": [
+              "F9"
+            ],
+            "justificativa": "Reconhecimento automático de negociações para encaminhar a pessoa responsável."
+          },
+          {
+            "familia": "Busca inteligente / RAG",
+            "aderencia": "Média",
+            "evidencias": [
+              "F3",
+              "F8"
+            ],
+            "justificativa": "Consulta de catálogo e geração de resposta exige busca de informações precisas nos dados estruturados ou semiestruturados."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "stage": "solutions_selection",
+    "result": {
+      "candidatos": [
+        {
+          "id": "C1",
+          "solucao": "Assistente de atendimento automático por WhatsApp baseado em catálogo",
+          "tipo": "IA",
+          "familias": [
+            "IA conversacional",
+            "Busca inteligente / RAG"
+          ],
+          "escopoInicial": {
+            "descricao": "IA interpreta dúvidas sobre produtos e entrega via WhatsApp e responde automaticamente com base no catálogo.",
+            "validacaoInicial": "Proporção de dúvidas resolvidas automaticamente fora do horário sobre produtos ou entrega.",
+            "evolucoes": [
+              "Encaminhamento automático de dúvidas de negociação para pessoa",
+              "Consulta ao status de pedidos se liberado"
+            ],
+            "consultaEssencial": true
+          },
+          "problema": "Respostas manuais e perda de clientes fora do horário por falta de atendimento automático.",
+          "capacidadeIA": "Interpretar perguntas livres, consultar catálogo e gerar respostas precisas e consistentes.",
+          "evidencias": [
+            "F3",
+            "F7",
+            "F8",
+            "F10"
+          ],
+          "coberturaDaDor": "Atende dúvidas recorrentes e críticas ao horário, reduzindo perda de clientes.",
+          "impactoPotencial": "Alto",
+          "justificativaImpacto": "Resolve indisponibilidade principal e abrange as dúvidas críticas, com resultados mensuráveis.",
+          "esforco": "Médio",
+          "dependencias": [
+            "Acesso ao catálogo atualizado",
+            "Conexão WhatsApp autorizada"
+          ],
+          "risco": "Baixo se catálogo for claro e atualizado.",
+          "velocidadeDeTeste": "Testável em poucos dias após integração básica.",
+          "dadosDisponiveis": "Catálogo em planilha e histórico de dúvidas via WhatsApp.",
+          "facilidadeDeMedir": "Fácil: dúvidas respondidas, horários e motivos de encaminhamento.",
+          "integracao": "WhatsApp e planilha Google/Excel.",
+          "maturidade": "Alta: modelos prontos para IA conversacional e busca baseados em linguagem natural.",
+          "engenharia": {
+            "calculosCriticos": "Ausentes no escopo",
+            "papelDeterministico": "Consulta exata de itens no catálogo e encaminhamento são regras fixas.",
+            "papelIA": "Análise da dúvida, extração de intenção/produto, resposta livre baseada em catálogo.",
+            "validacao": "Revisão amostral automática vs. resposta manual; acompanhamento dos casos encaminhados.",
+            "consultaLinguagemNatural": {
+              "motivo": "Fundamental para captar perguntas dos clientes e gerar respostas aderentes ao contexto.",
+              "evidencias": [
+                "F3",
+                "F7",
+                "F8"
+              ],
+              "adequada": true,
+              "usoProposto": "IA responde perguntas sobre produtos ou entrega, só encaminhando negociações ou dúvidas não catalogáveis."
+            }
+          }
+        },
+        {
+          "id": "C2",
+          "solucao": "Copiloto inteligente para equipe agilizar resposta via sugestões automáticas",
+          "tipo": "IA",
+          "familias": [
+            "Busca inteligente / RAG",
+            "Classificação / roteamento"
+          ],
+          "escopoInicial": {
+            "descricao": "IA sugere respostas rápidas baseadas no catálogo à equipe, que edita e envia para clientes.",
+            "validacaoInicial": "Tempo médio de resposta manual com sugestão de IA e taxa de aceitação das sugestões.",
+            "evolucoes": [
+              "Reconhecimento automático de pedidos de negociação para encaminhamento",
+              "Priorização de atendimento por urgência"
+            ],
+            "consultaEssencial": false
+          },
+          "problema": "Equipe demora para responder por precisar ler e consultar catálogo manualmente.",
+          "capacidadeIA": "Buscar rapidamente informações e gerar respostas sugeridas, classificando dúvidas frequentes.",
+          "evidencias": [
+            "F6",
+            "F7",
+            "F8"
+          ],
+          "coberturaDaDor": "Reduz tempo manual, mas não cobre fora do horário.",
+          "impactoPotencial": "Médio",
+          "justificativaImpacto": "Agiliza dia a dia da equipe, mas limita-se ao horário da equipe e não resolve perda fora do horário.",
+          "esforco": "Baixo",
+          "dependencias": [
+            "Catálogo centralizado",
+            "Acesso mensagens"
+          ],
+          "risco": "Muito baixo: ação humana antes do envio previne ruídos da IA.",
+          "velocidadeDeTeste": "Testável em poucos dias com piloto de sugestões.",
+          "dadosDisponiveis": "Catálogo planilha, histórico de chats.",
+          "facilidadeDeMedir": "Fácil: tempo de resposta e uso das sugestões.",
+          "integracao": "Sugestões sobre WhatsApp Web/Extensão.",
+          "maturidade": "Alta: IA de busca/roteamento madura para sugestões.",
+          "engenharia": {
+            "calculosCriticos": "Ausentes no escopo",
+            "papelDeterministico": "Equipe escolhe e valida resposta sugerida antes do envio.",
+            "papelIA": "Busca informação relevante e propõe resposta completa.",
+            "validacao": "Comparação de tempo/resposta pré e pós-IA.",
+            "consultaLinguagemNatural": {
+              "motivo": "Pergunta livre do cliente traduzida em resposta baseada no catálogo.",
+              "evidencias": [
+                "F3",
+                "F7",
+                "F8"
+              ],
+              "adequada": true,
+              "usoProposto": "IA compõe respostas baseadas em catálogo, equipe confere antes do envio."
+            }
+          }
+        },
+        {
+          "id": "C3",
+          "solucao": "Motor inteligente para triagem e encaminhamento automático das dúvidas",
+          "tipo": "IA",
+          "familias": [
+            "Classificação / roteamento"
+          ],
+          "escopoInicial": {
+            "descricao": "IA identifica dúvidas operacionais vs. negociações e direciona para resposta automática ou pessoa.",
+            "validacaoInicial": "Taxa de acerto do roteamento automático e tempo de resposta para cada tipo.",
+            "evolucoes": [
+              "Resposta automática a dúvidas de produto simples",
+              "Priorização para equipe por contexto"
+            ],
+            "consultaEssencial": false
+          },
+          "problema": "Equipe perde tempo roteando dúvidas, e negociações demoram a ser atendidas.",
+          "capacidadeIA": "Classificar toda mensagem recebida segundo categoria e prioridade de encaminhamento.",
+          "evidencias": [
+            "F9",
+            "F8"
+          ],
+          "coberturaDaDor": "Cobre bem o caminho de negociação, parcialmente dúvidas de produto.",
+          "impactoPotencial": "Médio",
+          "justificativaImpacto": "Melhora triagem e direcionamento, mas não automatiza respostas nem cobre períodos fora do horário.",
+          "esforco": "Baixo",
+          "dependencias": [
+            "Definição de regras de encaminhamento",
+            "Acesso aos chats"
+          ],
+          "risco": "Muito baixo: rota só encaminha conforme regras.",
+          "velocidadeDeTeste": "Muito rápido, só depende de regras e modelo de classificação inicial.",
+          "dadosDisponiveis": "Histórico de dúvidas/encaminhamentos via WhatsApp.",
+          "facilidadeDeMedir": "Simples: % correto de roteamento e tempo de resolução.",
+          "integracao": "WhatsApp integrado ao sistema de triagem.",
+          "maturidade": "Alta: classificação de chat automatizada é madura.",
+          "engenharia": {
+            "calculosCriticos": "Ausentes no escopo",
+            "papelDeterministico": "Encaminhamentos e regras do fluxo.",
+            "papelIA": "Classificação da mensagem quanto ao seu tipo/intenção.",
+            "validacao": "Revisão da taxa de acerto dos encaminhamentos.",
+            "consultaLinguagemNatural": {
+              "motivo": "Entendimento da intenção livre do cliente em cada mensagem.",
+              "evidencias": [
+                "F9",
+                "F3"
+              ],
+              "adequada": true,
+              "usoProposto": "IA rotula mensagens, permitindo triagem rápida e priorização automatizada."
+            }
+          }
+        }
+      ],
+      "selecao": {
+        "candidatoId": "C1",
+        "alternativas": [
+          "C2",
+          "C3"
+        ],
+        "justificativaComparativa": "C1 cobre a dor central — respostas automáticas ao cliente fora do horário com base no catálogo, validando resultados rapidamente, dado acesso claro ao catálogo e integração ao WhatsApp. C2 e C3 melhoram eficiência/triagem, mas não garantem disponibilidade contínua para clientes, mantendo gargalo fora do horário. C1 é medida suficiente, escalável e de risco baixo, enquanto evoluções posteriores podem ser avaliadas conforme necessidade.",
+        "needs_clarification": false,
+        "perguntas": []
+      }
+    }
+  },
+  {
+    "stage": "final_diagnosis",
+    "result": {
+      "operacao": {
+        "fatos": [
+          "Clientes enviam dúvidas sobre produtos e entrega via WhatsApp.",
+          "Equipe consulta catálogo manualmente e responde.",
+          "Fora do horário não há resposta aos clientes.",
+          "Dúvidas recorrentes sobre catálogo consomem tempo.",
+          "Encaminhamento para pessoa ocorre em negociações.",
+          "Equipe é pequena e uso de WhatsApp, e-mail, planilhas para apoio."
+        ]
+      },
+      "gargalos": [
+        {
+          "problema": "Falta de resposta automática fora do horário comercial.",
+          "consequencia": "Clientes desistem antes de comprar, perdendo oportunidades de venda.",
+          "evidenciaId": "F3"
+        },
+        {
+          "problema": "Trabalho manual repetitivo para responder dúvidas frequentes.",
+          "consequencia": "Equipe sobrecarregada e resposta mais lenta durante o horário útil.",
+          "evidenciaId": "F6"
+        }
+      ],
+      "oportunidade": {
+        "parteProcesso": "Respostas a dúvidas recorrentes sobre produtos e entrega, especialmente fora do horário comercial.",
+        "capacidadeNecessaria": "Interpretação automática das perguntas dos clientes em linguagem natural e resposta baseada em catálogo estruturado.",
+        "beneficioPotencial": "Pode reduzir a perda de clientes por falta de resposta fora do horário e liberar tempo da equipe para questões complexas."
+      },
+      "familias": {
+        "principal": "IA conversacional",
+        "complementares": [
+          "Busca inteligente / RAG"
+        ],
+        "justificativa": "Responde dúvidas expressas livremente por clientes, utilizando linguagem natural para consultar o catálogo e fornecer respostas contextuais rápidas."
+      },
+      "solucoes": [
+        {
+          "id": "C1",
+          "solucao": "Assistente de atendimento automático por WhatsApp baseado em catálogo.",
+          "familias": [
+            "IA conversacional",
+            "Busca inteligente / RAG"
+          ],
+          "problema": "Respostas manuais e perda de clientes fora do horário por falta de atendimento automático.",
+          "capacidadeIA": "Interpretar perguntas livres, consultar catálogo, gerar respostas precisas e encaminhar exceções.",
+          "impactoPotencial": "Alto",
+          "esforco": "Médio",
+          "observacao": "Única alternativa que cobre atendimento fora do horário. Demanda integração ao catálogo e WhatsApp, mas escoa volume relevante automaticamente."
+        },
+        {
+          "id": "C2",
+          "solucao": "Copiloto inteligente para equipe agilizar resposta via sugestões automáticas.",
+          "familias": [
+            "Busca inteligente / RAG",
+            "Classificação / roteamento"
+          ],
+          "problema": "Equipe demora para responder, dependendo de consulta manual.",
+          "capacidadeIA": "Gerar e sugerir respostas rápidas com base no catálogo, classificando dúvidas recorrentes.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Reduz o tempo de resposta em horário útil, mas não resolve ausência de resposta fora do horário. Menor esforço inicial."
+        },
+        {
+          "id": "C3",
+          "solucao": "Motor inteligente para triagem e encaminhamento automático das dúvidas.",
+          "familias": [
+            "Classificação / roteamento"
+          ],
+          "problema": "Equipe perde tempo identificando e roteando dúvidas e negociações.",
+          "capacidadeIA": "Classificar dúvidas vs. negociações para encaminhamento prioritário.",
+          "impactoPotencial": "Médio",
+          "esforco": "Baixo",
+          "observacao": "Melhora triagem e priorização, mas não automatiza resposta ao cliente. Atua mais no fluxo interno."
+        }
+      ],
+      "recomendacao": {
+        "candidatoId": "C1",
+        "porQue": "Resolve indisponibilidade fora do horário e reduz perda de clientes, algo que os demais não cobrem.",
+        "valorIA": "IA interpreta a pergunta livre e gera resposta automática com base no catálogo, encaminhando exceções.",
+        "arquiteturaDeterministica": "Consulta ao catálogo e regras de fluxo são conferidas antes da IA; decisões comerciais e exceções vão para humanos.",
+        "resultadoPotencial": "Pode cobrir dúvidas recorrentes 24x7 e diminuir desistências causadas por demora."
+      },
+      "funcionamento": {
+        "entrada": "Pergunta do cliente via WhatsApp.",
+        "validacaoEstrutural": "Verificar se a mensagem é de texto e possui conteúdo compreensível.",
+        "deterministica": "Separar dúvidas operacionais de negociações e filtrar perguntas sem sentido ou incompletas.",
+        "inteligencia": "IA interpreta a pergunta, identifica tema/catalogação e gera resposta contextual baseada em catálogo.",
+        "entrega": "Resposta automática enviada ao cliente via WhatsApp.",
+        "consultaLinguagemNatural": "IA responde perguntas interpretando linguagem livre e cruzando com o catálogo.",
+        "validacaoHumana": "Encaminhamento das exceções e negociações a pessoas."
+      },
+      "preRequisitos": [
+        "Catálogo completo e atualizado em formato digital estruturado (planilha)",
+        "Integração autorizada entre WhatsApp e solução de IA",
+        "Regras claras de quais dúvidas não devem ser respondidas automaticamente",
+        "Permissões para treinar modelos de IA com exemplo de perguntas e respostas",
+        "Canal definido e fluxo validado para encaminhamento manual"
+      ],
+      "validacoes": [
+        "Volume de dúvidas fora do horário e principais temas atendidos automaticamente",
+        "Clareza e consistência das respostas sugeridas pela IA",
+        "Categorização correta dos casos encaminhados para pessoa",
+        "Revisão amostral de respostas automáticas para aferição de qualidade"
+      ],
+      "metricas": {
+        "principal": {
+          "nome": "Proporção de dúvidas resolvidas automaticamente fora do horário",
+          "registro": "Logs de interações automáticas no WhatsApp",
+          "calculo": "Total de dúvidas respondidas automaticamente fora do horário dividido pelo total de dúvidas recebidas nesse período",
+          "comparacao": "Comparar proporção entre períodos equivalentes antes e depois da implantação",
+          "unidade": "% de dúvidas resolvidas automaticamente fora do horário",
+          "finalidade": "Resultado do negócio"
+        },
+        "secundarias": [
+          {
+            "nome": "Tempo médio de resposta para dúvidas recorrentes",
+            "registro": "Timestamp das mensagens e respostas automáticas",
+            "calculo": "Diferença média entre envio da dúvida e envio da resposta automática",
+            "comparacao": "Comparar tempo médio antes e depois da automação",
+            "unidade": "minutos",
+            "finalidade": "Resultado do negócio",
+            "gargaloIndice": 0
+          },
+          {
+            "nome": "Taxa de encaminhamento manual",
+            "registro": "Quantidade de dúvidas encaminhadas para equipe versus total de dúvidas recebidas",
+            "calculo": "Dúvidas encaminhadas dividido pelo total de dúvidas em determinado período",
+            "comparacao": "Acompanhar variação conforme melhoria da IA e regras",
+            "unidade": "%",
+            "finalidade": "Resultado do negócio",
+            "gargaloIndice": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "stage": "quality_gate",
+    "result": {
+      "status": "REVISE",
+      "verificacoes": {
+        "dorReal": true,
+        "familiaCoerente": true,
+        "familiaMaisAderente": true,
+        "especificidade": true,
+        "conservadorismo": true,
+        "oportunidadeRelevante": true,
+        "infraestruturaOculta": true,
+        "iaSubstantiva": true,
+        "dadosInventados": true,
+        "hipotesesComoFatos": true,
+        "sinaisIgnorados": true,
+        "metodologia": true,
+        "preRequisitos": true,
+        "metrica": true,
+        "contradicoes": true,
+        "competencia": true,
+        "calculoLLM": true,
+        "quantidadesJustificadas": true,
+        "promessasResponsaveis": true,
+        "capacidadeNegocio": true,
+        "inteligenciaExplicita": true,
+        "arquiteturaSeparada": true,
+        "consultaContextual": false,
+        "mensurabilidade": true,
+        "bloqueioDimensionamento": false,
+        "escopoNecessario": true,
+        "alternativaEnxuta": true,
+        "metricaNegocio": true,
+        "volumeSustentado": true,
+        "linguagemEmpresario": true,
+        "semRedundancia": true,
+        "causalidadeBeneficio": true,
+        "atribuicaoMetrica": true
+      },
+      "correcoes": [
+        "A consulta contextual analítica (por exemplo, permitir perguntas sobre histórico de dúvidas ou tendências) foi identificada como relevante, mas não está explicitamente desenhada nem na arquitetura, nem considerada em MVP ou como evolução posterior no workflow e no escopo do candidato recomendado (C1). Incluir sua avaliação: se essencial, no MVP; se útil, como potencial evolução após validação."
+      ],
+      "perguntas": []
+    }
+  },
+  {
+    "stage": "revise_diagnosis",
+    "result": {
+      "alteracoes": [
+        {
+          "campo": "funcionamento.6",
+          "valor": "Encaminhamento das exceções e negociações a pessoas. Possível evolução: IA permite consulta sintética a dados históricos e tendências das dúvidas quando validado o escopo inicial."
+        },
+        {
+          "campo": "recomendacao.texto",
+          "valor": "Com base no que você descreveu, a iniciativa com melhor relação entre impacto potencial e viabilidade é… Assistente de atendimento automático por WhatsApp baseado em catálogo.\n\nPrimeira implementação: IA interpreta dúvidas sobre produtos e entrega via WhatsApp e responde automaticamente com base no catálogo.\n\nPor que essa solução: Resolve indisponibilidade fora do horário e reduz perda de clientes, algo que os demais não cobrem.\n\nComo a IA agrega valor: IA interpreta a pergunta livre e gera resposta automática com base no catálogo, encaminhando exceções.\n\nComo a arquitetura deve funcionar: Consulta ao catálogo e regras de fluxo são conferidas antes da IA; decisões comerciais e exceções vão para humanos.\n\nResultado potencial: Pode cobrir dúvidas recorrentes 24x7 e diminuir desistências causadas por demora.\n\nEvolução possível após validação inicial: Encaminhamento automático de dúvidas de negociação para pessoa; Consulta ao status de pedidos se liberado; Consulta sintética a dados históricos e tendências das dúvidas como evolução útil após MVP."
+        }
+      ],
+      "auditoria": {
+        "status": "APPROVED",
+        "verificacoes": {
+          "dorReal": true,
+          "familiaCoerente": true,
+          "familiaMaisAderente": true,
+          "especificidade": true,
+          "conservadorismo": true,
+          "oportunidadeRelevante": true,
+          "infraestruturaOculta": true,
+          "iaSubstantiva": true,
+          "dadosInventados": true,
+          "hipotesesComoFatos": true,
+          "sinaisIgnorados": true,
+          "metodologia": true,
+          "preRequisitos": true,
+          "metrica": true,
+          "contradicoes": true,
+          "competencia": true,
+          "calculoLLM": true,
+          "quantidadesJustificadas": true,
+          "promessasResponsaveis": true,
+          "capacidadeNegocio": true,
+          "inteligenciaExplicita": true,
+          "arquiteturaSeparada": true,
+          "consultaContextual": true,
+          "mensurabilidade": true,
+          "bloqueioDimensionamento": true,
+          "escopoNecessario": true,
+          "alternativaEnxuta": true,
+          "metricaNegocio": true,
+          "volumeSustentado": true,
+          "linguagemEmpresario": true,
+          "semRedundancia": true,
+          "causalidadeBeneficio": true,
+          "atribuicaoMetrica": true
+        },
+        "correcoes": [],
+        "perguntas": []
+      }
+    }
+  }
+]

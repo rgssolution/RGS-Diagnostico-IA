@@ -1,0 +1,1 @@
+{"caso":"Atendimento","chamadas":5,"duracaoMs":46263,"tokens":{"stages":5,"durationMs":46217,"inputTokens":20720,"outputTokens":5334,"totalTokens":26054,"usageStages":5},"status":"O caso não passou na validação final do teste.","codigo":"invalid_noop_patch","avaliacao":[]}
