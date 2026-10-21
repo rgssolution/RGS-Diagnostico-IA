@@ -29,16 +29,19 @@ export async function reviseDiagnosis(call:StageCall,context:Context,draft:Diagn
  const schema=z.object({alteracoes:z.array(patchSchema).max(12),auditoria:compactAuditSchema}).strict();
  const raw=await call("revise_diagnosis",schema,AUDIT+`
 REVISOR AUDITOR INDEPENDENTE DO REDATOR. Você recebe o diagnóstico existente e os defeitos específicos. Corrija só campos necessários com valores diferentes dos atuais; omita patches idênticos. Não regenere candidatos, seleção ou diagnóstico. Preserve conteúdo correto. Não cite códigos F/C, sobrescritos ou caracteres invisíveis no texto público. Preserve literalmente a frase obrigatória de separação de regras/IA, inclusive ao corrigir a etapa que a contém. Não altere trechos corretos por preferência estilística. Os patches serão aplicados literalmente e constituem a resposta final exata que você deve avaliar novamente em TODOS os critérios. Audite o resultado dos patches, não a versão antiga, e certifique em auditoria; verificacoes são booleanos, motivos só em correcoes. Não declare APPROVED se não puder atestar integralmente a versão corrigida. Se o defeito exigir trocar solução, família, evidências ou arquitetura essencial fora dos campos editáveis, REVISE; jamais maquie uma escolha inadequada. Não invente fatos. Em operacao corrija apenas a descrição factual com as fontes originais: sem adicionar etapas futuras ou capacidades ainda não implantadas. Não transforme muitos em alto volume; qualificadores de volume só podem repetir literalmente os termos das fontes. Prefira descrição factual sem classificar. As lacunas não bloqueantes já estão em validacoes; preserve-as. Não produza novo pedido de dimensionamento.`,{...auditContext(context,draft),problemas:findings,camposEditaveis:paths});
- if(!raw.alteracoes.length && findings.length && !allowUnchanged)throw new Error("quality_gate_rejected");
+ // Validate every patch before consolidation, including overwritten entries.
+ const validated=schema.parse(raw);
+ const patches=new Map<string,(typeof validated.alteracoes)[number]>();
+ for(const patch of validated.alteracoes){patches.delete(patch.campo);patches.set(patch.campo,patch);}
  const revised=structuredClone(draft);
- const seen=new Set<string>();
- for(const patch of raw.alteracoes){
-  if(seen.has(patch.campo))throw new Error("invalid_duplicate_patch");seen.add(patch.campo);
+ let changes=0;
+ for(const patch of patches.values()){
   const parts=patch.campo.split(".");let node:Record<string,unknown>=revised as unknown as Record<string,unknown>;
   for(const p of parts.slice(0,-1))node=node[p] as Record<string,unknown>;
-  if(node[parts.at(-1)!]===patch.valor)throw new Error("invalid_noop_patch");
-  node[parts.at(-1)!]=patch.valor;
+  if(node[parts.at(-1)!]===patch.valor)continue;
+  node[parts.at(-1)!]=patch.valor;changes++;
  }
+ if(!changes && findings.length && !allowUnchanged)throw new Error("quality_gate_rejected");
  const result=diagnosisSchema.parse(revised);
  const audit=expandAudit(raw.auditoria),errors=deterministicChecks(result,context);
  // Nonblocking caveats and the server-controlled exact-calculation separator cannot disappear in a patch.
